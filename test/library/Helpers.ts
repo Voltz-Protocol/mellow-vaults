@@ -22,6 +22,7 @@ import {
     UniV3VaultGovernance,
     VaultRegistry,
     ERC20Token as ERC20,
+    IMarginEngine,
     ERC20Token,
     ISwapRouter,
     ERC20RootVault,
@@ -34,6 +35,7 @@ import {
 } from "../types/ERC20RootVaultGovernance";
 import { Arbitrary, Random } from "fast-check";
 import { mersenne } from "pure-rand";
+import { TickRangeStructOutput } from "../types/IVoltzVault";
 
 const random = new Random(mersenne(Math.floor(Math.random() * 100000)));
 
@@ -615,6 +617,30 @@ export async function makeFirstDeposit(
     return depositAmount;
 }
 
+export async function mintUSDCForVoltz(options: {
+    tickLower: BigNumberish;
+    tickUpper: BigNumberish;
+    usdcAmount: BigNumberish;
+}): Promise<any> {
+    const { usdc, deployer, voltzPeriphery } =
+        await getNamedAccounts();
+
+    const usdcContract = await ethers.getContractAt("ERC20Token", usdc);
+
+    await mint("USDC", deployer, options.usdcAmount);
+
+    if (
+        (await usdcContract.allowance(deployer, voltzPeriphery)).eq(
+            BigNumber.from(0)
+        )
+    ) {
+        await usdcContract.approve(
+            voltzPeriphery,
+            ethers.constants.MaxUint256
+        );
+    }
+}
+
 export async function mintUniV3Position_WBTC_WETH(options: {
     tickLower: BigNumberish;
     tickUpper: BigNumberish;
@@ -674,4 +700,31 @@ export async function mintUniV3Position_WBTC_WETH(options: {
     const result = await positionManagerContract.callStatic.mint(mintParams);
     await positionManagerContract.mint(mintParams);
     return result;
+}
+
+export const checkStateOfVoltzOpenedPositions = async (
+    marginEngineContract: IMarginEngine,
+    subject: string, openedPositions:
+        TickRangeStructOutput[]
+) => {
+    console.log("----------------------------------------------------");
+    console.log("");
+    console.log("number of opened positions:", openedPositions.length);
+    for (let i = 0; i < openedPositions.length; i++) {
+        console.log("low:", openedPositions[i].low.toString(), "; high", openedPositions[i].high.toString());
+        console.log();
+        const position =
+            await (marginEngineContract as IMarginEngine).callStatic.getPosition(
+                subject,
+                openedPositions[i].low,
+                openedPositions[i].high
+            );
+
+        console.log("margin:", position.margin.toString());
+        console.log("liquidity:", position._liquidity.toString());
+        console.log("settled:", position.isSettled.toString());
+        console.log("variable tokens:", position.variableTokenBalance.toString());
+        console.log("fixed tokens:", position.fixedTokenBalance.toString());
+        console.log();
+    }
 }

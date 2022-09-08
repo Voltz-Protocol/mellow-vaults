@@ -292,6 +292,12 @@ const config: HardhatUserConfig = {
         },
         curveRouter: {
             default: "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+        },
+        voltzPeriphery: {
+            default: "0x2657101a6Bb5538DD84b0B8c8E2Deac667b9c66c",
+        },
+        marginEngine: {
+            default: "0x9ea5Cfd876260eDadaB461f013c24092dDBD531d",
         }
     },
 

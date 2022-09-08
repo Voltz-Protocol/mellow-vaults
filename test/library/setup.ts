@@ -23,16 +23,19 @@ import {
     ERC20RootVaultGovernance,
     ProtocolGovernance,
     UniV3VaultGovernance,
+    VoltzVaultGovernance,
     VaultRegistry,
     YearnVaultGovernance,
     YearnVault,
     ERC20Vault,
     AaveVault,
     UniV3Vault,
+    VoltzVault,
     ERC20RootVault,
     MellowOracle,
     MStrategy,
     LStrategy,
+    LongShortStrategy
 } from "../types";
 
 export interface TestContext<T, F> extends Suite {
@@ -47,11 +50,14 @@ export interface TestContext<T, F> extends Suite {
     aaveVaultSingleton: AaveVault;
     uniV3VaultGovernance: UniV3VaultGovernance;
     uniV3VaultSingleton: UniV3Vault;
+    voltzVaultGovernance: VoltzVaultGovernance;
+    voltzVaultSingleton: VoltzVault;
     erc20RootVaultGovernance: ERC20RootVaultGovernance;
     erc20RootVaultSingleton: ERC20RootVault;
     mellowOracle: MellowOracle;
     mStrategy: MStrategy;
     lStrategy: LStrategy;
+    longShortStrategy: LongShortStrategy;
 
     usdc: ERC20;
     weth: ERC20;
@@ -145,6 +151,11 @@ export async function setupDefaultContext<T, F>(this: TestContext<T, F>) {
     );
     this.uniV3VaultSingleton = await ethers.getContract("UniV3Vault");
 
+    this.voltzVaultGovernance = await ethers.getContract(
+        "VoltzVaultGovernance"
+    );
+    this.voltzVaultSingleton = await ethers.getContract("VoltzVault");
+
     this.erc20RootVaultGovernance = await ethers.getContract(
         "ERC20RootVaultGovernance"
     );
@@ -159,6 +170,7 @@ export async function setupDefaultContext<T, F>(this: TestContext<T, F>) {
         this.mStrategy = mStrategy;
     }
     this.lStrategy = await ethers.getContract("LStrategy");
+    this.longShortStrategy = await ethers.getContract("LongShortStrategy");
 
     const namedAccounts = await getNamedAccounts();
     for (const name of ["deployer", "admin", "mStrategyAdmin", "test"]) {
