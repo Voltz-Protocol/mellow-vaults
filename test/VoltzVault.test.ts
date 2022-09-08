@@ -180,1016 +180,1016 @@ contract<VoltzVault, DeployOptions, CustomContext>("VoltzVault", function () {
             });
         });
 
-        it("returns tvl function", async () => {
+        it("returns voltz vault test function", async () => {
             const result = await this.subject.testVoltzVault();
 
             expect(result).to.be.equal(0);
         });
 
-        // it("returns total value locked", async () => {
-        //     await mint(
-        //         "USDC",
-        //         this.subject.address,
-        //         BigNumber.from(10).pow(6).mul(3000)
-        //     );
+        it("returns total value locked", async () => {
+            await mint(
+                "USDC",
+                this.subject.address,
+                BigNumber.from(10).pow(6).mul(3000)
+            );
 
-        //     await this.preparePush();
-        //     await this.subject.push(
-        //         [this.usdc.address],
-        //         [
-        //             BigNumber.from(10).pow(6).mul(3000),
-        //         ],
-        //         encodeToBytes(
-        //             ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
-        //             [
-        //                 BigNumber.from(0),
-        //                 BigNumber.from(0),
-        //                 BigNumber.from(0),
-        //                 false,
-        //                 0,
-        //                 0,
-        //                 false,
-        //                 0
-        //             ]
-        //         )
-        //     );
-        //     const result = await this.subject.tvl();
-        //     for (let amountsId = 0; amountsId < 2; ++amountsId) {
-        //         expect(result[amountsId][0]).to.be.equal(BigNumber.from(10).pow(6).mul(3000));
-        //     }
-        // });
+            await this.preparePush();
+            await this.subject.push(
+                [this.usdc.address],
+                [
+                    BigNumber.from(10).pow(6).mul(3000),
+                ],
+                encodeToBytes(
+                    ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
+                    [
+                        BigNumber.from(0),
+                        BigNumber.from(0),
+                        BigNumber.from(0),
+                        false,
+                        0,
+                        0,
+                        false,
+                        0
+                    ]
+                )
+            );
+            const result = await this.subject.tvl();
+            for (let amountsId = 0; amountsId < 2; ++amountsId) {
+                expect(result[amountsId][0]).to.be.equal(BigNumber.from(10).pow(6).mul(3000));
+            }
+        });
 
-        // describe("edge cases:", () => {
-        //     describe("when there are no initial funds", () => {
-        //         it("returns zeroes", async () => {
-        //             const result = await this.subject.tvl();
-        //             for (let amountsId = 0; amountsId < 2; ++amountsId) {
-        //                 expect(result[amountsId][0]).eq(0);
-        //             }
-        //         });
-        //     });
-        // });
+        describe("edge cases:", () => {
+            describe("when there are no initial funds", () => {
+                it("returns zeroes", async () => {
+                    const result = await this.subject.tvl();
+                    for (let amountsId = 0; amountsId < 2; ++amountsId) {
+                        expect(result[amountsId][0]).eq(0);
+                    }
+                });
+            });
+        });
 
-        // describe("perfors operations along push", () => {
-        //     describe("mint in push", () => {
-        //         it("mint with no leverage in push", async () => {
-        //             await mint(
-        //                 "USDC",
-        //                 this.subject.address,
-        //                 BigNumber.from(10).pow(6).mul(3000)
-        //             );
+        describe("perfors operations along push", () => {
+            describe("mint in push", () => {
+                it("mint with no leverage in push", async () => {
+                    await mint(
+                        "USDC",
+                        this.subject.address,
+                        BigNumber.from(10).pow(6).mul(3000)
+                    );
         
-        //             await this.preparePush();
-        //             await this.subject.push(
-        //                 [this.usdc.address],
-        //                 [
-        //                     BigNumber.from(10).pow(6).mul(3000),
-        //                 ],
-        //                 encodeToBytes(
-        //                     ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
-        //                     [
-        //                         BigNumber.from(10).pow(6).mul(3000),
-        //                         BigNumber.from(0),
-        //                         BigNumber.from(0),
-        //                         false,
-        //                         0,
-        //                         0,
-        //                         false,
-        //                         0
-        //                     ]
-        //                 )
-        //             );
-        //             const result = await this.subject.tvl();
-        //             for (let amountsId = 0; amountsId < 2; ++amountsId) {
-        //                 expect(result[amountsId][0]).to.be.equal(BigNumber.from(10).pow(6).mul(3000));
-        //             }
-        //         });
+                    await this.preparePush();
+                    await this.subject.push(
+                        [this.usdc.address],
+                        [
+                            BigNumber.from(10).pow(6).mul(3000),
+                        ],
+                        encodeToBytes(
+                            ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
+                            [
+                                BigNumber.from(10).pow(6).mul(3000),
+                                BigNumber.from(0),
+                                BigNumber.from(0),
+                                false,
+                                0,
+                                0,
+                                false,
+                                0
+                            ]
+                        )
+                    );
+                    const result = await this.subject.tvl();
+                    for (let amountsId = 0; amountsId < 2; ++amountsId) {
+                        expect(result[amountsId][0]).to.be.equal(BigNumber.from(10).pow(6).mul(3000));
+                    }
+                });
     
-        //         it("mint with leverage (10x) in push", async () => {
-        //             await mint(
-        //                 "USDC",
-        //                 this.subject.address,
-        //                 BigNumber.from(10).pow(6).mul(3000)
-        //             );
+                it("mint with leverage (10x) in push", async () => {
+                    await mint(
+                        "USDC",
+                        this.subject.address,
+                        BigNumber.from(10).pow(6).mul(3000)
+                    );
         
-        //             await this.preparePush();
-        //             await this.subject.push(
-        //                 [this.usdc.address],
-        //                 [
-        //                     BigNumber.from(10).pow(6).mul(3000),
-        //                 ],
-        //                 encodeToBytes(
-        //                     ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
-        //                     [
-        //                         BigNumber.from(10).pow(6).mul(3000).mul(10),
-        //                         BigNumber.from(0),
-        //                         BigNumber.from(0),
-        //                         false,
-        //                         0,
-        //                         0,
-        //                         false,
-        //                         0
-        //                     ]
-        //                 )
-        //             );
-        //             const result = await this.subject.tvl();
-        //             for (let amountsId = 0; amountsId < 2; ++amountsId) {
-        //                 expect(result[amountsId][0]).to.be.equal(BigNumber.from(10).pow(6).mul(3000));
-        //             }
-        //         });
+                    await this.preparePush();
+                    await this.subject.push(
+                        [this.usdc.address],
+                        [
+                            BigNumber.from(10).pow(6).mul(3000),
+                        ],
+                        encodeToBytes(
+                            ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
+                            [
+                                BigNumber.from(10).pow(6).mul(3000).mul(10),
+                                BigNumber.from(0),
+                                BigNumber.from(0),
+                                false,
+                                0,
+                                0,
+                                false,
+                                0
+                            ]
+                        )
+                    );
+                    const result = await this.subject.tvl();
+                    for (let amountsId = 0; amountsId < 2; ++amountsId) {
+                        expect(result[amountsId][0]).to.be.equal(BigNumber.from(10).pow(6).mul(3000));
+                    }
+                });
     
-        //         it("mint with too much leverage (10000x) in push", async () => {
-        //             await mint(
-        //                 "USDC",
-        //                 this.subject.address,
-        //                 BigNumber.from(10).pow(6).mul(3000)
-        //             );
+                it("mint with too much leverage (10000x) in push", async () => {
+                    await mint(
+                        "USDC",
+                        this.subject.address,
+                        BigNumber.from(10).pow(6).mul(3000)
+                    );
         
-        //             await this.preparePush();
-        //             await expect(this.subject.push(
-        //                 [this.usdc.address],
-        //                 [
-        //                     BigNumber.from(10).pow(6).mul(3000),
-        //                 ],
-        //                 encodeToBytes(
-        //                     ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
-        //                     [
-        //                         BigNumber.from(10).pow(6).mul(3000).mul(10000),
-        //                         BigNumber.from(0),
-        //                         BigNumber.from(0),
-        //                         false,
-        //                         0,
-        //                         0,
-        //                         false,
-        //                         0
-        //                     ]
-        //                 )
-        //             )).to.be.reverted;
-        //         });
-        //     });
+                    await this.preparePush();
+                    await expect(this.subject.push(
+                        [this.usdc.address],
+                        [
+                            BigNumber.from(10).pow(6).mul(3000),
+                        ],
+                        encodeToBytes(
+                            ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
+                            [
+                                BigNumber.from(10).pow(6).mul(3000).mul(10000),
+                                BigNumber.from(0),
+                                BigNumber.from(0),
+                                false,
+                                0,
+                                0,
+                                false,
+                                0
+                            ]
+                        )
+                    )).to.be.reverted;
+                });
+            });
 
-        //     describe("trade fixed in push", () => {
-        //         it("trade fixed with no leverage in push", async () => {
-        //             await mint(
-        //                 "USDC",
-        //                 this.subject.address,
-        //                 BigNumber.from(10).pow(6).mul(3000)
-        //             );
+            describe("trade fixed in push", () => {
+                it("trade fixed with no leverage in push", async () => {
+                    await mint(
+                        "USDC",
+                        this.subject.address,
+                        BigNumber.from(10).pow(6).mul(3000)
+                    );
         
-        //             await this.preparePush();
-        //             await this.subject.push(
-        //                 [this.usdc.address],
-        //                 [
-        //                     BigNumber.from(10).pow(6).mul(3000),
-        //                 ],
-        //                 encodeToBytes(
-        //                     ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
-        //                     [
-        //                         BigNumber.from(0),
-        //                         BigNumber.from(10).pow(6).mul(3000),
-        //                         BigNumber.from(0),
-        //                         false,
-        //                         0,
-        //                         0,
-        //                         false,
-        //                         0
-        //                     ]
-        //                 )
-        //             );
-        //             const result = await this.subject.tvl();
-        //             for (let amountsId = 0; amountsId < 2; ++amountsId) {
-        //                 expect(result[amountsId][0].lt(BigNumber.from(10).pow(6).mul(3000)));
-        //                 expect(result[amountsId][0].gt(0));
-        //             }
-        //         });
+                    await this.preparePush();
+                    await this.subject.push(
+                        [this.usdc.address],
+                        [
+                            BigNumber.from(10).pow(6).mul(3000),
+                        ],
+                        encodeToBytes(
+                            ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
+                            [
+                                BigNumber.from(0),
+                                BigNumber.from(10).pow(6).mul(3000),
+                                BigNumber.from(0),
+                                false,
+                                0,
+                                0,
+                                false,
+                                0
+                            ]
+                        )
+                    );
+                    const result = await this.subject.tvl();
+                    for (let amountsId = 0; amountsId < 2; ++amountsId) {
+                        expect(result[amountsId][0].lt(BigNumber.from(10).pow(6).mul(3000)));
+                        expect(result[amountsId][0].gt(0));
+                    }
+                });
     
-        //         it("trade fixed with leverage (10x) in push", async () => {
-        //             await mint(
-        //                 "USDC",
-        //                 this.subject.address,
-        //                 BigNumber.from(10).pow(6).mul(3000)
-        //             );
+                it("trade fixed with leverage (10x) in push", async () => {
+                    await mint(
+                        "USDC",
+                        this.subject.address,
+                        BigNumber.from(10).pow(6).mul(3000)
+                    );
         
-        //             await this.preparePush();
-        //             await this.subject.push(
-        //                 [this.usdc.address],
-        //                 [
-        //                     BigNumber.from(10).pow(6).mul(3000),
-        //                 ],
-        //                 encodeToBytes(
-        //                     ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
-        //                     [
-        //                         BigNumber.from(0),
-        //                         BigNumber.from(10).pow(6).mul(3000).mul(10),
-        //                         BigNumber.from(0),
-        //                         false,
-        //                         0,
-        //                         0,
-        //                         false,
-        //                         0
-        //                     ]
-        //                 )
-        //             );
-        //             const result = await this.subject.tvl();
-        //             for (let amountsId = 0; amountsId < 2; ++amountsId) {
-        //                 expect(result[amountsId][0].lt(BigNumber.from(10).pow(6).mul(3000)));
-        //                 expect(result[amountsId][0].gt(0));
-        //             }
-        //         });
+                    await this.preparePush();
+                    await this.subject.push(
+                        [this.usdc.address],
+                        [
+                            BigNumber.from(10).pow(6).mul(3000),
+                        ],
+                        encodeToBytes(
+                            ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
+                            [
+                                BigNumber.from(0),
+                                BigNumber.from(10).pow(6).mul(3000).mul(10),
+                                BigNumber.from(0),
+                                false,
+                                0,
+                                0,
+                                false,
+                                0
+                            ]
+                        )
+                    );
+                    const result = await this.subject.tvl();
+                    for (let amountsId = 0; amountsId < 2; ++amountsId) {
+                        expect(result[amountsId][0].lt(BigNumber.from(10).pow(6).mul(3000)));
+                        expect(result[amountsId][0].gt(0));
+                    }
+                });
 
-        //         it("trade fixed with too much leverage (10000x) in push", async () => {
-        //             await mint(
-        //                 "USDC",
-        //                 this.subject.address,
-        //                 BigNumber.from(10).pow(6).mul(3000)
-        //             );
+                it("trade fixed with too much leverage (10000x) in push", async () => {
+                    await mint(
+                        "USDC",
+                        this.subject.address,
+                        BigNumber.from(10).pow(6).mul(3000)
+                    );
         
-        //             await this.preparePush();
-        //             await expect(this.subject.push(
-        //                 [this.usdc.address],
-        //                 [
-        //                     BigNumber.from(10).pow(6).mul(3000),
-        //                 ],
-        //                 encodeToBytes(
-        //                     ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
-        //                     [
-        //                         BigNumber.from(0),
-        //                         BigNumber.from(10).pow(6).mul(3000).mul(10000),
-        //                         BigNumber.from(0),
-        //                         false,
-        //                         0,
-        //                         0,
-        //                         false,
-        //                         0
-        //                     ]
-        //                 )
-        //             )).to.be.reverted;
-        //         });
-        //     });
+                    await this.preparePush();
+                    await expect(this.subject.push(
+                        [this.usdc.address],
+                        [
+                            BigNumber.from(10).pow(6).mul(3000),
+                        ],
+                        encodeToBytes(
+                            ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
+                            [
+                                BigNumber.from(0),
+                                BigNumber.from(10).pow(6).mul(3000).mul(10000),
+                                BigNumber.from(0),
+                                false,
+                                0,
+                                0,
+                                false,
+                                0
+                            ]
+                        )
+                    )).to.be.reverted;
+                });
+            });
 
-        //     describe("trade variable in push", () => {
-        //         it("trade variable with no leverage in push", async () => {
-        //             await mint(
-        //                 "USDC",
-        //                 this.subject.address,
-        //                 BigNumber.from(10).pow(6).mul(3000)
-        //             );
+            describe("trade variable in push", () => {
+                it("trade variable with no leverage in push", async () => {
+                    await mint(
+                        "USDC",
+                        this.subject.address,
+                        BigNumber.from(10).pow(6).mul(3000)
+                    );
         
-        //             await this.preparePush();
-        //             await this.subject.push(
-        //                 [this.usdc.address],
-        //                 [
-        //                     BigNumber.from(10).pow(6).mul(3000),
-        //                 ],
-        //                 encodeToBytes(
-        //                     ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
-        //                     [
-        //                         BigNumber.from(0),
-        //                         BigNumber.from(10).pow(6).mul(3000).mul(-1),
-        //                         BigNumber.from(0),
-        //                         false,
-        //                         0,
-        //                         0,
-        //                         false,
-        //                         0
-        //                     ]
-        //                 )
-        //             );
-        //             const result = await this.subject.tvl();
-        //             for (let amountsId = 0; amountsId < 2; ++amountsId) {
-        //                 expect(result[amountsId][0].lt(BigNumber.from(10).pow(6).mul(3000)));
-        //                 expect(result[amountsId][0].gt(0));
-        //             }
-        //         });
+                    await this.preparePush();
+                    await this.subject.push(
+                        [this.usdc.address],
+                        [
+                            BigNumber.from(10).pow(6).mul(3000),
+                        ],
+                        encodeToBytes(
+                            ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
+                            [
+                                BigNumber.from(0),
+                                BigNumber.from(10).pow(6).mul(3000).mul(-1),
+                                BigNumber.from(0),
+                                false,
+                                0,
+                                0,
+                                false,
+                                0
+                            ]
+                        )
+                    );
+                    const result = await this.subject.tvl();
+                    for (let amountsId = 0; amountsId < 2; ++amountsId) {
+                        expect(result[amountsId][0].lt(BigNumber.from(10).pow(6).mul(3000)));
+                        expect(result[amountsId][0].gt(0));
+                    }
+                });
     
-        //         it("trade variable with leverage (10x) in push", async () => {
-        //             await mint(
-        //                 "USDC",
-        //                 this.subject.address,
-        //                 BigNumber.from(10).pow(6).mul(3000)
-        //             );
+                it("trade variable with leverage (10x) in push", async () => {
+                    await mint(
+                        "USDC",
+                        this.subject.address,
+                        BigNumber.from(10).pow(6).mul(3000)
+                    );
         
-        //             await this.preparePush();
-        //             await this.subject.push(
-        //                 [this.usdc.address],
-        //                 [
-        //                     BigNumber.from(10).pow(6).mul(3000),
-        //                 ],
-        //                 encodeToBytes(
-        //                     ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
-        //                     [
-        //                         BigNumber.from(0),
-        //                         BigNumber.from(10).pow(6).mul(3000).mul(10).mul(-1),
-        //                         BigNumber.from(0),
-        //                         false,
-        //                         0,
-        //                         0,
-        //                         false,
-        //                         0
-        //                     ]
-        //                 )
-        //             );
-        //             const result = await this.subject.tvl();
-        //             for (let amountsId = 0; amountsId < 2; ++amountsId) {
-        //                 expect(result[amountsId][0].lt(BigNumber.from(10).pow(6).mul(3000)));
-        //                 expect(result[amountsId][0].gt(0));
-        //             }
-        //         });
+                    await this.preparePush();
+                    await this.subject.push(
+                        [this.usdc.address],
+                        [
+                            BigNumber.from(10).pow(6).mul(3000),
+                        ],
+                        encodeToBytes(
+                            ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
+                            [
+                                BigNumber.from(0),
+                                BigNumber.from(10).pow(6).mul(3000).mul(10).mul(-1),
+                                BigNumber.from(0),
+                                false,
+                                0,
+                                0,
+                                false,
+                                0
+                            ]
+                        )
+                    );
+                    const result = await this.subject.tvl();
+                    for (let amountsId = 0; amountsId < 2; ++amountsId) {
+                        expect(result[amountsId][0].lt(BigNumber.from(10).pow(6).mul(3000)));
+                        expect(result[amountsId][0].gt(0));
+                    }
+                });
 
-        //         it("trade variable with too much leverage (10000x) in push", async () => {
-        //             await mint(
-        //                 "USDC",
-        //                 this.subject.address,
-        //                 BigNumber.from(10).pow(6).mul(3000)
-        //             );
+                it("trade variable with too much leverage (10000x) in push", async () => {
+                    await mint(
+                        "USDC",
+                        this.subject.address,
+                        BigNumber.from(10).pow(6).mul(3000)
+                    );
         
-        //             await this.preparePush();
-        //             await expect(this.subject.push(
-        //                 [this.usdc.address],
-        //                 [
-        //                     BigNumber.from(10).pow(6).mul(3000),
-        //                 ],
-        //                 encodeToBytes(
-        //                     ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
-        //                     [
-        //                         BigNumber.from(0),
-        //                         BigNumber.from(10).pow(6).mul(3000).mul(10000).mul(-1),
-        //                         BigNumber.from(0),
-        //                         false,
-        //                         0,
-        //                         0,
-        //                         false,
-        //                         0
-        //                     ]
-        //                 )
-        //             )).to.be.reverted;
-        //         });
-        //     });
-        // });
+                    await this.preparePush();
+                    await expect(this.subject.push(
+                        [this.usdc.address],
+                        [
+                            BigNumber.from(10).pow(6).mul(3000),
+                        ],
+                        encodeToBytes(
+                            ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
+                            [
+                                BigNumber.from(0),
+                                BigNumber.from(10).pow(6).mul(3000).mul(10000).mul(-1),
+                                BigNumber.from(0),
+                                false,
+                                0,
+                                0,
+                                false,
+                                0
+                            ]
+                        )
+                    )).to.be.reverted;
+                });
+            });
+        });
 
-        // describe("rebalances position", () => {
-        //     const rebalanceTickLow = -7200;
-        //     const rebalanceTickHigh = 0;
+        describe("rebalances position", () => {
+            const rebalanceTickLow = -7200;
+            const rebalanceTickHigh = 0;
 
-        //     it("direct rebalance fails if liquidity in the current position", async () => {
-        //         await mint(
-        //             "USDC",
-        //             this.subject.address,
-        //             BigNumber.from(10).pow(6).mul(3000)
-        //         );
+            it("direct rebalance fails if liquidity in the current position", async () => {
+                await mint(
+                    "USDC",
+                    this.subject.address,
+                    BigNumber.from(10).pow(6).mul(3000)
+                );
     
-        //         await this.preparePush();
-        //         await this.subject.push(
-        //             [this.usdc.address],
-        //             [
-        //                 BigNumber.from(10).pow(6).mul(3000),
-        //             ],
-        //             encodeToBytes(
-        //                 ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
-        //                 [
-        //                     BigNumber.from(10).pow(6).mul(3000),
-        //                    BigNumber.from(0),
-        //                     BigNumber.from(0),
-        //                     false,
-        //                     0,
-        //                     0,
-        //                     false,
-        //                     0
-        //                 ]
-        //             )
-        //         );
+                await this.preparePush();
+                await this.subject.push(
+                    [this.usdc.address],
+                    [
+                        BigNumber.from(10).pow(6).mul(3000),
+                    ],
+                    encodeToBytes(
+                        ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
+                        [
+                            BigNumber.from(10).pow(6).mul(3000),
+                           BigNumber.from(0),
+                            BigNumber.from(0),
+                            false,
+                            0,
+                            0,
+                            false,
+                            0
+                        ]
+                    )
+                );
                 
-        //         await expect(this.subject.push(
-        //             [this.usdc.address],
-        //             [
-        //                 BigNumber.from(0),
-        //             ],
-        //             encodeToBytes(
-        //                 ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
-        //                 [
-        //                     BigNumber.from(0),
-        //                     BigNumber.from(0),
-        //                     BigNumber.from(0),
-        //                     true,
-        //                     rebalanceTickLow,
-        //                     rebalanceTickHigh,
-        //                     false,
-        //                     0
-        //                 ]
-        //             )
-        //         )).to.be.reverted;
-        //     }); 
+                await expect(this.subject.push(
+                    [this.usdc.address],
+                    [
+                        BigNumber.from(0),
+                    ],
+                    encodeToBytes(
+                        ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
+                        [
+                            BigNumber.from(0),
+                            BigNumber.from(0),
+                            BigNumber.from(0),
+                            true,
+                            rebalanceTickLow,
+                            rebalanceTickHigh,
+                            false,
+                            0
+                        ]
+                    )
+                )).to.be.reverted;
+            }); 
 
-        //     it("rebalance", async () => {
-        //         await mint(
-        //             "USDC",
-        //             this.subject.address,
-        //             BigNumber.from(10).pow(6).mul(3000)
-        //         );
+            it("rebalance", async () => {
+                await mint(
+                    "USDC",
+                    this.subject.address,
+                    BigNumber.from(10).pow(6).mul(3000)
+                );
     
-        //         await this.preparePush();
-        //         await this.subject.push(
-        //             [this.usdc.address],
-        //             [
-        //                 BigNumber.from(10).pow(6).mul(3000),
-        //             ],
-        //             encodeToBytes(
-        //                 ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
-        //                 [
-        //                     BigNumber.from(10).pow(6).mul(3000),
-        //                     BigNumber.from(0),
-        //                     BigNumber.from(0),
-        //                     false,
-        //                     0,
-        //                     0,
-        //                     false,
-        //                     0
-        //                 ]
-        //             )
-        //         );
+                await this.preparePush();
+                await this.subject.push(
+                    [this.usdc.address],
+                    [
+                        BigNumber.from(10).pow(6).mul(3000),
+                    ],
+                    encodeToBytes(
+                        ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
+                        [
+                            BigNumber.from(10).pow(6).mul(3000),
+                            BigNumber.from(0),
+                            BigNumber.from(0),
+                            false,
+                            0,
+                            0,
+                            false,
+                            0
+                        ]
+                    )
+                );
 
-        //         const erc20VaultBalanceS = await this.usdc.balanceOf(this.erc20Vault.address);
+                const erc20VaultBalanceS = await this.usdc.balanceOf(this.erc20Vault.address);
 
-        //         await this.subject.pull(
-        //             this.erc20Vault.address,
-        //             [this.usdc.address],
-        //             [
-        //                 BigNumber.from(10).pow(6).mul(2000),
-        //             ],
-        //             encodeToBytes(
-        //                 ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
-        //                 [
-        //                     BigNumber.from(10).pow(6).mul(3000).mul(-1),
-        //                     BigNumber.from(0),
-        //                     BigNumber.from(0),
-        //                     false,
-        //                     0,
-        //                     0,
-        //                     false,
-        //                     0
-        //                 ]
-        //             )
-        //         );
+                await this.subject.pull(
+                    this.erc20Vault.address,
+                    [this.usdc.address],
+                    [
+                        BigNumber.from(10).pow(6).mul(2000),
+                    ],
+                    encodeToBytes(
+                        ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
+                        [
+                            BigNumber.from(10).pow(6).mul(3000).mul(-1),
+                            BigNumber.from(0),
+                            BigNumber.from(0),
+                            false,
+                            0,
+                            0,
+                            false,
+                            0
+                        ]
+                    )
+                );
 
-        //         const erc20VaultBalanceE = await this.usdc.balanceOf(this.erc20Vault.address);
-        //         expect(erc20VaultBalanceE.sub(erc20VaultBalanceS)).to.be.equal(BigNumber.from(10).pow(6).mul(2000));
+                const erc20VaultBalanceE = await this.usdc.balanceOf(this.erc20Vault.address);
+                expect(erc20VaultBalanceE.sub(erc20VaultBalanceS)).to.be.equal(BigNumber.from(10).pow(6).mul(2000));
 
-        //         await mint(
-        //             "USDC",
-        //             this.subject.address,
-        //             BigNumber.from(10).pow(6).mul(2000)
-        //         );
+                await mint(
+                    "USDC",
+                    this.subject.address,
+                    BigNumber.from(10).pow(6).mul(2000)
+                );
                 
-        //         await this.subject.push(
-        //             [this.usdc.address],
-        //             [
-        //                 BigNumber.from(10).pow(6).mul(2000),
-        //             ],
-        //             encodeToBytes(
-        //                 ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
-        //                 [
-        //                     BigNumber.from(10).pow(6).mul(3000),
-        //                     BigNumber.from(0),
-        //                     BigNumber.from(0),
-        //                     true,
-        //                     rebalanceTickLow,
-        //                     rebalanceTickHigh,
-        //                     false,
-        //                     0
-        //                 ]
-        //             )
-        //         );
+                await this.subject.push(
+                    [this.usdc.address],
+                    [
+                        BigNumber.from(10).pow(6).mul(2000),
+                    ],
+                    encodeToBytes(
+                        ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
+                        [
+                            BigNumber.from(10).pow(6).mul(3000),
+                            BigNumber.from(0),
+                            BigNumber.from(0),
+                            true,
+                            rebalanceTickLow,
+                            rebalanceTickHigh,
+                            false,
+                            0
+                        ]
+                    )
+                );
 
-        //         const result = await this.subject.tvl();
-        //         for (let amountsId = 0; amountsId < 2; ++amountsId) {
-        //             expect(result[amountsId][0]).to.be.equal(BigNumber.from(10).pow(6).mul(3000));
-        //         }
-        //     }); 
+                const result = await this.subject.tvl();
+                for (let amountsId = 0; amountsId < 2; ++amountsId) {
+                    expect(result[amountsId][0]).to.be.equal(BigNumber.from(10).pow(6).mul(3000));
+                }
+            }); 
 
-        //     it("settle all opened positions at once", async () => {
-        //         await mint(
-        //             "USDC",
-        //             this.subject.address,
-        //             BigNumber.from(10).pow(6).mul(3000)
-        //         );
+            it("settle all opened positions at once", async () => {
+                await mint(
+                    "USDC",
+                    this.subject.address,
+                    BigNumber.from(10).pow(6).mul(3000)
+                );
     
-        //         await this.preparePush();
+                await this.preparePush();
 
-        //         await this.subject.push(
-        //             [this.usdc.address],
-        //             [
-        //                 BigNumber.from(10).pow(6).mul(3000),
-        //             ],
-        //             encodeToBytes(
-        //                 ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
-        //                 [
-        //                     BigNumber.from(10).pow(6).mul(3000),
-        //                     BigNumber.from(0),
-        //                     BigNumber.from(0),
-        //                     false,
-        //                     0,
-        //                     0,
-        //                     false,
-        //                     0
-        //                 ]
-        //             )
-        //         );
+                await this.subject.push(
+                    [this.usdc.address],
+                    [
+                        BigNumber.from(10).pow(6).mul(3000),
+                    ],
+                    encodeToBytes(
+                        ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
+                        [
+                            BigNumber.from(10).pow(6).mul(3000),
+                            BigNumber.from(0),
+                            BigNumber.from(0),
+                            false,
+                            0,
+                            0,
+                            false,
+                            0
+                        ]
+                    )
+                );
 
-        //         await this.subject.pull(
-        //             this.erc20Vault.address,
-        //             [this.usdc.address],
-        //             [
-        //                 BigNumber.from(10).pow(6).mul(2000),
-        //             ],
-        //             encodeToBytes(
-        //                 ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
-        //                 [
-        //                     BigNumber.from(10).pow(6).mul(3000).mul(-1),
-        //                     BigNumber.from(0),
-        //                     BigNumber.from(0),
-        //                     false,
-        //                     0,
-        //                     0,
-        //                     false,
-        //                     0
-        //                 ]
-        //             )
-        //         );
+                await this.subject.pull(
+                    this.erc20Vault.address,
+                    [this.usdc.address],
+                    [
+                        BigNumber.from(10).pow(6).mul(2000),
+                    ],
+                    encodeToBytes(
+                        ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
+                        [
+                            BigNumber.from(10).pow(6).mul(3000).mul(-1),
+                            BigNumber.from(0),
+                            BigNumber.from(0),
+                            false,
+                            0,
+                            0,
+                            false,
+                            0
+                        ]
+                    )
+                );
 
-        //         await mint(
-        //             "USDC",
-        //             this.subject.address,
-        //             BigNumber.from(10).pow(6).mul(2000)
-        //         );
+                await mint(
+                    "USDC",
+                    this.subject.address,
+                    BigNumber.from(10).pow(6).mul(2000)
+                );
                 
-        //         await this.subject.push(
-        //             [this.usdc.address],
-        //             [
-        //                 BigNumber.from(10).pow(6).mul(2000),
-        //             ],
-        //             encodeToBytes(
-        //                 ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
-        //                 [
-        //                     BigNumber.from(10).pow(6).mul(3000),
-        //                     BigNumber.from(0),
-        //                     BigNumber.from(0),
-        //                     true,
-        //                     rebalanceTickLow,
-        //                     rebalanceTickHigh,
-        //                     false,
-        //                     0
-        //                 ]
-        //             )
-        //         );
+                await this.subject.push(
+                    [this.usdc.address],
+                    [
+                        BigNumber.from(10).pow(6).mul(2000),
+                    ],
+                    encodeToBytes(
+                        ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
+                        [
+                            BigNumber.from(10).pow(6).mul(3000),
+                            BigNumber.from(0),
+                            BigNumber.from(0),
+                            true,
+                            rebalanceTickLow,
+                            rebalanceTickHigh,
+                            false,
+                            0
+                        ]
+                    )
+                );
 
-        //         // advance time by 60 days to reach maturity
-        //         await network.provider.send("evm_increaseTime", [60 * 60 * 24 * 60]);
-        //         await network.provider.send("evm_mine", []);
+                // advance time by 60 days to reach maturity
+                await network.provider.send("evm_increaseTime", [60 * 60 * 24 * 60]);
+                await network.provider.send("evm_mine", []);
 
-        //         {
-        //             const numberOfClosedPositions = await this.subject.closing();
-        //             expect(numberOfClosedPositions).to.be.equal(BigNumber.from(0));
-        //         }
+                {
+                    const numberOfClosedPositions = await this.subject.closing();
+                    expect(numberOfClosedPositions).to.be.equal(BigNumber.from(0));
+                }
                 
-        //         const openedPositions = await this.subject.numberOpenedPositions();
-        //         await this.subject.pull(
-        //             this.erc20Vault.address,
-        //             [this.usdc.address],
-        //             [
-        //                 BigNumber.from(10).pow(6).mul(3000),
-        //             ],
-        //             encodeToBytes(
-        //                 ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
-        //                 [
-        //                     BigNumber.from(0),
-        //                     BigNumber.from(0),
-        //                     BigNumber.from(0),
-        //                     false,
-        //                     0,
-        //                     0,
-        //                     true,
-        //                     openedPositions
-        //                 ]
-        //             )
-        //         );
+                const openedPositions = await this.subject.numberOpenedPositions();
+                await this.subject.pull(
+                    this.erc20Vault.address,
+                    [this.usdc.address],
+                    [
+                        BigNumber.from(10).pow(6).mul(3000),
+                    ],
+                    encodeToBytes(
+                        ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
+                        [
+                            BigNumber.from(0),
+                            BigNumber.from(0),
+                            BigNumber.from(0),
+                            false,
+                            0,
+                            0,
+                            true,
+                            openedPositions
+                        ]
+                    )
+                );
 
-        //         {
-        //             const numberOfClosedPositions = await this.subject.closing();
-        //             expect(numberOfClosedPositions).to.be.equal(BigNumber.from(2));
-        //         }
-        //     }); 
+                {
+                    const numberOfClosedPositions = await this.subject.closing();
+                    expect(numberOfClosedPositions).to.be.equal(BigNumber.from(2));
+                }
+            }); 
 
-        //     it("multiple rebalance", async () => {
-        //         await mint(
-        //             "USDC",
-        //             this.subject.address,
-        //             BigNumber.from(10).pow(6).mul(6000)
-        //         );
+            it("multiple rebalance", async () => {
+                await mint(
+                    "USDC",
+                    this.subject.address,
+                    BigNumber.from(10).pow(6).mul(6000)
+                );
     
-        //         await this.preparePush();
-        //         await this.subject.push(
-        //             [this.usdc.address],
-        //             [
-        //                 BigNumber.from(10).pow(6).mul(6000),
-        //             ],
-        //             encodeToBytes(
-        //                 ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
-        //                 [
-        //                     BigNumber.from(10).pow(6).mul(3000),
-        //                     BigNumber.from(0),
-        //                     BigNumber.from(0),
-        //                     false,
-        //                     0,
-        //                     0,
-        //                     false,
-        //                     0
-        //                 ]
-        //             )
-        //         );
+                await this.preparePush();
+                await this.subject.push(
+                    [this.usdc.address],
+                    [
+                        BigNumber.from(10).pow(6).mul(6000),
+                    ],
+                    encodeToBytes(
+                        ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
+                        [
+                            BigNumber.from(10).pow(6).mul(3000),
+                            BigNumber.from(0),
+                            BigNumber.from(0),
+                            false,
+                            0,
+                            0,
+                            false,
+                            0
+                        ]
+                    )
+                );
 
-        //         const number_of_rebalances = 5;
-        //         for (let i = 0; i < number_of_rebalances; i++) {
-        //             await this.subject.pull(
-        //                 this.erc20Vault.address,
-        //                 [this.usdc.address],
-        //                 [
-        //                     BigNumber.from(10).pow(6).mul(1000).mul((number_of_rebalances - i)),
-        //                 ],
-        //                 encodeToBytes(
-        //                     ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
-        //                     [
-        //                         BigNumber.from(10).pow(6).mul(3000).mul(-1),
-        //                         BigNumber.from(0),
-        //                         BigNumber.from(0),
-        //                         false,
-        //                         0,
-        //                         0,
-        //                         false,
-        //                         0
-        //                     ]
-        //                 )
-        //             );
+                const number_of_rebalances = 5;
+                for (let i = 0; i < number_of_rebalances; i++) {
+                    await this.subject.pull(
+                        this.erc20Vault.address,
+                        [this.usdc.address],
+                        [
+                            BigNumber.from(10).pow(6).mul(1000).mul((number_of_rebalances - i)),
+                        ],
+                        encodeToBytes(
+                            ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
+                            [
+                                BigNumber.from(10).pow(6).mul(3000).mul(-1),
+                                BigNumber.from(0),
+                                BigNumber.from(0),
+                                false,
+                                0,
+                                0,
+                                false,
+                                0
+                            ]
+                        )
+                    );
     
-        //             await mint(
-        //                 "USDC",
-        //                 this.subject.address,
-        //                 BigNumber.from(10).pow(6).mul(1000).mul((number_of_rebalances - i))
-        //             );
+                    await mint(
+                        "USDC",
+                        this.subject.address,
+                        BigNumber.from(10).pow(6).mul(1000).mul((number_of_rebalances - i))
+                    );
                     
-        //             await this.subject.push(
-        //                 [this.usdc.address],
-        //                 [
-        //                     BigNumber.from(10).pow(6).mul(1000).mul((number_of_rebalances - i)),
-        //                 ],
-        //                 encodeToBytes(
-        //                     ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
-        //                     [
-        //                         BigNumber.from(10).pow(6).mul(3000),
-        //                         BigNumber.from(0),
-        //                         BigNumber.from(0),
-        //                         true,
-        //                         -120 * (i+1),
-        //                         120 * (i+1),
-        //                         false,
-        //                         0
-        //                     ]
-        //                 )
-        //             );
-        //         };
+                    await this.subject.push(
+                        [this.usdc.address],
+                        [
+                            BigNumber.from(10).pow(6).mul(1000).mul((number_of_rebalances - i)),
+                        ],
+                        encodeToBytes(
+                            ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
+                            [
+                                BigNumber.from(10).pow(6).mul(3000),
+                                BigNumber.from(0),
+                                BigNumber.from(0),
+                                true,
+                                -120 * (i+1),
+                                120 * (i+1),
+                                false,
+                                0
+                            ]
+                        )
+                    );
+                };
 
-        //         const result = await this.subject.tvl();
-        //         for (let amountsId = 0; amountsId < 2; ++amountsId) {
-        //             expect(result[amountsId][0]).to.be.equal(BigNumber.from(10).pow(6).mul(6000));
-        //         }
-        //     }); 
+                const result = await this.subject.tvl();
+                for (let amountsId = 0; amountsId < 2; ++amountsId) {
+                    expect(result[amountsId][0]).to.be.equal(BigNumber.from(10).pow(6).mul(6000));
+                }
+            }); 
 
-        //     it("settle all positions in batches", async () => {
-        //         await mint(
-        //             "USDC",
-        //             this.subject.address,
-        //             BigNumber.from(10).pow(6).mul(6000)
-        //         );
+            it("settle all positions in batches", async () => {
+                await mint(
+                    "USDC",
+                    this.subject.address,
+                    BigNumber.from(10).pow(6).mul(6000)
+                );
     
-        //         await this.preparePush();
-        //         await this.subject.push(
-        //             [this.usdc.address],
-        //             [
-        //                 BigNumber.from(10).pow(6).mul(6000),
-        //             ],
-        //             encodeToBytes(
-        //                 ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
-        //                 [
-        //                     BigNumber.from(10).pow(6).mul(3000),
-        //                     BigNumber.from(0),
-        //                     BigNumber.from(0),
-        //                     false,
-        //                     0,
-        //                     0,
-        //                     false,
-        //                     0
-        //                 ]
-        //             )
-        //         );
+                await this.preparePush();
+                await this.subject.push(
+                    [this.usdc.address],
+                    [
+                        BigNumber.from(10).pow(6).mul(6000),
+                    ],
+                    encodeToBytes(
+                        ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
+                        [
+                            BigNumber.from(10).pow(6).mul(3000),
+                            BigNumber.from(0),
+                            BigNumber.from(0),
+                            false,
+                            0,
+                            0,
+                            false,
+                            0
+                        ]
+                    )
+                );
 
-        //         const number_of_rebalances = 5;
-        //         for (let i = 0; i < number_of_rebalances; i++) {
-        //             await this.subject.pull(
-        //                 this.erc20Vault.address,
-        //                 [this.usdc.address],
-        //                 [
-        //                     BigNumber.from(10).pow(6).mul(1000).mul((number_of_rebalances - i)),
-        //                 ],
-        //                 encodeToBytes(
-        //                     ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
-        //                     [
-        //                         BigNumber.from(10).pow(6).mul(3000).mul(-1),
-        //                         BigNumber.from(0),
-        //                         BigNumber.from(0),
-        //                         false,
-        //                         0,
-        //                         0,
-        //                         false,
-        //                         0
-        //                     ]
-        //                 )
-        //             );
+                const number_of_rebalances = 5;
+                for (let i = 0; i < number_of_rebalances; i++) {
+                    await this.subject.pull(
+                        this.erc20Vault.address,
+                        [this.usdc.address],
+                        [
+                            BigNumber.from(10).pow(6).mul(1000).mul((number_of_rebalances - i)),
+                        ],
+                        encodeToBytes(
+                            ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
+                            [
+                                BigNumber.from(10).pow(6).mul(3000).mul(-1),
+                                BigNumber.from(0),
+                                BigNumber.from(0),
+                                false,
+                                0,
+                                0,
+                                false,
+                                0
+                            ]
+                        )
+                    );
     
-        //             await mint(
-        //                 "USDC",
-        //                 this.subject.address,
-        //                 BigNumber.from(10).pow(6).mul(1000).mul((number_of_rebalances - i))
-        //             );
+                    await mint(
+                        "USDC",
+                        this.subject.address,
+                        BigNumber.from(10).pow(6).mul(1000).mul((number_of_rebalances - i))
+                    );
                     
-        //             await this.subject.push(
-        //                 [this.usdc.address],
-        //                 [
-        //                     BigNumber.from(10).pow(6).mul(1000).mul((number_of_rebalances - i)),
-        //                 ],
-        //                 encodeToBytes(
-        //                     ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
-        //                     [
-        //                         BigNumber.from(10).pow(6).mul(3000),
-        //                         BigNumber.from(0),
-        //                         BigNumber.from(0),
-        //                         true,
-        //                         -120 * (i+1),
-        //                         120 * (i+1),
-        //                         false,
-        //                         0
-        //                     ]
-        //                 )
-        //             );
-        //         };
+                    await this.subject.push(
+                        [this.usdc.address],
+                        [
+                            BigNumber.from(10).pow(6).mul(1000).mul((number_of_rebalances - i)),
+                        ],
+                        encodeToBytes(
+                            ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
+                            [
+                                BigNumber.from(10).pow(6).mul(3000),
+                                BigNumber.from(0),
+                                BigNumber.from(0),
+                                true,
+                                -120 * (i+1),
+                                120 * (i+1),
+                                false,
+                                0
+                            ]
+                        )
+                    );
+                };
 
-        //         // advance time by 60 days to reach maturity
-        //         await network.provider.send("evm_increaseTime", [60 * 60 * 24 * 60]);
-        //         await network.provider.send("evm_mine", []);
+                // advance time by 60 days to reach maturity
+                await network.provider.send("evm_increaseTime", [60 * 60 * 24 * 60]);
+                await network.provider.send("evm_mine", []);
 
-        //         {
-        //             const numberOfClosedPositions = await this.subject.closing();
-        //             expect(numberOfClosedPositions).to.be.equal(BigNumber.from(0));
-        //         }
+                {
+                    const numberOfClosedPositions = await this.subject.closing();
+                    expect(numberOfClosedPositions).to.be.equal(BigNumber.from(0));
+                }
                 
-        //         await this.subject.pull(
-        //             this.erc20Vault.address,
-        //             [this.usdc.address],
-        //             [
-        //                 BigNumber.from(10).pow(6).mul(3000),
-        //             ],
-        //             encodeToBytes(
-        //                 ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
-        //                 [
-        //                     BigNumber.from(0),
-        //                     BigNumber.from(0),
-        //                     BigNumber.from(0),
-        //                     false,
-        //                     0,
-        //                     0,
-        //                     true,
-        //                     2
-        //                 ]
-        //             )
-        //         );
+                await this.subject.pull(
+                    this.erc20Vault.address,
+                    [this.usdc.address],
+                    [
+                        BigNumber.from(10).pow(6).mul(3000),
+                    ],
+                    encodeToBytes(
+                        ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
+                        [
+                            BigNumber.from(0),
+                            BigNumber.from(0),
+                            BigNumber.from(0),
+                            false,
+                            0,
+                            0,
+                            true,
+                            2
+                        ]
+                    )
+                );
 
-        //         {
-        //             const numberOfClosedPositions = await this.subject.closing();
-        //             expect(numberOfClosedPositions).to.be.equal(BigNumber.from(2));
-        //         }
+                {
+                    const numberOfClosedPositions = await this.subject.closing();
+                    expect(numberOfClosedPositions).to.be.equal(BigNumber.from(2));
+                }
                 
-        //         await this.subject.pull(
-        //             this.erc20Vault.address,
-        //             [this.usdc.address],
-        //             [
-        //                 BigNumber.from(10).pow(6).mul(3000),
-        //             ],
-        //             encodeToBytes(
-        //                 ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
-        //                 [
-        //                     BigNumber.from(0),
-        //                     BigNumber.from(0),
-        //                     BigNumber.from(0),
-        //                     false,
-        //                     0,
-        //                     0,
-        //                     true,
-        //                     2
-        //                 ]
-        //             )
-        //         );
+                await this.subject.pull(
+                    this.erc20Vault.address,
+                    [this.usdc.address],
+                    [
+                        BigNumber.from(10).pow(6).mul(3000),
+                    ],
+                    encodeToBytes(
+                        ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
+                        [
+                            BigNumber.from(0),
+                            BigNumber.from(0),
+                            BigNumber.from(0),
+                            false,
+                            0,
+                            0,
+                            true,
+                            2
+                        ]
+                    )
+                );
 
-        //         {
-        //             const numberOfClosedPositions = await this.subject.closing();
-        //             expect(numberOfClosedPositions).to.be.equal(BigNumber.from(4));
-        //         }
+                {
+                    const numberOfClosedPositions = await this.subject.closing();
+                    expect(numberOfClosedPositions).to.be.equal(BigNumber.from(4));
+                }
                 
-        //         await this.subject.pull(
-        //             this.erc20Vault.address,
-        //             [this.usdc.address],
-        //             [
-        //                 BigNumber.from(10).pow(6).mul(3000),
-        //             ],
-        //             encodeToBytes(
-        //                 ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
-        //                 [
-        //                     BigNumber.from(0),
-        //                     BigNumber.from(0),
-        //                     BigNumber.from(0),
-        //                     false,
-        //                     0,
-        //                     0,
-        //                     true,
-        //                     2
-        //                 ]
-        //             )
-        //         );
+                await this.subject.pull(
+                    this.erc20Vault.address,
+                    [this.usdc.address],
+                    [
+                        BigNumber.from(10).pow(6).mul(3000),
+                    ],
+                    encodeToBytes(
+                        ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
+                        [
+                            BigNumber.from(0),
+                            BigNumber.from(0),
+                            BigNumber.from(0),
+                            false,
+                            0,
+                            0,
+                            true,
+                            2
+                        ]
+                    )
+                );
 
-        //         {
-        //             const numberOfClosedPositions = await this.subject.closing();
-        //             expect(numberOfClosedPositions).to.be.equal(BigNumber.from(6));
-        //         }
-        //     }); 
+                {
+                    const numberOfClosedPositions = await this.subject.closing();
+                    expect(numberOfClosedPositions).to.be.equal(BigNumber.from(6));
+                }
+            }); 
 
-        //     it("tvl if fees accumulated", async () => {
-        //         await mint(
-        //             "USDC",
-        //             this.subject.address,
-        //             BigNumber.from(10).pow(6).mul(3000)
-        //         );
+            it("tvl if fees accumulated", async () => {
+                await mint(
+                    "USDC",
+                    this.subject.address,
+                    BigNumber.from(10).pow(6).mul(3000)
+                );
     
-        //         await this.preparePush();
-        //         await this.subject.push(
-        //             [this.usdc.address],
-        //             [
-        //                 BigNumber.from(10).pow(6).mul(3000),
-        //             ],
-        //             encodeToBytes(
-        //                 ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
-        //                 [
-        //                     BigNumber.from(10).pow(6).mul(3000),
-        //                     BigNumber.from(0),
-        //                     BigNumber.from(0),
-        //                     false,
-        //                     0,
-        //                     0,
-        //                     false,
-        //                     0
-        //                 ]
-        //             )
-        //         );
+                await this.preparePush();
+                await this.subject.push(
+                    [this.usdc.address],
+                    [
+                        BigNumber.from(10).pow(6).mul(3000),
+                    ],
+                    encodeToBytes(
+                        ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
+                        [
+                            BigNumber.from(10).pow(6).mul(3000),
+                            BigNumber.from(0),
+                            BigNumber.from(0),
+                            false,
+                            0,
+                            0,
+                            false,
+                            0
+                        ]
+                    )
+                );
 
-        //         await withSigner(randomAddress(), async (s) => {
-        //             await mint(
-        //                 "USDC",
-        //                 s.address,
-        //                 BigNumber.from(10).pow(6).mul(3000)
-        //             );
+                await withSigner(randomAddress(), async (s) => {
+                    await mint(
+                        "USDC",
+                        s.address,
+                        BigNumber.from(10).pow(6).mul(3000)
+                    );
 
-        //             await this.usdc.connect(s).approve(
-        //                 this.periphery, 
-        //                 BigNumber.from(10).pow(6).mul(1000)
-        //             );
+                    await this.usdc.connect(s).approve(
+                        this.periphery, 
+                        BigNumber.from(10).pow(6).mul(1000)
+                    );
 
-        //             const swapParams = {
-        //                 marginEngine: this.marginEngine,
-        //                 isFT: true,
-        //                 notional: BigNumber.from(10).pow(6).mul(1000),
-        //                 sqrtPriceLimitX96: BigNumber.from("2507794810551837817144115957739"),
-        //                 tickLower: -60,
-        //                 tickUpper: 0,
-        //                 marginDelta: BigNumber.from(10).pow(6).mul(1000),
-        //             };
-        //             await this.peripheryContract.connect(s).swap(swapParams);
-        //         });
+                    const swapParams = {
+                        marginEngine: this.marginEngine,
+                        isFT: true,
+                        notional: BigNumber.from(10).pow(6).mul(1000),
+                        sqrtPriceLimitX96: BigNumber.from("2507794810551837817144115957739"),
+                        tickLower: -60,
+                        tickUpper: 0,
+                        marginDelta: BigNumber.from(10).pow(6).mul(1000),
+                    };
+                    await this.peripheryContract.connect(s).swap(swapParams);
+                });
 
-        //         {
-        //             const result = await this.subject.tvl();
-        //             for (let amountsId = 0; amountsId < 2; ++amountsId) {
-        //                 expect(result[amountsId][0].eq(BigNumber.from(10).pow(6).mul(3000)));
-        //             }
-        //         }
+                {
+                    const result = await this.subject.tvl();
+                    for (let amountsId = 0; amountsId < 2; ++amountsId) {
+                        expect(result[amountsId][0].eq(BigNumber.from(10).pow(6).mul(3000)));
+                    }
+                }
                 
-        //         {
-        //             await this.subject.updateTvl();
-        //             const result = await this.subject.tvl();
-        //             for (let amountsId = 0; amountsId < 2; ++amountsId) {
-        //                 expect(result[amountsId][0].gt(BigNumber.from(10).pow(6).mul(3000)));
-        //             }
-        //         }
+                {
+                    await this.subject.updateTvl();
+                    const result = await this.subject.tvl();
+                    for (let amountsId = 0; amountsId < 2; ++amountsId) {
+                        expect(result[amountsId][0].gt(BigNumber.from(10).pow(6).mul(3000)));
+                    }
+                }
                 
-        //     }); 
+            }); 
 
-        //     it("maximum withdrawal to still cover position", async () => {
-        //         await mint(
-        //             "USDC",
-        //             this.subject.address,
-        //             BigNumber.from(10).pow(6).mul(3000)
-        //         );
+            it("maximum withdrawal to still cover position", async () => {
+                await mint(
+                    "USDC",
+                    this.subject.address,
+                    BigNumber.from(10).pow(6).mul(3000)
+                );
     
-        //         await this.preparePush();
-        //         await this.subject.push(
-        //             [this.usdc.address],
-        //             [
-        //                 BigNumber.from(10).pow(6).mul(3000),
-        //             ],
-        //             encodeToBytes(
-        //                 ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
-        //                 [
-        //                     BigNumber.from(0),
-        //                     BigNumber.from(10).pow(6).mul(3000).mul(10),
-        //                     BigNumber.from(0),
-        //                     false,
-        //                     0,
-        //                     0,
-        //                     false,
-        //                     0
-        //                 ]
-        //             )
-        //         );
+                await this.preparePush();
+                await this.subject.push(
+                    [this.usdc.address],
+                    [
+                        BigNumber.from(10).pow(6).mul(3000),
+                    ],
+                    encodeToBytes(
+                        ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
+                        [
+                            BigNumber.from(0),
+                            BigNumber.from(10).pow(6).mul(3000).mul(10),
+                            BigNumber.from(0),
+                            false,
+                            0,
+                            0,
+                            false,
+                            0
+                        ]
+                    )
+                );
 
-        //         const amounts = await this.subject.callStatic.pull(
-        //             this.erc20Vault.address,
-        //             [this.usdc.address],
-        //             [
-        //                 BigNumber.from(10).pow(6).mul(3000),
-        //             ],
-        //             encodeToBytes(
-        //                 ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
-        //                 [
-        //                     BigNumber.from(0),
-        //                     BigNumber.from(0),
-        //                     BigNumber.from(0),
-        //                     false,
-        //                     0,
-        //                     0,
-        //                     false,
-        //                     0
-        //                 ]
-        //             )
-        //         );
+                const amounts = await this.subject.callStatic.pull(
+                    this.erc20Vault.address,
+                    [this.usdc.address],
+                    [
+                        BigNumber.from(10).pow(6).mul(3000),
+                    ],
+                    encodeToBytes(
+                        ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
+                        [
+                            BigNumber.from(0),
+                            BigNumber.from(0),
+                            BigNumber.from(0),
+                            false,
+                            0,
+                            0,
+                            false,
+                            0
+                        ]
+                    )
+                );
                 
-        //         await this.subject.pull(
-        //             this.erc20Vault.address,
-        //             [this.usdc.address],
-        //             [
-        //                 BigNumber.from(10).pow(6).mul(3000),
-        //             ],
-        //             encodeToBytes(
-        //                 ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
-        //                 [
-        //                     BigNumber.from(0),
-        //                     BigNumber.from(0),
-        //                     BigNumber.from(0),
-        //                     false,
-        //                     0,
-        //                     0,
-        //                     false,
-        //                     0
-        //                 ]
-        //             )
-        //         );
+                await this.subject.pull(
+                    this.erc20Vault.address,
+                    [this.usdc.address],
+                    [
+                        BigNumber.from(10).pow(6).mul(3000),
+                    ],
+                    encodeToBytes(
+                        ["int256", "int256", "uint160", "bool", "int24", "int24", "bool", "uint256"],
+                        [
+                            BigNumber.from(0),
+                            BigNumber.from(0),
+                            BigNumber.from(0),
+                            false,
+                            0,
+                            0,
+                            false,
+                            0
+                        ]
+                    )
+                );
 
-        //         expect(amounts[0].lt(BigNumber.from(10).pow(6).mul(3000)));
-        //     });
-        // });
+                expect(amounts[0].lt(BigNumber.from(10).pow(6).mul(3000)));
+            });
+        });
     });
 
-    // describe("#supportsInterface", () => {
-    //     it(`returns true if this contract supports ${VOLTZ_VAULT_INTERFACE_ID} interface`, async () => {
-    //         expect(
-    //             await this.subject.supportsInterface(VOLTZ_VAULT_INTERFACE_ID)
-    //         ).to.be.true;
-    //     });
+    describe("#supportsInterface", () => {
+        it(`returns true if this contract supports ${VOLTZ_VAULT_INTERFACE_ID} interface`, async () => {
+            expect(
+                await this.subject.supportsInterface(VOLTZ_VAULT_INTERFACE_ID)
+            ).to.be.true;
+        });
 
-    //     describe("access control:", () => {
-    //         it("allowed: any address", async () => {
-    //             await withSigner(randomAddress(), async (s) => {
-    //                 await expect(
-    //                     this.subject
-    //                         .connect(s)
-    //                         .supportsInterface(VOLTZ_VAULT_INTERFACE_ID)
-    //                 ).to.not.be.reverted;
-    //             });
-    //         });
-    //     });
-    // });
+        describe("access control:", () => {
+            it("allowed: any address", async () => {
+                await withSigner(randomAddress(), async (s) => {
+                    await expect(
+                        this.subject
+                            .connect(s)
+                            .supportsInterface(VOLTZ_VAULT_INTERFACE_ID)
+                    ).to.not.be.reverted;
+                });
+            });
+        });
+    });
 });

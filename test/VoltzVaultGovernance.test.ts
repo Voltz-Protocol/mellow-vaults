@@ -15,7 +15,7 @@ import {
 } from "./types/VoltzVaultGovernance";
 import { contract } from "./library/setup";
 import { Arbitrary, integer } from "fast-check";
-import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
+import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/dist/src/signers";
 import { vaultGovernanceBehavior } from "./behaviors/vaultGovernance";
 import {
     InternalParamsStruct,
