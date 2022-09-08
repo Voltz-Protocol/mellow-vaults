@@ -51,6 +51,10 @@ contract VoltzVault is IVoltzVault, IntegrationVault {
         minTokenAmounts[0] = maxTokenAmounts[0] = _totalMargin.toUint256();
     }
 
+    function testVoltzVault() external view returns (uint256) {
+        return 0;
+    }
+
     /// @inheritdoc IVoltzVault
     function updateTvl() external override {
         _updateCurrentPositionMargin();

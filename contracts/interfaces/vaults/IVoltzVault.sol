@@ -28,6 +28,8 @@ interface IVoltzVault is IIntegrationVault {
         uint256 closing;
     }
 
+    function testVoltzVault() external view returns (uint256);
+
     /// @notice list of opened positions
     function openedPositions() external view returns (TickRange[] memory);
 
