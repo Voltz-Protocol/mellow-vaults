@@ -22,18 +22,20 @@ const config: HardhatUserConfig = {
                   }
                 : undefined,
 
-            accounts: (process.env["MAINNET_DEPLOYER_PK"] && process.env["MAINNET_APPROVER_PK"])
-                ? [
-                      {
-                          privateKey: process.env["MAINNET_DEPLOYER_PK"],
-                          balance: (10 ** 20).toString(),
-                      },
-                      {
-                          privateKey: process.env["MAINNET_APPROVER_PK"],
-                          balance: (10 ** 20).toString(),
-                      }
-                  ]
-                : undefined,
+            accounts:
+                process.env["MAINNET_DEPLOYER_PK"] &&
+                process.env["MAINNET_APPROVER_PK"]
+                    ? [
+                          {
+                              privateKey: process.env["MAINNET_DEPLOYER_PK"],
+                              balance: (10 ** 20).toString(),
+                          },
+                          {
+                              privateKey: process.env["MAINNET_APPROVER_PK"],
+                              balance: (10 ** 20).toString(),
+                          },
+                      ]
+                    : undefined,
         },
         localhost: {
             url: "http://localhost:8545",
@@ -42,74 +44,137 @@ const config: HardhatUserConfig = {
             url:
                 process.env["KOVAN_RPC"] ||
                 "https://kovan.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161",
-            accounts: (process.env["KOVAN_DEPLOYER_PK"] && process.env["KOVAN_APPROVER_PK"])
-                ? [process.env["KOVAN_DEPLOYER_PK"], process.env["KOVAN_APPROVER_PK"]]
-                : undefined,
+            accounts:
+                process.env["KOVAN_DEPLOYER_PK"] &&
+                process.env["KOVAN_APPROVER_PK"]
+                    ? [
+                          process.env["KOVAN_DEPLOYER_PK"],
+                          process.env["KOVAN_APPROVER_PK"],
+                      ]
+                    : undefined,
         },
         rinkeby: {
-            url: process.env["RINKEBY_RPC"] || "https://rinkeby-light.eth.linkpool.io",
-            accounts: (process.env["RINKEBY_DEPLOYER_PK"] && process.env["RINKEBY_APPROVER_PK"])
-                ? [process.env["RINKEBY_DEPLOYER_PK"], process.env["RINKEBY_APPROVER_PK"]]
-                : undefined,
+            url:
+                process.env["RINKEBY_RPC"] ||
+                "https://rinkeby-light.eth.linkpool.io",
+            accounts:
+                process.env["RINKEBY_DEPLOYER_PK"] &&
+                process.env["RINKEBY_APPROVER_PK"]
+                    ? [
+                          process.env["RINKEBY_DEPLOYER_PK"],
+                          process.env["RINKEBY_APPROVER_PK"],
+                      ]
+                    : undefined,
         },
         mainnet: {
             url: process.env["MAINNET_RPC"],
-            accounts: (process.env["MAINNET_DEPLOYER_PK"] && process.env["MAINNET_APPROVER_PK"])
-                ? [process.env["MAINNET_DEPLOYER_PK"], process.env["MAINNET_APPROVER_PK"]]
-                : undefined,
+            accounts:
+                process.env["MAINNET_DEPLOYER_PK"] &&
+                process.env["MAINNET_APPROVER_PK"]
+                    ? [
+                          process.env["MAINNET_DEPLOYER_PK"],
+                          process.env["MAINNET_APPROVER_PK"],
+                      ]
+                    : undefined,
         },
         avalanche: {
             url:
                 process.env["AVALANCHE_RPC"] ||
                 "https://api.avax.network/ext/bc/C/rpc",
-                accounts: (process.env["AVALANCHE_DEPLOYER_PK"] && process.env["AVALANCHE_APPROVER_PK"])
-                ? [process.env["AVALANCHE_DEPLOYER_PK"], process.env["AVALANCHE_APPROVER_PK"]]
-                : undefined,
+            accounts:
+                process.env["AVALANCHE_DEPLOYER_PK"] &&
+                process.env["AVALANCHE_APPROVER_PK"]
+                    ? [
+                          process.env["AVALANCHE_DEPLOYER_PK"],
+                          process.env["AVALANCHE_APPROVER_PK"],
+                      ]
+                    : undefined,
             chainId: 43114,
         },
         polygon: {
             url: process.env["POLYGON_RPC"] || "https://polygon-rpc.com",
-            accounts: (process.env["POLYGON_DEPLOYER_PK"] && process.env["POLYGON_APPROVER_PK"])
-                ? [process.env["POLYGON_DEPLOYER_PK"], process.env["POLYGON_APPROVER_PK"]]
-                : undefined,
+            accounts:
+                process.env["POLYGON_DEPLOYER_PK"] &&
+                process.env["POLYGON_APPROVER_PK"]
+                    ? [
+                          process.env["POLYGON_DEPLOYER_PK"],
+                          process.env["POLYGON_APPROVER_PK"],
+                      ]
+                    : undefined,
             chainId: 137,
         },
 
         bsc: {
             url: process.env["BSC_RPC"] || "https://bsc-dataseed.binance.org",
-            accounts: (process.env["BSC_DEPLOYER_PK"] && process.env["BSC_APPROVER_PK"])
-                ? [process.env["BSC_DEPLOYER_PK"], process.env["BSC_APPROVER_PK"]]
-                : undefined,
+            accounts:
+                process.env["BSC_DEPLOYER_PK"] && process.env["BSC_APPROVER_PK"]
+                    ? [
+                          process.env["BSC_DEPLOYER_PK"],
+                          process.env["BSC_APPROVER_PK"],
+                      ]
+                    : undefined,
             chainId: 56,
         },
         fantom: {
             url: process.env["FANTOM_RPC"] || "https://rpc.ftm.tools",
-            accounts: (process.env["FANTOM_DEPLOYER_PK"] && process.env["FANTOM_APPROVER_PK"])
-                ? [process.env["FANTOM_DEPLOYER_PK"], process.env["FANTOM_APPROVER_PK"]]
-                : undefined,
+            accounts:
+                process.env["FANTOM_DEPLOYER_PK"] &&
+                process.env["FANTOM_APPROVER_PK"]
+                    ? [
+                          process.env["FANTOM_DEPLOYER_PK"],
+                          process.env["FANTOM_APPROVER_PK"],
+                      ]
+                    : undefined,
             chainId: 250,
         },
 
         arbitrum: {
             url: process.env["ARBITRUM_RPC"] || "https://arb1.arbitrum.io/rpc",
-            accounts: (process.env["ARBITRUM_DEPLOYER_PK"] && process.env["ARBITRUM_APPROVER_PK"])
-            ? [process.env["ARBITRUM_DEPLOYER_PK"], process.env["ARBITRUM_APPROVER_PK"]]
-            : undefined,
+            accounts:
+                process.env["ARBITRUM_DEPLOYER_PK"] &&
+                process.env["ARBITRUM_APPROVER_PK"]
+                    ? [
+                          process.env["ARBITRUM_DEPLOYER_PK"],
+                          process.env["ARBITRUM_APPROVER_PK"],
+                      ]
+                    : undefined,
             chainId: 42161,
         },
         optimism: {
             url: process.env["OPTIMISM_RPC"] || "https://mainnet.optimism.io",
-            accounts: (process.env["OPTIMISM_DEPLOYER_PK"] && process.env["OPTIMISM_APPROVER_PK"])
-            ? [process.env["OPTIMISM_DEPLOYER_PK"], process.env["OPTIMISM_APPROVER_PK"]]
-            : undefined,
+            accounts:
+                process.env["OPTIMISM_DEPLOYER_PK"] &&
+                process.env["OPTIMISM_APPROVER_PK"]
+                    ? [
+                          process.env["OPTIMISM_DEPLOYER_PK"],
+                          process.env["OPTIMISM_APPROVER_PK"],
+                      ]
+                    : undefined,
             chainId: 10,
         },
         xdai: {
             url: process.env["XDAI_RPC"] || "https://rpc.xdaichain.com",
-            accounts: (process.env["XDAI_DEPLOYER_PK"] && process.env["XDAI_APPROVER_PK"])
-            ? [process.env["XDAI_DEPLOYER_PK"], process.env["XDAI_APPROVER_PK"]]
-            : undefined,
+            accounts:
+                process.env["XDAI_DEPLOYER_PK"] &&
+                process.env["XDAI_APPROVER_PK"]
+                    ? [
+                          process.env["XDAI_DEPLOYER_PK"],
+                          process.env["XDAI_APPROVER_PK"],
+                      ]
+                    : undefined,
             chainId: 100,
+        },
+        goerli: {
+            url: process.env["GOERLI_RPC"],
+            accounts:
+                process.env["GOERLI_DEPLOYER_PK"] &&
+                process.env["GOERLI_APPROVER_PK"]
+                    ? [
+                          process.env["GOERLI_DEPLOYER_PK"],
+                          process.env["GOERLI_APPROVER_PK"],
+                      ]
+                    : undefined,
+            chainId: 5,
         },
     },
     namedAccounts: {
@@ -127,6 +192,7 @@ const config: HardhatUserConfig = {
             polygon: process.env["POLYGON_PROTOCOL_ADMIN_ADDRESS"] || "0x0",
             rinkeby: process.env["RINKEBY_PROTOCOL_ADMIN_ADDRESS"] || "0x0",
             arbitrum: process.env["ARBITRUM_PROTOCOL_ADMIN_ADDRESS"] || "0x0",
+            goerli: process.env["GOERLI_PROTOCOL_ADMIN_ADDRESS"] || "0x0",
         },
         mStrategyAdmin: {
             hardhat: "0x1aD91ee08f21bE3dE0BA2ba6918E714dA6B45836",
@@ -136,6 +202,7 @@ const config: HardhatUserConfig = {
             polygon: process.env["POLYGON_STRATEGY_ADMIN_ADDRESS"] || "0x0",
             rinkeby: process.env["RINKEBY_STRATEGY_ADMIN_ADDRESS"] || "0x0",
             arbitrum: process.env["ARBITRUM_STRATEGY_ADMIN_ADDRESS"] || "0x0",
+            goerli: process.env["GOERLI_STRATEGY_ADMIN_ADDRESS"] || "0x0",
         },
         mStrategyTreasury: {
             hardhat: "0x52bc44d5378309EE2abF1539BF71dE1b7d7bE3b5",
@@ -145,7 +212,9 @@ const config: HardhatUserConfig = {
                 process.env["AVALANCHE_STRATEGY_TREASURY_ADDRESS"] || "0x0",
             polygon: process.env["POLYGON_STRATEGY_TREASURY_ADDRESS"] || "0x0",
             rinkeby: process.env["RINKEBY_STRATEGY_TREASURY_ADDRESS"] || "0x0",
-            arbitrum: process.env["ARBITRUM_STRATEGY_TREASURY_ADDRESS"] || "0x0",
+            arbitrum:
+                process.env["ARBITRUM_STRATEGY_TREASURY_ADDRESS"] || "0x0",
+            goerli: process.env["GOERLI_STRATEGY_TREASURY_ADDRESS"] || "0x0",
         },
         protocolTreasury: {
             hardhat: "0x00192Fb10dF37c9FB26829eb2CC623cd1BF599E8",
@@ -155,7 +224,9 @@ const config: HardhatUserConfig = {
                 process.env["AVALANCHE_PROTOCOL_TREASURY_ADDRESS"] || "0x0",
             polygon: process.env["POLYGON_PROTOCOL_TREASURY_ADDRESS"] || "0x0",
             rinkeby: process.env["RINKEBY_PROTOCOL_TREASURY_ADDRESS"] || "0x0",
-            arbitrum: process.env["ARBITRUM_PROTOCOL_TREASURY_ADDRESS"] || "0x0",
+            arbitrum:
+                process.env["ARBITRUM_PROTOCOL_TREASURY_ADDRESS"] || "0x0",
+            goerli: process.env["GOERLI_PROTOCOL_TREASURY_ADDRESS"] || "0x0",
         },
         test: {
             default: "0x9a3CB5A473e1055a014B9aE4bc63C21BBb8b82B3",
@@ -192,6 +263,7 @@ const config: HardhatUserConfig = {
             arbitrum: "0xff970a61a04b1ca14834a43f5de4533ebddb5cc8",
             optimism: "0x7f5c764cbc14f9669b88837ca1490cca17c31607",
             rinkeby: "0xeb8f08a975ab53e34d8a0330e0d34de942c95926",
+            goerli: "0xD87Ba7A50B2E7E660f678A895E4B72E7CB4CCd9C",
         },
         weth: {
             default: "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -203,6 +275,7 @@ const config: HardhatUserConfig = {
             arbitrum: "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
             optimism: "0x4200000000000000000000000000000000000006",
             rinkeby: "0xc778417e063141139fce010982780140aa0cd5ab",
+            goerli: "0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6",
         },
         wsteth: {
             default: "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0",
@@ -301,10 +374,8 @@ const config: HardhatUserConfig = {
             default: "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
         },
         voltzPeriphery: {
-            default: "0x13e9053d9090ed6a1fae3f59f9bd3c1fca4c5726",
-        },
-        marginEngine: {
-            default: "0x9ea5Cfd876260eDadaB461f013c24092dDBD531d",
+            default: "0x",
+            goerli: "0x12872b785dBC464F56086aFAB2b3ff7c27a5d007",
         },
     },
 
