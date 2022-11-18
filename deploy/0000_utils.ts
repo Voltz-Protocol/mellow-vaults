@@ -15,8 +15,8 @@ import { BigNumber, BigNumberish, ethers } from "ethers";
 // 2e10 for mainnet
 // 1e11 for polygon
 export const TRANSACTION_GAS_LIMITS = {
-    maxFeePerGas: ethers.BigNumber.from(20).mul(10 ** 9),
-    maxPriorityFeePerGas: ethers.BigNumber.from(20).mul(10 ** 9),
+    maxFeePerGas: ethers.BigNumber.from(100).mul(10 ** 9),
+    maxPriorityFeePerGas: ethers.BigNumber.from(100).mul(10 ** 9),
 };
 
 export const ALLOWED_APPROVE_LIST = {
@@ -74,7 +74,7 @@ export const ALLOWED_APPROVE_LIST = {
     },
 };
 
-export const PRIVATE_VAULT = true;
+export const PRIVATE_VAULT = false;
 
 export const ALLOW_ALL_REGISTER_VAULT = 0;
 export const ALLOW_ALL_CREATE_VAULT = 0;
@@ -106,6 +106,7 @@ export const ALL_NETWORKS = [
     "fantom",
     "xdai",
     "rinkeby",
+    "goerli",
 ];
 export const MAIN_NETWORKS = [
     "hardhat",
@@ -113,6 +114,7 @@ export const MAIN_NETWORKS = [
     "mainnet",
     "kovan",
     "rinkeby",
+    "goerli",
 ];
 
 export const setupVault = async (
@@ -286,6 +288,27 @@ export const combineVaults = async (
         "vaultForNft",
         firstNft
     );
+
+    const erc20RootVaultGovernance = await hre.ethers.getContract(
+        "ERC20RootVaultGovernance"
+    );
+    log("Approving nfts...");
+    for (let nft of nfts) {
+        await deployments.execute(
+            "VaultRegistry",
+            {
+                from: deployer,
+                autoMine: true,
+                gasLimit: BigNumber.from(10).pow(6),
+                ...TRANSACTION_GAS_LIMITS,
+            },
+            "approve(address,uint256)",
+            erc20RootVaultGovernance.address,
+            nft
+        );
+    }
+    log("Approved nfts!..");
+
     const vault = await hre.ethers.getContractAt("IVault", firstAddress);
     const tokens = await vault.vaultTokens();
     const coder = hre.ethers.utils.defaultAbiCoder;
@@ -295,8 +318,8 @@ export const combineVaults = async (
         strategyPerformanceTreasuryAddress = strategyTreasuryAddress,
         tokenLimitPerAddress = ethers.constants.MaxUint256,
         tokenLimit = ethers.constants.MaxUint256,
-        managementFee = 2 * 10 ** 7,
-        performanceFee = 20 * 10 ** 7,
+        managementFee = 0,
+        performanceFee = 0,
     } = options || {};
 
     await setupVault(hre, expectedNft, "ERC20RootVaultGovernance", {
