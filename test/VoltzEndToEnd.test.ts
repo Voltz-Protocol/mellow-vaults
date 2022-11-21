@@ -54,7 +54,7 @@ contract<{}, DeployOptions, CustomContext>("Voltz E2E", function () {
                 await deployments.fixture();
                 const { read } = deployments;
 
-                const { marginEngine, voltzPeriphery } =
+                const { voltzPeriphery } =
                     await getNamedAccounts();
 
                 this.periphery = voltzPeriphery;
@@ -63,7 +63,7 @@ contract<{}, DeployOptions, CustomContext>("Voltz E2E", function () {
                     this.periphery
                 )) as IPeriphery;
 
-                this.marginEngine = marginEngine;
+                this.marginEngine = "0x9ea5Cfd876260eDadaB461f013c24092dDBD531d";
                 this.marginEngineContract = (await ethers.getContractAt(
                     "IMarginEngine",
                     this.marginEngine
@@ -168,8 +168,8 @@ contract<{}, DeployOptions, CustomContext>("Voltz E2E", function () {
                     this.voltzVaults.push(voltzVault as VoltzVault);
                 }
 
-                const lPOptimiserStrategyRoot = await hre.ethers.getContract(
-                    "LPOptimiserStrategyRoot"
+                const lPOptimiserStrategy = await hre.ethers.getContract(
+                    "LPOptimiserStrategy"
                 );
             
                 const params = [
@@ -186,10 +186,10 @@ contract<{}, DeployOptions, CustomContext>("Voltz E2E", function () {
                     this.admin.address,
                 ];
 
-                const strategyAddress = await lPOptimiserStrategyRoot.callStatic.createStrategy(
+                const strategyAddress = await lPOptimiserStrategy.callStatic.createStrategy(
                     ...params
                 );
-                await lPOptimiserStrategyRoot.createStrategy(...params);
+                await lPOptimiserStrategy.createStrategy(...params);
 
                 await combineVaults(
                     hre,
@@ -408,7 +408,7 @@ contract<{}, DeployOptions, CustomContext>("Voltz E2E", function () {
         this.voltzVaultOwner = await addSigner(voltzVaultOwnerAddress);
     });
 
-    it.only("e2e #1: User 1 deposits, Swap, User 2 deposits", async () => {
+    it("e2e #1: User 1 deposits, Swap, User 2 deposits", async () => {
         expect(await this.usdc.balanceOf(this.user1.address)).to.be.eq(0);
         expect(await this.usdc.balanceOf(this.user2.address)).to.be.eq(0);
 

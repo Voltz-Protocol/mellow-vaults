@@ -46,9 +46,9 @@ contract<LPOptimiserStrategy, DeployOptions, CustomContext>(
                     await deployments.fixture();
                     const { read } = deployments;
 
-                    const { marginEngine, voltzPeriphery } =
-                        await getNamedAccounts();
-                    this.marginEngine = marginEngine;
+                    const { voltzPeriphery } = await getNamedAccounts();
+
+                    this.marginEngine = "0x9ea5Cfd876260eDadaB461f013c24092dDBD531d";
                     this.marginEngineContract = (await ethers.getContractAt(
                         "IMarginEngine",
                         this.marginEngine
@@ -153,8 +153,8 @@ contract<LPOptimiserStrategy, DeployOptions, CustomContext>(
                         this.voltzVaults.push(voltzVault as VoltzVault);
                     }
 
-                    const lPOptimiserStrategyRoot = await hre.ethers.getContract(
-                        "LPOptimiserStrategyRoot"
+                    const lPOptimiserStrategy = await hre.ethers.getContract(
+                        "LPOptimiserStrategy"
                     );
                 
                     const params = [
@@ -172,10 +172,10 @@ contract<LPOptimiserStrategy, DeployOptions, CustomContext>(
                         this.admin.address,
                     ];
     
-                    const strategyAddress = await lPOptimiserStrategyRoot.callStatic.createStrategy(
+                    const strategyAddress = await lPOptimiserStrategy.callStatic.createStrategy(
                         ...params
                     );
-                    await lPOptimiserStrategyRoot.createStrategy(...params);
+                    await lPOptimiserStrategy.createStrategy(...params);
 
                     await combineVaults(
                         hre,
@@ -221,6 +221,7 @@ contract<LPOptimiserStrategy, DeployOptions, CustomContext>(
                         "LPOptimiserStrategy",
                         strategyAddress
                     );
+
 
                     for (let address of [
                         this.deployer.address,

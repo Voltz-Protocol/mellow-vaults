@@ -9,7 +9,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     const { deploy, get } = deployments;
     const protocolGovernance = await get("ProtocolGovernance");
     const vaultRegistry = await get("VaultRegistry");
-    const { deployer, voltzPeriphery, marginEngine } = await getNamedAccounts();
+    const { deployer, voltzPeriphery } = await getNamedAccounts();
     const { address: singleton } = await deploy("VoltzVault", {
         from: deployer,
         args: [],

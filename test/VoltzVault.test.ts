@@ -61,7 +61,7 @@ contract<VoltzVault, DeployOptions, CustomContext>("VoltzVault", function () {
                 await deployments.fixture();
                 const { read } = deployments;
 
-                const { marginEngine, voltzPeriphery } =
+                const { voltzPeriphery } =
                     await getNamedAccounts();
 
                 this.periphery = voltzPeriphery;
@@ -70,7 +70,7 @@ contract<VoltzVault, DeployOptions, CustomContext>("VoltzVault", function () {
                     this.periphery
                 )) as IPeriphery;
 
-                this.marginEngine = marginEngine;
+                this.marginEngine = "0x9ea5Cfd876260eDadaB461f013c24092dDBD531d";
                 this.marginEngineContract = (await ethers.getContractAt(
                     "IMarginEngine",
                     this.marginEngine
@@ -125,7 +125,7 @@ contract<VoltzVault, DeployOptions, CustomContext>("VoltzVault", function () {
                     createVaultArgs: [
                         tokens,
                         this.deployer.address,
-                        marginEngine,
+                        this.marginEngine,
                         this.voltzVaultHelperSingleton,
                         {
                             tickLower: this.initialTickLow,
@@ -203,8 +203,8 @@ contract<VoltzVault, DeployOptions, CustomContext>("VoltzVault", function () {
                     );
                 }
 
-                const lPOptimiserStrategyRoot = await hre.ethers.getContract(
-                    "LPOptimiserStrategyRoot"
+                const lPOptimiserStrategy = await hre.ethers.getContract(
+                    "LPOptimiserStrategy"
                 );
             
                 const params = [
@@ -221,10 +221,10 @@ contract<VoltzVault, DeployOptions, CustomContext>("VoltzVault", function () {
                     this.deployer.address,
                 ];
 
-                const strategyAddress = await lPOptimiserStrategyRoot.callStatic.createStrategy(
+                const strategyAddress = await lPOptimiserStrategy.callStatic.createStrategy(
                     ...params
                 );
-                await lPOptimiserStrategyRoot.createStrategy(...params);
+                await lPOptimiserStrategy.createStrategy(...params);
 
                 this.strategy = await addSigner(strategyAddress);
 

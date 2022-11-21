@@ -3,7 +3,6 @@ export const CONTRACTS = <const>[
     "uniswapV3Factory",
     "uniswapV3PositionManager",
     "uniswapV3Router",
-    "marginEngine",
     "usdc",
     "weth",
     "wbtc",

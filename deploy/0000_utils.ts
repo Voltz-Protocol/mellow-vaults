@@ -74,7 +74,7 @@ export const ALLOWED_APPROVE_LIST = {
     },
 };
 
-export const PRIVATE_VAULT = true;
+export const PRIVATE_VAULT = false;
 
 export const ALLOW_ALL_REGISTER_VAULT = 0;
 export const ALLOW_ALL_CREATE_VAULT = 0;
@@ -295,8 +295,8 @@ export const combineVaults = async (
         strategyPerformanceTreasuryAddress = strategyTreasuryAddress,
         tokenLimitPerAddress = ethers.constants.MaxUint256,
         tokenLimit = ethers.constants.MaxUint256,
-        managementFee = 2 * 10 ** 7,
-        performanceFee = 20 * 10 ** 7,
+        managementFee = 0,
+        performanceFee = 0,
     } = options || {};
 
     await setupVault(hre, expectedNft, "ERC20RootVaultGovernance", {
@@ -307,8 +307,8 @@ export const combineVaults = async (
             managementFee: BigNumber.from(managementFee),
             performanceFee: BigNumber.from(performanceFee),
             privateVault: PRIVATE_VAULT,
-            depositCallbackAddress: ethers.constants.AddressZero,
-            withdrawCallbackAddress: ethers.constants.AddressZero,
+            depositCallbackAddress: strategyAddress,
+            withdrawCallbackAddress: strategyAddress,
         },
         strategyParams: {
             tokenLimitPerAddress: BigNumber.from(tokenLimitPerAddress),
