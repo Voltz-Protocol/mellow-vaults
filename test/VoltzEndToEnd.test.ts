@@ -408,7 +408,7 @@ contract<{}, DeployOptions, CustomContext>("Voltz E2E", function () {
         this.voltzVaultOwner = await addSigner(voltzVaultOwnerAddress);
     });
 
-    it("e2e #1: User 1 deposits, Swap, User 2 deposits", async () => {
+    it.only("e2e #1: User 1 deposits, Swap, User 2 deposits", async () => {
         expect(await this.usdc.balanceOf(this.user1.address)).to.be.eq(0);
         expect(await this.usdc.balanceOf(this.user2.address)).to.be.eq(0);
 
@@ -500,11 +500,11 @@ contract<{}, DeployOptions, CustomContext>("Voltz E2E", function () {
 
         expect(await this.usdc.balanceOf(this.user1.address)).to.be.closeTo(
             BigNumber.from(100059531613),
-            1000
+            10000
         );
         expect(await this.usdc.balanceOf(this.user2.address)).to.be.closeTo(
             BigNumber.from(1000001404),
-            1000
+            10000
         );
     });
 
@@ -618,11 +618,11 @@ contract<{}, DeployOptions, CustomContext>("Voltz E2E", function () {
 
         expect(await this.usdc.balanceOf(this.user1.address)).to.be.closeTo(
             BigNumber.from(100062735231),
-            1000
+            10000
         );
         expect(await this.usdc.balanceOf(this.user2.address)).to.be.closeTo(
             BigNumber.from(1000033421),
-            1000
+            10000
         );
     });
 
@@ -818,11 +818,11 @@ contract<{}, DeployOptions, CustomContext>("Voltz E2E", function () {
 
         expect(await this.usdc.balanceOf(this.user1.address)).to.be.closeTo(
             BigNumber.from(100059531613),
-            1000
+            10000
         );
         expect(await this.usdc.balanceOf(this.user2.address)).to.be.closeTo(
             BigNumber.from(1000001404),
-            1000
+            10000
         );
     });
 
@@ -929,11 +929,11 @@ contract<{}, DeployOptions, CustomContext>("Voltz E2E", function () {
 
         expect(await this.usdc.balanceOf(this.user1.address)).to.be.closeTo(
             BigNumber.from(99987062685),
-            1000
+            10000
         );
         expect(await this.usdc.balanceOf(this.user2.address)).to.be.closeTo(
             BigNumber.from(999999999),
-            1000
+            10000
         );
     });
 
@@ -1059,11 +1059,11 @@ contract<{}, DeployOptions, CustomContext>("Voltz E2E", function () {
 
         expect(await this.usdc.balanceOf(this.user1.address)).to.be.closeTo(
             BigNumber.from(100019094304),
-            1000
+            10000
         );
         expect(await this.usdc.balanceOf(this.user2.address)).to.be.closeTo(
             BigNumber.from(1000320357),
-            1000
+            10000
         );
     });
 
@@ -1198,11 +1198,11 @@ contract<{}, DeployOptions, CustomContext>("Voltz E2E", function () {
 
         expect(await this.usdc.balanceOf(this.user1.address)).to.be.closeTo(
             BigNumber.from(100019094304),
-            1000
+            10000
         );
         expect(await this.usdc.balanceOf(this.user2.address)).to.be.closeTo(
             BigNumber.from(1000320357),
-            1000
+            10000
         );
     });
 });
