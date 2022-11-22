@@ -204,6 +204,9 @@ const config: HardhatUserConfig = {
             optimism: "0x4200000000000000000000000000000000000006",
             rinkeby: "0xc778417e063141139fce010982780140aa0cd5ab",
         },
+        usdt: {
+            default: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+        },
         wsteth: {
             default: "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0",
             rinkeby: "0x2ca788280fb10384946d3ecc838d94deca505cf4",
