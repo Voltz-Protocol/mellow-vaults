@@ -1,11 +1,16 @@
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/types";
 import "hardhat-deploy";
-import { combineVaults, MAIN_NETWORKS, setupVault, TRANSACTION_GAS_LIMITS } from "./0000_utils";
+import { combineVaults, setupVault, TRANSACTION_GAS_LIMITS } from "./0000_utils";
 import { constants } from "ethers";
 import { assert } from "console";
 
 const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
+    const SKIP = true;
+    if (SKIP) {
+        return;
+    }
+    
     const kind = "USDC_31Dec22";
     const INSTANCE_NAME = `LPOptimiserStrategy-${kind}`;
 
@@ -252,5 +257,5 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 };
 
 export default func;
-func.tags = ["LPOptimiserStrategy"];
+func.tags = ["MainnetLPOptimiserStrategy"];
 func.dependencies = [];
