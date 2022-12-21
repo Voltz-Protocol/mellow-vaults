@@ -15,8 +15,8 @@ import { BigNumber, BigNumberish, ethers } from "ethers";
 // 2e10 for mainnet
 // 1e11 for polygon
 export const TRANSACTION_GAS_LIMITS = {
-    maxFeePerGas: ethers.BigNumber.from(20).mul(10 ** 9),
-    maxPriorityFeePerGas: ethers.BigNumber.from(20).mul(10 ** 9),
+    maxFeePerGas: ethers.BigNumber.from(200).mul(10 ** 9),
+    maxPriorityFeePerGas: ethers.BigNumber.from(200).mul(10 ** 9),
 };
 
 export const ALLOWED_APPROVE_LIST = {
@@ -97,6 +97,7 @@ export const ALL_NETWORKS = [
     "hardhat",
     "localhost",
     "mainnet",
+    "goerli",
     "kovan",
     "arbitrum",
     "optimism",
@@ -111,6 +112,7 @@ export const MAIN_NETWORKS = [
     "hardhat",
     "localhost",
     "mainnet",
+    "goerli",
     "kovan",
     "rinkeby",
 ];

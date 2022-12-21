@@ -1,0 +1,739 @@
+{
+  "address": "0x1e710286320dcd3458B9194Eb2DfB395b67551Cc",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "contract IProtocolGovernance",
+              "name": "protocolGovernance",
+              "type": "address"
+            },
+            {
+              "internalType": "contract IVaultRegistry",
+              "name": "registry",
+              "type": "address"
+            },
+            {
+              "internalType": "contract IVault",
+              "name": "singleton",
+              "type": "address"
+            }
+          ],
+          "internalType": "struct IVaultGovernance.InternalParams",
+          "name": "internalParams_",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "origin",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "components": [
+            {
+              "internalType": "contract IProtocolGovernance",
+              "name": "protocolGovernance",
+              "type": "address"
+            },
+            {
+              "internalType": "contract IVaultRegistry",
+              "name": "registry",
+              "type": "address"
+            },
+            {
+              "internalType": "contract IVault",
+              "name": "singleton",
+              "type": "address"
+            }
+          ],
+          "indexed": false,
+          "internalType": "struct IVaultGovernance.InternalParams",
+          "name": "params",
+          "type": "tuple"
+        }
+      ],
+      "name": "CommitedInternalParams",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "origin",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address[]",
+          "name": "vaultTokens",
+          "type": "address[]"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "options",
+          "type": "bytes"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "vaultAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "vaultNft",
+          "type": "uint256"
+        }
+      ],
+      "name": "DeployedVault",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "origin",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "components": [
+            {
+              "internalType": "contract IProtocolGovernance",
+              "name": "protocolGovernance",
+              "type": "address"
+            },
+            {
+              "internalType": "contract IVaultRegistry",
+              "name": "registry",
+              "type": "address"
+            },
+            {
+              "internalType": "contract IVault",
+              "name": "singleton",
+              "type": "address"
+            }
+          ],
+          "indexed": false,
+          "internalType": "struct IVaultGovernance.InternalParams",
+          "name": "params",
+          "type": "tuple"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "when",
+          "type": "uint256"
+        }
+      ],
+      "name": "StagedInternalParams",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "commitInternalParams",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "contractName",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "contractNameBytes",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "contractVersion",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "contractVersionBytes",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address[]",
+          "name": "vaultTokens_",
+          "type": "address[]"
+        },
+        {
+          "internalType": "address",
+          "name": "owner_",
+          "type": "address"
+        }
+      ],
+      "name": "createVault",
+      "outputs": [
+        {
+          "internalType": "contract IERC20Vault",
+          "name": "vault",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "nft",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "delayedProtocolParamsTimestamp",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "nft",
+          "type": "uint256"
+        }
+      ],
+      "name": "delayedProtocolPerVaultParamsTimestamp",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "nft",
+          "type": "uint256"
+        }
+      ],
+      "name": "delayedStrategyParamsTimestamp",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "internalParams",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "contract IProtocolGovernance",
+              "name": "protocolGovernance",
+              "type": "address"
+            },
+            {
+              "internalType": "contract IVaultRegistry",
+              "name": "registry",
+              "type": "address"
+            },
+            {
+              "internalType": "contract IVault",
+              "name": "singleton",
+              "type": "address"
+            }
+          ],
+          "internalType": "struct IVaultGovernance.InternalParams",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "internalParamsTimestamp",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "contract IProtocolGovernance",
+              "name": "protocolGovernance",
+              "type": "address"
+            },
+            {
+              "internalType": "contract IVaultRegistry",
+              "name": "registry",
+              "type": "address"
+            },
+            {
+              "internalType": "contract IVault",
+              "name": "singleton",
+              "type": "address"
+            }
+          ],
+          "internalType": "struct IVaultGovernance.InternalParams",
+          "name": "newParams",
+          "type": "tuple"
+        }
+      ],
+      "name": "stageInternalParams",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "stagedInternalParams",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "contract IProtocolGovernance",
+              "name": "protocolGovernance",
+              "type": "address"
+            },
+            {
+              "internalType": "contract IVaultRegistry",
+              "name": "registry",
+              "type": "address"
+            },
+            {
+              "internalType": "contract IVault",
+              "name": "singleton",
+              "type": "address"
+            }
+          ],
+          "internalType": "struct IVaultGovernance.InternalParams",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "interfaceID",
+          "type": "bytes4"
+        }
+      ],
+      "name": "supportsInterface",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x223d34aeedd4001745d1a8d497016d7f9e6c953afaa378a01cd41f87f505480a",
+  "receipt": {
+    "to": null,
+    "from": "0x5f198d6F84C3b8E9CA12530ebbA54C3dB53e847D",
+    "contractAddress": "0x1e710286320dcd3458B9194Eb2DfB395b67551Cc",
+    "transactionIndex": 8,
+    "gasUsed": "954601",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0xa5f797105fe29c0bb132985b0854f8304511a171c8b4a846e41bc7182a7ac537",
+    "transactionHash": "0x223d34aeedd4001745d1a8d497016d7f9e6c953afaa378a01cd41f87f505480a",
+    "logs": [],
+    "blockNumber": 7850690,
+    "cumulativeGasUsed": "2133331",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    {
+      "protocolGovernance": "0xba78C2E8914074A87d32c41c6C49b8a924e60b6D",
+      "registry": "0x43EBC6D7505d0225992445351d2eEAF9B53bC1A2",
+      "singleton": "0x3E1460D03A36D1C88806c3896BC30A16C8646B51"
+    }
+  ],
+  "solcInputHash": "1984535d51a55304aed3f058b4264cb9",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.9+commit.e5eed63a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"components\":[{\"internalType\":\"contract IProtocolGovernance\",\"name\":\"protocolGovernance\",\"type\":\"address\"},{\"internalType\":\"contract IVaultRegistry\",\"name\":\"registry\",\"type\":\"address\"},{\"internalType\":\"contract IVault\",\"name\":\"singleton\",\"type\":\"address\"}],\"internalType\":\"struct IVaultGovernance.InternalParams\",\"name\":\"internalParams_\",\"type\":\"tuple\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"origin\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"contract IProtocolGovernance\",\"name\":\"protocolGovernance\",\"type\":\"address\"},{\"internalType\":\"contract IVaultRegistry\",\"name\":\"registry\",\"type\":\"address\"},{\"internalType\":\"contract IVault\",\"name\":\"singleton\",\"type\":\"address\"}],\"indexed\":false,\"internalType\":\"struct IVaultGovernance.InternalParams\",\"name\":\"params\",\"type\":\"tuple\"}],\"name\":\"CommitedInternalParams\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"origin\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"vaultTokens\",\"type\":\"address[]\"},{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"options\",\"type\":\"bytes\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"vaultAddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"vaultNft\",\"type\":\"uint256\"}],\"name\":\"DeployedVault\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"origin\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"contract IProtocolGovernance\",\"name\":\"protocolGovernance\",\"type\":\"address\"},{\"internalType\":\"contract IVaultRegistry\",\"name\":\"registry\",\"type\":\"address\"},{\"internalType\":\"contract IVault\",\"name\":\"singleton\",\"type\":\"address\"}],\"indexed\":false,\"internalType\":\"struct IVaultGovernance.InternalParams\",\"name\":\"params\",\"type\":\"tuple\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"when\",\"type\":\"uint256\"}],\"name\":\"StagedInternalParams\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"commitInternalParams\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"contractName\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"contractNameBytes\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"contractVersion\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"contractVersionBytes\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"vaultTokens_\",\"type\":\"address[]\"},{\"internalType\":\"address\",\"name\":\"owner_\",\"type\":\"address\"}],\"name\":\"createVault\",\"outputs\":[{\"internalType\":\"contract IERC20Vault\",\"name\":\"vault\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"nft\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"delayedProtocolParamsTimestamp\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"nft\",\"type\":\"uint256\"}],\"name\":\"delayedProtocolPerVaultParamsTimestamp\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"nft\",\"type\":\"uint256\"}],\"name\":\"delayedStrategyParamsTimestamp\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"internalParams\",\"outputs\":[{\"components\":[{\"internalType\":\"contract IProtocolGovernance\",\"name\":\"protocolGovernance\",\"type\":\"address\"},{\"internalType\":\"contract IVaultRegistry\",\"name\":\"registry\",\"type\":\"address\"},{\"internalType\":\"contract IVault\",\"name\":\"singleton\",\"type\":\"address\"}],\"internalType\":\"struct IVaultGovernance.InternalParams\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"internalParamsTimestamp\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"contract IProtocolGovernance\",\"name\":\"protocolGovernance\",\"type\":\"address\"},{\"internalType\":\"contract IVaultRegistry\",\"name\":\"registry\",\"type\":\"address\"},{\"internalType\":\"contract IVault\",\"name\":\"singleton\",\"type\":\"address\"}],\"internalType\":\"struct IVaultGovernance.InternalParams\",\"name\":\"newParams\",\"type\":\"tuple\"}],\"name\":\"stageInternalParams\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"stagedInternalParams\",\"outputs\":[{\"components\":[{\"internalType\":\"contract IProtocolGovernance\",\"name\":\"protocolGovernance\",\"type\":\"address\"},{\"internalType\":\"contract IVaultRegistry\",\"name\":\"registry\",\"type\":\"address\"},{\"internalType\":\"contract IVault\",\"name\":\"singleton\",\"type\":\"address\"}],\"internalType\":\"struct IVaultGovernance.InternalParams\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"interfaceID\",\"type\":\"bytes4\"}],\"name\":\"supportsInterface\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"constructor\":{\"params\":{\"internalParams_\":\"Initial Internal Params\"}},\"createVault(address[],address)\":{\"params\":{\"owner_\":\"Owner of the vault NFT\",\"vaultTokens_\":\"ERC20 tokens that will be managed by this Vault\"}},\"delayedProtocolPerVaultParamsTimestamp(uint256)\":{\"params\":{\"nft\":\"Nft of the vault\"}},\"delayedStrategyParamsTimestamp(uint256)\":{\"params\":{\"nft\":\"Nft of the vault\"}},\"stageInternalParams((address,address,address))\":{\"params\":{\"newParams\":\"New Internal Params\"}},\"stagedInternalParams()\":{\"details\":\"The Internal Params could be committed after internalParamsTimestamp\"}},\"version\":1},\"userdoc\":{\"events\":{\"CommitedInternalParams(address,address,(address,address,address))\":{\"notice\":\"Emitted when InternalParams are staged for commit\"},\"DeployedVault(address,address,address[],bytes,address,address,uint256)\":{\"notice\":\"Emitted when New Vault is deployed\"},\"StagedInternalParams(address,address,(address,address,address),uint256)\":{\"notice\":\"Emitted when InternalParams are staged for commit\"}},\"kind\":\"user\",\"methods\":{\"commitInternalParams()\":{\"notice\":\"Commit staged Internal Params.\"},\"constructor\":{\"notice\":\"Creates a new contract.\"},\"createVault(address[],address)\":{\"notice\":\"Deploys a new vault.\"},\"delayedProtocolParamsTimestamp()\":{\"notice\":\"Timestamp in unix time seconds after which staged Delayed Protocol Params could be committed.\"},\"delayedProtocolPerVaultParamsTimestamp(uint256)\":{\"notice\":\"Timestamp in unix time seconds after which staged Delayed Protocol Params Per Vault could be committed.\"},\"delayedStrategyParamsTimestamp(uint256)\":{\"notice\":\"Timestamp in unix time seconds after which staged Delayed Strategy Params could be committed.\"},\"internalParams()\":{\"notice\":\"Internal Params of the contract.\"},\"internalParamsTimestamp()\":{\"notice\":\"Timestamp in unix time seconds after which staged Internal Params could be committed.\"},\"stageInternalParams((address,address,address))\":{\"notice\":\"Stage new Internal Params.\"},\"stagedInternalParams()\":{\"notice\":\"Staged new Internal Params.\"}},\"notice\":\"Governance that manages all ERC20 Vaults params and can deploy a new ERC20 Vault.\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/vaults/ERC20VaultGovernance.sol\":\"ERC20VaultGovernance\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/access/IAccessControl.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts v4.4.0 (access/IAccessControl.sol)\\n\\npragma solidity ^0.8.0;\\n\\n/**\\n * @dev External interface of AccessControl declared to support ERC165 detection.\\n */\\ninterface IAccessControl {\\n    /**\\n     * @dev Emitted when `newAdminRole` is set as ``role``'s admin role, replacing `previousAdminRole`\\n     *\\n     * `DEFAULT_ADMIN_ROLE` is the starting admin for all roles, despite\\n     * {RoleAdminChanged} not being emitted signaling this.\\n     *\\n     * _Available since v3.1._\\n     */\\n    event RoleAdminChanged(bytes32 indexed role, bytes32 indexed previousAdminRole, bytes32 indexed newAdminRole);\\n\\n    /**\\n     * @dev Emitted when `account` is granted `role`.\\n     *\\n     * `sender` is the account that originated the contract call, an admin role\\n     * bearer except when using {AccessControl-_setupRole}.\\n     */\\n    event RoleGranted(bytes32 indexed role, address indexed account, address indexed sender);\\n\\n    /**\\n     * @dev Emitted when `account` is revoked `role`.\\n     *\\n     * `sender` is the account that originated the contract call:\\n     *   - if using `revokeRole`, it is the admin role bearer\\n     *   - if using `renounceRole`, it is the role bearer (i.e. `account`)\\n     */\\n    event RoleRevoked(bytes32 indexed role, address indexed account, address indexed sender);\\n\\n    /**\\n     * @dev Returns `true` if `account` has been granted `role`.\\n     */\\n    function hasRole(bytes32 role, address account) external view returns (bool);\\n\\n    /**\\n     * @dev Returns the admin role that controls `role`. See {grantRole} and\\n     * {revokeRole}.\\n     *\\n     * To change a role's admin, use {AccessControl-_setRoleAdmin}.\\n     */\\n    function getRoleAdmin(bytes32 role) external view returns (bytes32);\\n\\n    /**\\n     * @dev Grants `role` to `account`.\\n     *\\n     * If `account` had not been already granted `role`, emits a {RoleGranted}\\n     * event.\\n     *\\n     * Requirements:\\n     *\\n     * - the caller must have ``role``'s admin role.\\n     */\\n    function grantRole(bytes32 role, address account) external;\\n\\n    /**\\n     * @dev Revokes `role` from `account`.\\n     *\\n     * If `account` had been granted `role`, emits a {RoleRevoked} event.\\n     *\\n     * Requirements:\\n     *\\n     * - the caller must have ``role``'s admin role.\\n     */\\n    function revokeRole(bytes32 role, address account) external;\\n\\n    /**\\n     * @dev Revokes `role` from the calling account.\\n     *\\n     * Roles are often managed via {grantRole} and {revokeRole}: this function's\\n     * purpose is to provide a mechanism for accounts to lose their privileges\\n     * if they are compromised (such as when a trusted device is misplaced).\\n     *\\n     * If the calling account had been granted `role`, emits a {RoleRevoked}\\n     * event.\\n     *\\n     * Requirements:\\n     *\\n     * - the caller must be `account`.\\n     */\\n    function renounceRole(bytes32 role, address account) external;\\n}\\n\",\"keccak256\":\"0x693d1a6333975d5bd166fcc844874f96affecbf45dc5c34fa7d172248d74c06b\",\"license\":\"MIT\"},\"@openzeppelin/contracts/access/IAccessControlEnumerable.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts v4.4.0 (access/IAccessControlEnumerable.sol)\\n\\npragma solidity ^0.8.0;\\n\\nimport \\\"./IAccessControl.sol\\\";\\n\\n/**\\n * @dev External interface of AccessControlEnumerable declared to support ERC165 detection.\\n */\\ninterface IAccessControlEnumerable is IAccessControl {\\n    /**\\n     * @dev Returns one of the accounts that have `role`. `index` must be a\\n     * value between 0 and {getRoleMemberCount}, non-inclusive.\\n     *\\n     * Role bearers are not sorted in any particular way, and their ordering may\\n     * change at any point.\\n     *\\n     * WARNING: When using {getRoleMember} and {getRoleMemberCount}, make sure\\n     * you perform all queries on the same block. See the following\\n     * https://forum.openzeppelin.com/t/iterating-over-elements-on-enumerableset-in-openzeppelin-contracts/2296[forum post]\\n     * for more information.\\n     */\\n    function getRoleMember(bytes32 role, uint256 index) external view returns (address);\\n\\n    /**\\n     * @dev Returns the number of accounts that have `role`. Can be used\\n     * together with {getRoleMember} to enumerate all bearers of a role.\\n     */\\n    function getRoleMemberCount(bytes32 role) external view returns (uint256);\\n}\\n\",\"keccak256\":\"0x3c3ef4fb25def71f5f18af554ca938950eb9cf218fda073ed2c69b9203c03455\",\"license\":\"MIT\"},\"@openzeppelin/contracts/proxy/Clones.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts v4.4.0 (proxy/Clones.sol)\\n\\npragma solidity ^0.8.0;\\n\\n/**\\n * @dev https://eips.ethereum.org/EIPS/eip-1167[EIP 1167] is a standard for\\n * deploying minimal proxy contracts, also known as \\\"clones\\\".\\n *\\n * > To simply and cheaply clone contract functionality in an immutable way, this standard specifies\\n * > a minimal bytecode implementation that delegates all calls to a known, fixed address.\\n *\\n * The library includes functions to deploy a proxy using either `create` (traditional deployment) or `create2`\\n * (salted deterministic deployment). It also includes functions to predict the addresses of clones deployed using the\\n * deterministic method.\\n *\\n * _Available since v3.4._\\n */\\nlibrary Clones {\\n    /**\\n     * @dev Deploys and returns the address of a clone that mimics the behaviour of `implementation`.\\n     *\\n     * This function uses the create opcode, which should never revert.\\n     */\\n    function clone(address implementation) internal returns (address instance) {\\n        assembly {\\n            let ptr := mload(0x40)\\n            mstore(ptr, 0x3d602d80600a3d3981f3363d3d373d3d3d363d73000000000000000000000000)\\n            mstore(add(ptr, 0x14), shl(0x60, implementation))\\n            mstore(add(ptr, 0x28), 0x5af43d82803e903d91602b57fd5bf30000000000000000000000000000000000)\\n            instance := create(0, ptr, 0x37)\\n        }\\n        require(instance != address(0), \\\"ERC1167: create failed\\\");\\n    }\\n\\n    /**\\n     * @dev Deploys and returns the address of a clone that mimics the behaviour of `implementation`.\\n     *\\n     * This function uses the create2 opcode and a `salt` to deterministically deploy\\n     * the clone. Using the same `implementation` and `salt` multiple time will revert, since\\n     * the clones cannot be deployed twice at the same address.\\n     */\\n    function cloneDeterministic(address implementation, bytes32 salt) internal returns (address instance) {\\n        assembly {\\n            let ptr := mload(0x40)\\n            mstore(ptr, 0x3d602d80600a3d3981f3363d3d373d3d3d363d73000000000000000000000000)\\n            mstore(add(ptr, 0x14), shl(0x60, implementation))\\n            mstore(add(ptr, 0x28), 0x5af43d82803e903d91602b57fd5bf30000000000000000000000000000000000)\\n            instance := create2(0, ptr, 0x37, salt)\\n        }\\n        require(instance != address(0), \\\"ERC1167: create2 failed\\\");\\n    }\\n\\n    /**\\n     * @dev Computes the address of a clone deployed using {Clones-cloneDeterministic}.\\n     */\\n    function predictDeterministicAddress(\\n        address implementation,\\n        bytes32 salt,\\n        address deployer\\n    ) internal pure returns (address predicted) {\\n        assembly {\\n            let ptr := mload(0x40)\\n            mstore(ptr, 0x3d602d80600a3d3981f3363d3d373d3d3d363d73000000000000000000000000)\\n            mstore(add(ptr, 0x14), shl(0x60, implementation))\\n            mstore(add(ptr, 0x28), 0x5af43d82803e903d91602b57fd5bf3ff00000000000000000000000000000000)\\n            mstore(add(ptr, 0x38), shl(0x60, deployer))\\n            mstore(add(ptr, 0x4c), salt)\\n            mstore(add(ptr, 0x6c), keccak256(ptr, 0x37))\\n            predicted := keccak256(add(ptr, 0x37), 0x55)\\n        }\\n    }\\n\\n    /**\\n     * @dev Computes the address of a clone deployed using {Clones-cloneDeterministic}.\\n     */\\n    function predictDeterministicAddress(address implementation, bytes32 salt)\\n        internal\\n        view\\n        returns (address predicted)\\n    {\\n        return predictDeterministicAddress(implementation, salt, address(this));\\n    }\\n}\\n\",\"keccak256\":\"0xb0ff3f5c37c94cfa0da555a4c7d9034c46d70d0479917bed63612a9fc7092672\",\"license\":\"MIT\"},\"@openzeppelin/contracts/token/ERC721/IERC721.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts v4.4.0 (token/ERC721/IERC721.sol)\\n\\npragma solidity ^0.8.0;\\n\\nimport \\\"../../utils/introspection/IERC165.sol\\\";\\n\\n/**\\n * @dev Required interface of an ERC721 compliant contract.\\n */\\ninterface IERC721 is IERC165 {\\n    /**\\n     * @dev Emitted when `tokenId` token is transferred from `from` to `to`.\\n     */\\n    event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);\\n\\n    /**\\n     * @dev Emitted when `owner` enables `approved` to manage the `tokenId` token.\\n     */\\n    event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);\\n\\n    /**\\n     * @dev Emitted when `owner` enables or disables (`approved`) `operator` to manage all of its assets.\\n     */\\n    event ApprovalForAll(address indexed owner, address indexed operator, bool approved);\\n\\n    /**\\n     * @dev Returns the number of tokens in ``owner``'s account.\\n     */\\n    function balanceOf(address owner) external view returns (uint256 balance);\\n\\n    /**\\n     * @dev Returns the owner of the `tokenId` token.\\n     *\\n     * Requirements:\\n     *\\n     * - `tokenId` must exist.\\n     */\\n    function ownerOf(uint256 tokenId) external view returns (address owner);\\n\\n    /**\\n     * @dev Safely transfers `tokenId` token from `from` to `to`, checking first that contract recipients\\n     * are aware of the ERC721 protocol to prevent tokens from being forever locked.\\n     *\\n     * Requirements:\\n     *\\n     * - `from` cannot be the zero address.\\n     * - `to` cannot be the zero address.\\n     * - `tokenId` token must exist and be owned by `from`.\\n     * - If the caller is not `from`, it must be have been allowed to move this token by either {approve} or {setApprovalForAll}.\\n     * - If `to` refers to a smart contract, it must implement {IERC721Receiver-onERC721Received}, which is called upon a safe transfer.\\n     *\\n     * Emits a {Transfer} event.\\n     */\\n    function safeTransferFrom(\\n        address from,\\n        address to,\\n        uint256 tokenId\\n    ) external;\\n\\n    /**\\n     * @dev Transfers `tokenId` token from `from` to `to`.\\n     *\\n     * WARNING: Usage of this method is discouraged, use {safeTransferFrom} whenever possible.\\n     *\\n     * Requirements:\\n     *\\n     * - `from` cannot be the zero address.\\n     * - `to` cannot be the zero address.\\n     * - `tokenId` token must be owned by `from`.\\n     * - If the caller is not `from`, it must be approved to move this token by either {approve} or {setApprovalForAll}.\\n     *\\n     * Emits a {Transfer} event.\\n     */\\n    function transferFrom(\\n        address from,\\n        address to,\\n        uint256 tokenId\\n    ) external;\\n\\n    /**\\n     * @dev Gives permission to `to` to transfer `tokenId` token to another account.\\n     * The approval is cleared when the token is transferred.\\n     *\\n     * Only a single account can be approved at a time, so approving the zero address clears previous approvals.\\n     *\\n     * Requirements:\\n     *\\n     * - The caller must own the token or be an approved operator.\\n     * - `tokenId` must exist.\\n     *\\n     * Emits an {Approval} event.\\n     */\\n    function approve(address to, uint256 tokenId) external;\\n\\n    /**\\n     * @dev Returns the account approved for `tokenId` token.\\n     *\\n     * Requirements:\\n     *\\n     * - `tokenId` must exist.\\n     */\\n    function getApproved(uint256 tokenId) external view returns (address operator);\\n\\n    /**\\n     * @dev Approve or remove `operator` as an operator for the caller.\\n     * Operators can call {transferFrom} or {safeTransferFrom} for any token owned by the caller.\\n     *\\n     * Requirements:\\n     *\\n     * - The `operator` cannot be the caller.\\n     *\\n     * Emits an {ApprovalForAll} event.\\n     */\\n    function setApprovalForAll(address operator, bool _approved) external;\\n\\n    /**\\n     * @dev Returns if the `operator` is allowed to manage all of the assets of `owner`.\\n     *\\n     * See {setApprovalForAll}\\n     */\\n    function isApprovedForAll(address owner, address operator) external view returns (bool);\\n\\n    /**\\n     * @dev Safely transfers `tokenId` token from `from` to `to`.\\n     *\\n     * Requirements:\\n     *\\n     * - `from` cannot be the zero address.\\n     * - `to` cannot be the zero address.\\n     * - `tokenId` token must exist and be owned by `from`.\\n     * - If the caller is not `from`, it must be approved to move this token by either {approve} or {setApprovalForAll}.\\n     * - If `to` refers to a smart contract, it must implement {IERC721Receiver-onERC721Received}, which is called upon a safe transfer.\\n     *\\n     * Emits a {Transfer} event.\\n     */\\n    function safeTransferFrom(\\n        address from,\\n        address to,\\n        uint256 tokenId,\\n        bytes calldata data\\n    ) external;\\n}\\n\",\"keccak256\":\"0x872ba21af7c1f0ae04a715beca31e8fcac764d6c8762940b0fe1bfb6ed8e86f4\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/introspection/ERC165.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts v4.4.0 (utils/introspection/ERC165.sol)\\n\\npragma solidity ^0.8.0;\\n\\nimport \\\"./IERC165.sol\\\";\\n\\n/**\\n * @dev Implementation of the {IERC165} interface.\\n *\\n * Contracts that want to implement ERC165 should inherit from this contract and override {supportsInterface} to check\\n * for the additional interface id that will be supported. For example:\\n *\\n * ```solidity\\n * function supportsInterface(bytes4 interfaceId) public view virtual override returns (bool) {\\n *     return interfaceId == type(MyInterface).interfaceId || super.supportsInterface(interfaceId);\\n * }\\n * ```\\n *\\n * Alternatively, {ERC165Storage} provides an easier to use but more expensive implementation.\\n */\\nabstract contract ERC165 is IERC165 {\\n    /**\\n     * @dev See {IERC165-supportsInterface}.\\n     */\\n    function supportsInterface(bytes4 interfaceId) public view virtual override returns (bool) {\\n        return interfaceId == type(IERC165).interfaceId;\\n    }\\n}\\n\",\"keccak256\":\"0x905cd0ecd91d1de79a4679d745b79cf852ca8ccda5d25d1c49c6bd17a5edc0cf\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/introspection/IERC165.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts v4.4.0 (utils/introspection/IERC165.sol)\\n\\npragma solidity ^0.8.0;\\n\\n/**\\n * @dev Interface of the ERC165 standard, as defined in the\\n * https://eips.ethereum.org/EIPS/eip-165[EIP].\\n *\\n * Implementers can declare support of contract interfaces, which can then be\\n * queried by others ({ERC165Checker}).\\n *\\n * For an implementation, see {ERC165}.\\n */\\ninterface IERC165 {\\n    /**\\n     * @dev Returns true if this contract implements the interface defined by\\n     * `interfaceId`. See the corresponding\\n     * https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section]\\n     * to learn more about how these ids are created.\\n     *\\n     * This function call must use less than 30 000 gas.\\n     */\\n    function supportsInterface(bytes4 interfaceId) external view returns (bool);\\n}\\n\",\"keccak256\":\"0x6aa521718bf139b44ce56f194f6aea1d590cacef995b5a84703fb1579fa49be9\",\"license\":\"MIT\"},\"contracts/interfaces/IProtocolGovernance.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity 0.8.9;\\r\\n\\r\\nimport \\\"./utils/IDefaultAccessControl.sol\\\";\\r\\nimport \\\"./IUnitPricesGovernance.sol\\\";\\r\\n\\r\\ninterface IProtocolGovernance is IDefaultAccessControl, IUnitPricesGovernance {\\r\\n    /// @notice CommonLibrary protocol params.\\r\\n    /// @param maxTokensPerVault Max different token addresses that could be managed by the vault\\r\\n    /// @param governanceDelay The delay (in secs) that must pass before setting new pending params to commiting them\\r\\n    /// @param protocolTreasury The address that collects protocolFees, if protocolFee is not zero\\r\\n    /// @param forceAllowMask If a permission bit is set in this mask it forces all addresses to have this permission as true\\r\\n    /// @param withdrawLimit Withdraw limit (in unit prices, i.e. usd)\\r\\n    struct Params {\\r\\n        uint256 maxTokensPerVault;\\r\\n        uint256 governanceDelay;\\r\\n        address protocolTreasury;\\r\\n        uint256 forceAllowMask;\\r\\n        uint256 withdrawLimit;\\r\\n    }\\r\\n\\r\\n    // -------------------  EXTERNAL, VIEW  -------------------\\r\\n\\r\\n    /// @notice Timestamp after which staged granted permissions for the given address can be committed.\\r\\n    /// @param target The given address\\r\\n    /// @return Zero if there are no staged permission grants, timestamp otherwise\\r\\n    function stagedPermissionGrantsTimestamps(address target) external view returns (uint256);\\r\\n\\r\\n    /// @notice Staged granted permission bitmask for the given address.\\r\\n    /// @param target The given address\\r\\n    /// @return Bitmask\\r\\n    function stagedPermissionGrantsMasks(address target) external view returns (uint256);\\r\\n\\r\\n    /// @notice Permission bitmask for the given address.\\r\\n    /// @param target The given address\\r\\n    /// @return Bitmask\\r\\n    function permissionMasks(address target) external view returns (uint256);\\r\\n\\r\\n    /// @notice Timestamp after which staged pending protocol parameters can be committed\\r\\n    /// @return Zero if there are no staged parameters, timestamp otherwise.\\r\\n    function stagedParamsTimestamp() external view returns (uint256);\\r\\n\\r\\n    /// @notice Staged pending protocol parameters.\\r\\n    function stagedParams() external view returns (Params memory);\\r\\n\\r\\n    /// @notice Current protocol parameters.\\r\\n    function params() external view returns (Params memory);\\r\\n\\r\\n    /// @notice Addresses for which non-zero permissions are set.\\r\\n    function permissionAddresses() external view returns (address[] memory);\\r\\n\\r\\n    /// @notice Permission addresses staged for commit.\\r\\n    function stagedPermissionGrantsAddresses() external view returns (address[] memory);\\r\\n\\r\\n    /// @notice Return all addresses where rawPermissionMask bit for permissionId is set to 1.\\r\\n    /// @param permissionId Id of the permission to check.\\r\\n    /// @return A list of dirty addresses.\\r\\n    function addressesByPermission(uint8 permissionId) external view returns (address[] memory);\\r\\n\\r\\n    /// @notice Checks if address has permission or given permission is force allowed for any address.\\r\\n    /// @param addr Address to check\\r\\n    /// @param permissionId Permission to check\\r\\n    function hasPermission(address addr, uint8 permissionId) external view returns (bool);\\r\\n\\r\\n    /// @notice Checks if address has all permissions.\\r\\n    /// @param target Address to check\\r\\n    /// @param permissionIds A list of permissions to check\\r\\n    function hasAllPermissions(address target, uint8[] calldata permissionIds) external view returns (bool);\\r\\n\\r\\n    /// @notice Max different ERC20 token addresses that could be managed by the protocol.\\r\\n    function maxTokensPerVault() external view returns (uint256);\\r\\n\\r\\n    /// @notice The delay for committing any governance params.\\r\\n    function governanceDelay() external view returns (uint256);\\r\\n\\r\\n    /// @notice The address of the protocol treasury.\\r\\n    function protocolTreasury() external view returns (address);\\r\\n\\r\\n    /// @notice Permissions mask which defines if ordinary permission should be reverted.\\r\\n    /// This bitmask is xored with ordinary mask.\\r\\n    function forceAllowMask() external view returns (uint256);\\r\\n\\r\\n    /// @notice Withdraw limit per token per block.\\r\\n    /// @param token Address of the token\\r\\n    /// @return Withdraw limit per token per block\\r\\n    function withdrawLimit(address token) external view returns (uint256);\\r\\n\\r\\n    /// @notice Addresses that has staged validators.\\r\\n    function stagedValidatorsAddresses() external view returns (address[] memory);\\r\\n\\r\\n    /// @notice Timestamp after which staged granted permissions for the given address can be committed.\\r\\n    /// @param target The given address\\r\\n    /// @return Zero if there are no staged permission grants, timestamp otherwise\\r\\n    function stagedValidatorsTimestamps(address target) external view returns (uint256);\\r\\n\\r\\n    /// @notice Staged validator for the given address.\\r\\n    /// @param target The given address\\r\\n    /// @return Validator\\r\\n    function stagedValidators(address target) external view returns (address);\\r\\n\\r\\n    /// @notice Addresses that has validators.\\r\\n    function validatorsAddresses() external view returns (address[] memory);\\r\\n\\r\\n    /// @notice Address that has validators.\\r\\n    /// @param i The number of address\\r\\n    /// @return Validator address\\r\\n    function validatorsAddress(uint256 i) external view returns (address);\\r\\n\\r\\n    /// @notice Validator for the given address.\\r\\n    /// @param target The given address\\r\\n    /// @return Validator\\r\\n    function validators(address target) external view returns (address);\\r\\n\\r\\n    // -------------------  EXTERNAL, MUTATING, GOVERNANCE, IMMEDIATE  -------------------\\r\\n\\r\\n    /// @notice Rollback all staged validators.\\r\\n    function rollbackStagedValidators() external;\\r\\n\\r\\n    /// @notice Revoke validator instantly from the given address.\\r\\n    /// @param target The given address\\r\\n    function revokeValidator(address target) external;\\r\\n\\r\\n    /// @notice Stages a new validator for the given address\\r\\n    /// @param target The given address\\r\\n    /// @param validator The validator for the given address\\r\\n    function stageValidator(address target, address validator) external;\\r\\n\\r\\n    /// @notice Commits validator for the given address.\\r\\n    /// @dev Reverts if governance delay has not passed yet.\\r\\n    /// @param target The given address.\\r\\n    function commitValidator(address target) external;\\r\\n\\r\\n    /// @notice Commites all staged validators for which governance delay passed\\r\\n    /// @return Addresses for which validators were committed\\r\\n    function commitAllValidatorsSurpassedDelay() external returns (address[] memory);\\r\\n\\r\\n    /// @notice Rollback all staged granted permission grant.\\r\\n    function rollbackStagedPermissionGrants() external;\\r\\n\\r\\n    /// @notice Commits permission grants for the given address.\\r\\n    /// @dev Reverts if governance delay has not passed yet.\\r\\n    /// @param target The given address.\\r\\n    function commitPermissionGrants(address target) external;\\r\\n\\r\\n    /// @notice Commites all staged permission grants for which governance delay passed.\\r\\n    /// @return An array of addresses for which permission grants were committed.\\r\\n    function commitAllPermissionGrantsSurpassedDelay() external returns (address[] memory);\\r\\n\\r\\n    /// @notice Revoke permission instantly from the given address.\\r\\n    /// @param target The given address.\\r\\n    /// @param permissionIds A list of permission ids to revoke.\\r\\n    function revokePermissions(address target, uint8[] memory permissionIds) external;\\r\\n\\r\\n    /// @notice Commits staged protocol params.\\r\\n    /// Reverts if governance delay has not passed yet.\\r\\n    function commitParams() external;\\r\\n\\r\\n    // -------------------  EXTERNAL, MUTATING, GOVERNANCE, DELAY  -------------------\\r\\n\\r\\n    /// @notice Sets new pending params that could have been committed after governance delay expires.\\r\\n    /// @param newParams New protocol parameters to set.\\r\\n    function stageParams(Params memory newParams) external;\\r\\n\\r\\n    /// @notice Stage granted permissions that could have been committed after governance delay expires.\\r\\n    /// Resets commit delay and permissions if there are already staged permissions for this address.\\r\\n    /// @param target Target address\\r\\n    /// @param permissionIds A list of permission ids to grant\\r\\n    function stagePermissionGrants(address target, uint8[] memory permissionIds) external;\\r\\n}\\r\\n\",\"keccak256\":\"0xda6b37c257d780a870b289b4e44badc6afb7f2301f500a440c4c020abedd98e6\",\"license\":\"MIT\"},\"contracts/interfaces/IUnitPricesGovernance.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity 0.8.9;\\r\\n\\r\\nimport \\\"@openzeppelin/contracts/utils/introspection/IERC165.sol\\\";\\r\\nimport \\\"./utils/IDefaultAccessControl.sol\\\";\\r\\n\\r\\ninterface IUnitPricesGovernance is IDefaultAccessControl, IERC165 {\\r\\n    // -------------------  EXTERNAL, VIEW  -------------------\\r\\n\\r\\n    /// @notice Estimated amount of token worth 1 USD staged for commit.\\r\\n    /// @param token Address of the token\\r\\n    /// @return The amount of token\\r\\n    function stagedUnitPrices(address token) external view returns (uint256);\\r\\n\\r\\n    /// @notice Timestamp after which staged unit prices for the given token can be committed.\\r\\n    /// @param token Address of the token\\r\\n    /// @return Timestamp\\r\\n    function stagedUnitPricesTimestamps(address token) external view returns (uint256);\\r\\n\\r\\n    /// @notice Estimated amount of token worth 1 USD.\\r\\n    /// @param token Address of the token\\r\\n    /// @return The amount of token\\r\\n    function unitPrices(address token) external view returns (uint256);\\r\\n\\r\\n    // -------------------  EXTERNAL, MUTATING  -------------------\\r\\n\\r\\n    /// @notice Stage estimated amount of token worth 1 USD staged for commit.\\r\\n    /// @param token Address of the token\\r\\n    /// @param value The amount of token\\r\\n    function stageUnitPrice(address token, uint256 value) external;\\r\\n\\r\\n    /// @notice Reset staged value\\r\\n    /// @param token Address of the token\\r\\n    function rollbackUnitPrice(address token) external;\\r\\n\\r\\n    /// @notice Commit staged unit price\\r\\n    /// @param token Address of the token\\r\\n    function commitUnitPrice(address token) external;\\r\\n}\\r\\n\",\"keccak256\":\"0x300050e0de7d02134592f130cdb90752dc8fcea6cab2e58eb9dafd3a7e3f4e5f\",\"license\":\"MIT\"},\"contracts/interfaces/IVaultRegistry.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity =0.8.9;\\r\\n\\r\\nimport \\\"@openzeppelin/contracts/token/ERC721/IERC721.sol\\\";\\r\\nimport \\\"./IProtocolGovernance.sol\\\";\\r\\n\\r\\ninterface IVaultRegistry is IERC721 {\\r\\n    /// @notice Get Vault for the giver NFT ID.\\r\\n    /// @param nftId NFT ID\\r\\n    /// @return vault Address of the Vault contract\\r\\n    function vaultForNft(uint256 nftId) external view returns (address vault);\\r\\n\\r\\n    /// @notice Get NFT ID for given Vault contract address.\\r\\n    /// @param vault Address of the Vault contract\\r\\n    /// @return nftId NFT ID\\r\\n    function nftForVault(address vault) external view returns (uint256 nftId);\\r\\n\\r\\n    /// @notice Checks if the nft is locked for all transfers\\r\\n    /// @param nft NFT to check for lock\\r\\n    /// @return `true` if locked, false otherwise\\r\\n    function isLocked(uint256 nft) external view returns (bool);\\r\\n\\r\\n    /// @notice Register new Vault and mint NFT.\\r\\n    /// @param vault address of the vault\\r\\n    /// @param owner owner of the NFT\\r\\n    /// @return nft Nft minted for the given Vault\\r\\n    function registerVault(address vault, address owner) external returns (uint256 nft);\\r\\n\\r\\n    /// @notice Number of Vaults registered.\\r\\n    function vaultsCount() external view returns (uint256);\\r\\n\\r\\n    /// @notice All Vaults registered.\\r\\n    function vaults() external view returns (address[] memory);\\r\\n\\r\\n    /// @notice Address of the ProtocolGovernance.\\r\\n    function protocolGovernance() external view returns (IProtocolGovernance);\\r\\n\\r\\n    /// @notice Address of the staged ProtocolGovernance.\\r\\n    function stagedProtocolGovernance() external view returns (IProtocolGovernance);\\r\\n\\r\\n    /// @notice Minimal timestamp when staged ProtocolGovernance can be applied.\\r\\n    function stagedProtocolGovernanceTimestamp() external view returns (uint256);\\r\\n\\r\\n    /// @notice Stage new ProtocolGovernance.\\r\\n    /// @param newProtocolGovernance new ProtocolGovernance\\r\\n    function stageProtocolGovernance(IProtocolGovernance newProtocolGovernance) external;\\r\\n\\r\\n    /// @notice Commit new ProtocolGovernance.\\r\\n    function commitStagedProtocolGovernance() external;\\r\\n\\r\\n    /// @notice Lock NFT for transfers\\r\\n    /// @dev Use this method when vault structure is set up and should become immutable. Can be called by owner.\\r\\n    /// @param nft - NFT to lock\\r\\n    function lockNft(uint256 nft) external;\\r\\n}\\r\\n\",\"keccak256\":\"0x66ba86bbbe472a039ab45b556eb235c9ed64ea0d43de4f22fdf64b9b41e3f4ca\",\"license\":\"MIT\"},\"contracts/interfaces/external/aave/DataTypes.sol\":{\"content\":\"// SPDX-License-Identifier: agpl-3.0\\r\\npragma solidity 0.8.9;\\r\\n\\r\\nlibrary DataTypes {\\r\\n    // refer to the whitepaper, section 1.1 basic concepts for a formal description of these properties.\\r\\n    struct ReserveData {\\r\\n        //stores the reserve configuration\\r\\n        ReserveConfigurationMap configuration;\\r\\n        //the liquidity index. Expressed in ray\\r\\n        uint128 liquidityIndex;\\r\\n        //variable borrow index. Expressed in ray\\r\\n        uint128 variableBorrowIndex;\\r\\n        //the current supply rate. Expressed in ray\\r\\n        uint128 currentLiquidityRate;\\r\\n        //the current variable borrow rate. Expressed in ray\\r\\n        uint128 currentVariableBorrowRate;\\r\\n        //the current stable borrow rate. Expressed in ray\\r\\n        uint128 currentStableBorrowRate;\\r\\n        uint40 lastUpdateTimestamp;\\r\\n        //tokens addresses\\r\\n        address aTokenAddress;\\r\\n        address stableDebtTokenAddress;\\r\\n        address variableDebtTokenAddress;\\r\\n        //address of the interest rate strategy\\r\\n        address interestRateStrategyAddress;\\r\\n        //the id of the reserve. Represents the position in the list of the active reserves\\r\\n        uint8 id;\\r\\n    }\\r\\n\\r\\n    struct ReserveConfigurationMap {\\r\\n        //bit 0-15: LTV\\r\\n        //bit 16-31: Liq. threshold\\r\\n        //bit 32-47: Liq. bonus\\r\\n        //bit 48-55: Decimals\\r\\n        //bit 56: Reserve is active\\r\\n        //bit 57: reserve is frozen\\r\\n        //bit 58: borrowing is enabled\\r\\n        //bit 59: stable rate borrowing enabled\\r\\n        //bit 60-63: reserved\\r\\n        //bit 64-79: reserve factor\\r\\n        uint256 data;\\r\\n    }\\r\\n\\r\\n    struct UserConfigurationMap {\\r\\n        uint256 data;\\r\\n    }\\r\\n\\r\\n    enum InterestRateMode {\\r\\n        NONE,\\r\\n        STABLE,\\r\\n        VARIABLE\\r\\n    }\\r\\n}\\r\\n\",\"keccak256\":\"0x5b5461d16db3c51350b69d47835f3850248ff00ecedcf256fa26d74539174cfe\",\"license\":\"agpl-3.0\"},\"contracts/interfaces/external/aave/ILendingPool.sol\":{\"content\":\"// SPDX-License-Identifier: agpl-3.0\\r\\npragma solidity 0.8.9;\\r\\npragma experimental ABIEncoderV2;\\r\\n\\r\\nimport {ILendingPoolAddressesProvider} from \\\"./ILendingPoolAddressesProvider.sol\\\";\\r\\nimport {DataTypes} from \\\"./DataTypes.sol\\\";\\r\\n\\r\\ninterface ILendingPool {\\r\\n    /**\\r\\n     * @dev Emitted on deposit()\\r\\n     * @param reserve The address of the underlying asset of the reserve\\r\\n     * @param user The address initiating the deposit\\r\\n     * @param onBehalfOf The beneficiary of the deposit, receiving the aTokens\\r\\n     * @param amount The amount deposited\\r\\n     * @param referral The referral code used\\r\\n     **/\\r\\n    event Deposit(\\r\\n        address indexed reserve,\\r\\n        address user,\\r\\n        address indexed onBehalfOf,\\r\\n        uint256 amount,\\r\\n        uint16 indexed referral\\r\\n    );\\r\\n\\r\\n    /**\\r\\n     * @dev Emitted on withdraw()\\r\\n     * @param reserve The address of the underlyng asset being withdrawn\\r\\n     * @param user The address initiating the withdrawal, owner of aTokens\\r\\n     * @param to Address that will receive the underlying\\r\\n     * @param amount The amount to be withdrawn\\r\\n     **/\\r\\n    event Withdraw(address indexed reserve, address indexed user, address indexed to, uint256 amount);\\r\\n\\r\\n    /**\\r\\n     * @dev Emitted on borrow() and flashLoan() when debt needs to be opened\\r\\n     * @param reserve The address of the underlying asset being borrowed\\r\\n     * @param user The address of the user initiating the borrow(), receiving the funds on borrow() or just\\r\\n     * initiator of the transaction on flashLoan()\\r\\n     * @param onBehalfOf The address that will be getting the debt\\r\\n     * @param amount The amount borrowed out\\r\\n     * @param borrowRateMode The rate mode: 1 for Stable, 2 for Variable\\r\\n     * @param borrowRate The numeric rate at which the user has borrowed\\r\\n     * @param referral The referral code used\\r\\n     **/\\r\\n    event Borrow(\\r\\n        address indexed reserve,\\r\\n        address user,\\r\\n        address indexed onBehalfOf,\\r\\n        uint256 amount,\\r\\n        uint256 borrowRateMode,\\r\\n        uint256 borrowRate,\\r\\n        uint16 indexed referral\\r\\n    );\\r\\n\\r\\n    /**\\r\\n     * @dev Emitted on repay()\\r\\n     * @param reserve The address of the underlying asset of the reserve\\r\\n     * @param user The beneficiary of the repayment, getting his debt reduced\\r\\n     * @param repayer The address of the user initiating the repay(), providing the funds\\r\\n     * @param amount The amount repaid\\r\\n     **/\\r\\n    event Repay(address indexed reserve, address indexed user, address indexed repayer, uint256 amount);\\r\\n\\r\\n    /**\\r\\n     * @dev Emitted on swapBorrowRateMode()\\r\\n     * @param reserve The address of the underlying asset of the reserve\\r\\n     * @param user The address of the user swapping his rate mode\\r\\n     * @param rateMode The rate mode that the user wants to swap to\\r\\n     **/\\r\\n    event Swap(address indexed reserve, address indexed user, uint256 rateMode);\\r\\n\\r\\n    /**\\r\\n     * @dev Emitted on setUserUseReserveAsCollateral()\\r\\n     * @param reserve The address of the underlying asset of the reserve\\r\\n     * @param user The address of the user enabling the usage as collateral\\r\\n     **/\\r\\n    event ReserveUsedAsCollateralEnabled(address indexed reserve, address indexed user);\\r\\n\\r\\n    /**\\r\\n     * @dev Emitted on setUserUseReserveAsCollateral()\\r\\n     * @param reserve The address of the underlying asset of the reserve\\r\\n     * @param user The address of the user enabling the usage as collateral\\r\\n     **/\\r\\n    event ReserveUsedAsCollateralDisabled(address indexed reserve, address indexed user);\\r\\n\\r\\n    /**\\r\\n     * @dev Emitted on rebalanceStableBorrowRate()\\r\\n     * @param reserve The address of the underlying asset of the reserve\\r\\n     * @param user The address of the user for which the rebalance has been executed\\r\\n     **/\\r\\n    event RebalanceStableBorrowRate(address indexed reserve, address indexed user);\\r\\n\\r\\n    /**\\r\\n     * @dev Emitted on flashLoan()\\r\\n     * @param target The address of the flash loan receiver contract\\r\\n     * @param initiator The address initiating the flash loan\\r\\n     * @param asset The address of the asset being flash borrowed\\r\\n     * @param amount The amount flash borrowed\\r\\n     * @param premium The fee flash borrowed\\r\\n     * @param referralCode The referral code used\\r\\n     **/\\r\\n    event FlashLoan(\\r\\n        address indexed target,\\r\\n        address indexed initiator,\\r\\n        address indexed asset,\\r\\n        uint256 amount,\\r\\n        uint256 premium,\\r\\n        uint16 referralCode\\r\\n    );\\r\\n\\r\\n    /**\\r\\n     * @dev Emitted when the pause is triggered.\\r\\n     */\\r\\n    event Paused();\\r\\n\\r\\n    /**\\r\\n     * @dev Emitted when the pause is lifted.\\r\\n     */\\r\\n    event Unpaused();\\r\\n\\r\\n    /**\\r\\n     * @dev Emitted when a borrower is liquidated. This event is emitted by the LendingPool via\\r\\n     * LendingPoolCollateral manager using a DELEGATECALL\\r\\n     * This allows to have the events in the generated ABI for LendingPool.\\r\\n     * @param collateralAsset The address of the underlying asset used as collateral, to receive as result of the liquidation\\r\\n     * @param debtAsset The address of the underlying borrowed asset to be repaid with the liquidation\\r\\n     * @param user The address of the borrower getting liquidated\\r\\n     * @param debtToCover The debt amount of borrowed `asset` the liquidator wants to cover\\r\\n     * @param liquidatedCollateralAmount The amount of collateral received by the liiquidator\\r\\n     * @param liquidator The address of the liquidator\\r\\n     * @param receiveAToken `true` if the liquidators wants to receive the collateral aTokens, `false` if he wants\\r\\n     * to receive the underlying collateral asset directly\\r\\n     **/\\r\\n    event LiquidationCall(\\r\\n        address indexed collateralAsset,\\r\\n        address indexed debtAsset,\\r\\n        address indexed user,\\r\\n        uint256 debtToCover,\\r\\n        uint256 liquidatedCollateralAmount,\\r\\n        address liquidator,\\r\\n        bool receiveAToken\\r\\n    );\\r\\n\\r\\n    /**\\r\\n     * @dev Emitted when the state of a reserve is updated. NOTE: This event is actually declared\\r\\n     * in the ReserveLogic library and emitted in the updateInterestRates() function. Since the function is internal,\\r\\n     * the event will actually be fired by the LendingPool contract. The event is therefore replicated here so it\\r\\n     * gets added to the LendingPool ABI\\r\\n     * @param reserve The address of the underlying asset of the reserve\\r\\n     * @param liquidityRate The new liquidity rate\\r\\n     * @param stableBorrowRate The new stable borrow rate\\r\\n     * @param variableBorrowRate The new variable borrow rate\\r\\n     * @param liquidityIndex The new liquidity index\\r\\n     * @param variableBorrowIndex The new variable borrow index\\r\\n     **/\\r\\n    event ReserveDataUpdated(\\r\\n        address indexed reserve,\\r\\n        uint256 liquidityRate,\\r\\n        uint256 stableBorrowRate,\\r\\n        uint256 variableBorrowRate,\\r\\n        uint256 liquidityIndex,\\r\\n        uint256 variableBorrowIndex\\r\\n    );\\r\\n\\r\\n    /**\\r\\n     * @dev Deposits an `amount` of underlying asset into the reserve, receiving in return overlying aTokens.\\r\\n     * - E.g. User deposits 100 USDC and gets in return 100 aUSDC\\r\\n     * @param asset The address of the underlying asset to deposit\\r\\n     * @param amount The amount to be deposited\\r\\n     * @param onBehalfOf The address that will receive the aTokens, same as msg.sender if the user\\r\\n     *   wants to receive them on his own wallet, or a different address if the beneficiary of aTokens\\r\\n     *   is a different wallet\\r\\n     * @param referralCode Code used to register the integrator originating the operation, for potential rewards.\\r\\n     *   0 if the action is executed directly by the user, without any middle-man\\r\\n     **/\\r\\n    function deposit(\\r\\n        address asset,\\r\\n        uint256 amount,\\r\\n        address onBehalfOf,\\r\\n        uint16 referralCode\\r\\n    ) external;\\r\\n\\r\\n    /**\\r\\n     * @dev Withdraws an `amount` of underlying asset from the reserve, burning the equivalent aTokens owned\\r\\n     * E.g. User has 100 aUSDC, calls withdraw() and receives 100 USDC, burning the 100 aUSDC\\r\\n     * @param asset The address of the underlying asset to withdraw\\r\\n     * @param amount The underlying amount to be withdrawn\\r\\n     *   - Send the value type(uint256).max in order to withdraw the whole aToken balance\\r\\n     * @param to Address that will receive the underlying, same as msg.sender if the user\\r\\n     *   wants to receive it on his own wallet, or a different address if the beneficiary is a\\r\\n     *   different wallet\\r\\n     * @return The final amount withdrawn\\r\\n     **/\\r\\n    function withdraw(\\r\\n        address asset,\\r\\n        uint256 amount,\\r\\n        address to\\r\\n    ) external returns (uint256);\\r\\n\\r\\n    /**\\r\\n     * @dev Allows users to borrow a specific `amount` of the reserve underlying asset, provided that the borrower\\r\\n     * already deposited enough collateral, or he was given enough allowance by a credit delegator on the\\r\\n     * corresponding debt token (StableDebtToken or VariableDebtToken)\\r\\n     * - E.g. User borrows 100 USDC passing as `onBehalfOf` his own address, receiving the 100 USDC in his wallet\\r\\n     *   and 100 stable/variable debt tokens, depending on the `interestRateMode`\\r\\n     * @param asset The address of the underlying asset to borrow\\r\\n     * @param amount The amount to be borrowed\\r\\n     * @param interestRateMode The interest rate mode at which the user wants to borrow: 1 for Stable, 2 for Variable\\r\\n     * @param referralCode Code used to register the integrator originating the operation, for potential rewards.\\r\\n     *   0 if the action is executed directly by the user, without any middle-man\\r\\n     * @param onBehalfOf Address of the user who will receive the debt. Should be the address of the borrower itself\\r\\n     * calling the function if he wants to borrow against his own collateral, or the address of the credit delegator\\r\\n     * if he has been given credit delegation allowance\\r\\n     **/\\r\\n    function borrow(\\r\\n        address asset,\\r\\n        uint256 amount,\\r\\n        uint256 interestRateMode,\\r\\n        uint16 referralCode,\\r\\n        address onBehalfOf\\r\\n    ) external;\\r\\n\\r\\n    /**\\r\\n     * @notice Repays a borrowed `amount` on a specific reserve, burning the equivalent debt tokens owned\\r\\n     * - E.g. User repays 100 USDC, burning 100 variable/stable debt tokens of the `onBehalfOf` address\\r\\n     * @param asset The address of the borrowed underlying asset previously borrowed\\r\\n     * @param amount The amount to repay\\r\\n     * - Send the value type(uint256).max in order to repay the whole debt for `asset` on the specific `debtMode`\\r\\n     * @param rateMode The interest rate mode at of the debt the user wants to repay: 1 for Stable, 2 for Variable\\r\\n     * @param onBehalfOf Address of the user who will get his debt reduced/removed. Should be the address of the\\r\\n     * user calling the function if he wants to reduce/remove his own debt, or the address of any other\\r\\n     * other borrower whose debt should be removed\\r\\n     * @return The final amount repaid\\r\\n     **/\\r\\n    function repay(\\r\\n        address asset,\\r\\n        uint256 amount,\\r\\n        uint256 rateMode,\\r\\n        address onBehalfOf\\r\\n    ) external returns (uint256);\\r\\n\\r\\n    /**\\r\\n     * @dev Allows a borrower to swap his debt between stable and variable mode, or viceversa\\r\\n     * @param asset The address of the underlying asset borrowed\\r\\n     * @param rateMode The rate mode that the user wants to swap to\\r\\n     **/\\r\\n    function swapBorrowRateMode(address asset, uint256 rateMode) external;\\r\\n\\r\\n    /**\\r\\n     * @dev Rebalances the stable interest rate of a user to the current stable rate defined on the reserve.\\r\\n     * - Users can be rebalanced if the following conditions are satisfied:\\r\\n     *     1. Usage ratio is above 95%\\r\\n     *     2. the current deposit APY is below REBALANCE_UP_THRESHOLD * maxVariableBorrowRate, which means that too much has been\\r\\n     *        borrowed at a stable rate and depositors are not earning enough\\r\\n     * @param asset The address of the underlying asset borrowed\\r\\n     * @param user The address of the user to be rebalanced\\r\\n     **/\\r\\n    function rebalanceStableBorrowRate(address asset, address user) external;\\r\\n\\r\\n    /**\\r\\n     * @dev Allows depositors to enable/disable a specific deposited asset as collateral\\r\\n     * @param asset The address of the underlying asset deposited\\r\\n     * @param useAsCollateral `true` if the user wants to use the deposit as collateral, `false` otherwise\\r\\n     **/\\r\\n    function setUserUseReserveAsCollateral(address asset, bool useAsCollateral) external;\\r\\n\\r\\n    /**\\r\\n     * @dev Function to liquidate a non-healthy position collateral-wise, with Health Factor below 1\\r\\n     * - The caller (liquidator) covers `debtToCover` amount of debt of the user getting liquidated, and receives\\r\\n     *   a proportionally amount of the `collateralAsset` plus a bonus to cover market risk\\r\\n     * @param collateralAsset The address of the underlying asset used as collateral, to receive as result of the liquidation\\r\\n     * @param debtAsset The address of the underlying borrowed asset to be repaid with the liquidation\\r\\n     * @param user The address of the borrower getting liquidated\\r\\n     * @param debtToCover The debt amount of borrowed `asset` the liquidator wants to cover\\r\\n     * @param receiveAToken `true` if the liquidators wants to receive the collateral aTokens, `false` if he wants\\r\\n     * to receive the underlying collateral asset directly\\r\\n     **/\\r\\n    function liquidationCall(\\r\\n        address collateralAsset,\\r\\n        address debtAsset,\\r\\n        address user,\\r\\n        uint256 debtToCover,\\r\\n        bool receiveAToken\\r\\n    ) external;\\r\\n\\r\\n    /**\\r\\n     * @dev Allows smartcontracts to access the liquidity of the pool within one transaction,\\r\\n     * as long as the amount taken plus a fee is returned.\\r\\n     * IMPORTANT There are security concerns for developers of flashloan receiver contracts that must be kept into consideration.\\r\\n     * For further details please visit https://developers.aave.com\\r\\n     * @param receiverAddress The address of the contract receiving the funds, implementing the IFlashLoanReceiver interface\\r\\n     * @param assets The addresses of the assets being flash-borrowed\\r\\n     * @param amounts The amounts amounts being flash-borrowed\\r\\n     * @param modes Types of the debt to open if the flash loan is not returned:\\r\\n     *   0 -> Don't open any debt, just revert if funds can't be transferred from the receiver\\r\\n     *   1 -> Open debt at stable rate for the value of the amount flash-borrowed to the `onBehalfOf` address\\r\\n     *   2 -> Open debt at variable rate for the value of the amount flash-borrowed to the `onBehalfOf` address\\r\\n     * @param onBehalfOf The address  that will receive the debt in the case of using on `modes` 1 or 2\\r\\n     * @param params Variadic packed params to pass to the receiver as extra information\\r\\n     * @param referralCode Code used to register the integrator originating the operation, for potential rewards.\\r\\n     *   0 if the action is executed directly by the user, without any middle-man\\r\\n     **/\\r\\n    function flashLoan(\\r\\n        address receiverAddress,\\r\\n        address[] calldata assets,\\r\\n        uint256[] calldata amounts,\\r\\n        uint256[] calldata modes,\\r\\n        address onBehalfOf,\\r\\n        bytes calldata params,\\r\\n        uint16 referralCode\\r\\n    ) external;\\r\\n\\r\\n    /**\\r\\n     * @dev Returns the user account data across all the reserves\\r\\n     * @param user The address of the user\\r\\n     * @return totalCollateralETH the total collateral in ETH of the user\\r\\n     * @return totalDebtETH the total debt in ETH of the user\\r\\n     * @return availableBorrowsETH the borrowing power left of the user\\r\\n     * @return currentLiquidationThreshold the liquidation threshold of the user\\r\\n     * @return ltv the loan to value of the user\\r\\n     * @return healthFactor the current health factor of the user\\r\\n     **/\\r\\n    function getUserAccountData(address user)\\r\\n        external\\r\\n        view\\r\\n        returns (\\r\\n            uint256 totalCollateralETH,\\r\\n            uint256 totalDebtETH,\\r\\n            uint256 availableBorrowsETH,\\r\\n            uint256 currentLiquidationThreshold,\\r\\n            uint256 ltv,\\r\\n            uint256 healthFactor\\r\\n        );\\r\\n\\r\\n    function initReserve(\\r\\n        address reserve,\\r\\n        address aTokenAddress,\\r\\n        address stableDebtAddress,\\r\\n        address variableDebtAddress,\\r\\n        address interestRateStrategyAddress\\r\\n    ) external;\\r\\n\\r\\n    function setReserveInterestRateStrategyAddress(address reserve, address rateStrategyAddress) external;\\r\\n\\r\\n    function setConfiguration(address reserve, uint256 configuration) external;\\r\\n\\r\\n    /**\\r\\n     * @dev Returns the configuration of the reserve\\r\\n     * @param asset The address of the underlying asset of the reserve\\r\\n     * @return The configuration of the reserve\\r\\n     **/\\r\\n    function getConfiguration(address asset) external view returns (DataTypes.ReserveConfigurationMap memory);\\r\\n\\r\\n    /**\\r\\n     * @dev Returns the configuration of the user across all the reserves\\r\\n     * @param user The user address\\r\\n     * @return The configuration of the user\\r\\n     **/\\r\\n    function getUserConfiguration(address user) external view returns (DataTypes.UserConfigurationMap memory);\\r\\n\\r\\n    /**\\r\\n     * @dev Returns the normalized income normalized income of the reserve\\r\\n     * @param asset The address of the underlying asset of the reserve\\r\\n     * @return The reserve's normalized income\\r\\n     */\\r\\n    function getReserveNormalizedIncome(address asset) external view returns (uint256);\\r\\n\\r\\n    /**\\r\\n     * @dev Returns the normalized variable debt per unit of asset\\r\\n     * @param asset The address of the underlying asset of the reserve\\r\\n     * @return The reserve normalized variable debt\\r\\n     */\\r\\n    function getReserveNormalizedVariableDebt(address asset) external view returns (uint256);\\r\\n\\r\\n    /**\\r\\n     * @dev Returns the state and configuration of the reserve\\r\\n     * @param asset The address of the underlying asset of the reserve\\r\\n     * @return The state of the reserve\\r\\n     **/\\r\\n    function getReserveData(address asset) external view returns (DataTypes.ReserveData memory);\\r\\n\\r\\n    function finalizeTransfer(\\r\\n        address asset,\\r\\n        address from,\\r\\n        address to,\\r\\n        uint256 amount,\\r\\n        uint256 balanceFromAfter,\\r\\n        uint256 balanceToBefore\\r\\n    ) external;\\r\\n\\r\\n    function getReservesList() external view returns (address[] memory);\\r\\n\\r\\n    function getAddressesProvider() external view returns (ILendingPoolAddressesProvider);\\r\\n\\r\\n    function setPause(bool val) external;\\r\\n\\r\\n    function paused() external view returns (bool);\\r\\n}\\r\\n\",\"keccak256\":\"0xe25cdf559191544e5b209565344e68b17b07d56add0d3d639b9ba406bba48146\",\"license\":\"agpl-3.0\"},\"contracts/interfaces/external/aave/ILendingPoolAddressesProvider.sol\":{\"content\":\"// SPDX-License-Identifier: agpl-3.0\\r\\npragma solidity 0.8.9;\\r\\n\\r\\n/**\\r\\n * @title LendingPoolAddressesProvider contract\\r\\n * @dev Main registry of addresses part of or connected to the protocol, including permissioned roles\\r\\n * - Acting also as factory of proxies and admin of those, so with right to change its implementations\\r\\n * - Owned by the Aave Governance\\r\\n * @author Aave\\r\\n **/\\r\\ninterface ILendingPoolAddressesProvider {\\r\\n    event MarketIdSet(string newMarketId);\\r\\n    event LendingPoolUpdated(address indexed newAddress);\\r\\n    event ConfigurationAdminUpdated(address indexed newAddress);\\r\\n    event EmergencyAdminUpdated(address indexed newAddress);\\r\\n    event LendingPoolConfiguratorUpdated(address indexed newAddress);\\r\\n    event LendingPoolCollateralManagerUpdated(address indexed newAddress);\\r\\n    event PriceOracleUpdated(address indexed newAddress);\\r\\n    event LendingRateOracleUpdated(address indexed newAddress);\\r\\n    event ProxyCreated(bytes32 id, address indexed newAddress);\\r\\n    event AddressSet(bytes32 id, address indexed newAddress, bool hasProxy);\\r\\n\\r\\n    function getMarketId() external view returns (string memory);\\r\\n\\r\\n    function setMarketId(string calldata marketId) external;\\r\\n\\r\\n    function setAddress(bytes32 id, address newAddress) external;\\r\\n\\r\\n    function setAddressAsProxy(bytes32 id, address impl) external;\\r\\n\\r\\n    function getAddress(bytes32 id) external view returns (address);\\r\\n\\r\\n    function getLendingPool() external view returns (address);\\r\\n\\r\\n    function setLendingPoolImpl(address pool) external;\\r\\n\\r\\n    function getLendingPoolConfigurator() external view returns (address);\\r\\n\\r\\n    function setLendingPoolConfiguratorImpl(address configurator) external;\\r\\n\\r\\n    function getLendingPoolCollateralManager() external view returns (address);\\r\\n\\r\\n    function setLendingPoolCollateralManager(address manager) external;\\r\\n\\r\\n    function getPoolAdmin() external view returns (address);\\r\\n\\r\\n    function setPoolAdmin(address admin) external;\\r\\n\\r\\n    function getEmergencyAdmin() external view returns (address);\\r\\n\\r\\n    function setEmergencyAdmin(address admin) external;\\r\\n\\r\\n    function getPriceOracle() external view returns (address);\\r\\n\\r\\n    function setPriceOracle(address priceOracle) external;\\r\\n\\r\\n    function getLendingRateOracle() external view returns (address);\\r\\n\\r\\n    function setLendingRateOracle(address lendingRateOracle) external;\\r\\n}\\r\\n\",\"keccak256\":\"0x7804de852a529511f94f5711364b97e489e15a48583bf7d7f2de8050eb786cd6\",\"license\":\"agpl-3.0\"},\"contracts/interfaces/external/erc/IERC1271.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity 0.8.9;\\r\\n\\r\\ninterface IERC1271 {\\r\\n    /// @notice Verifies offchain signature.\\r\\n    /// @dev Should return whether the signature provided is valid for the provided hash\\r\\n    ///\\r\\n    /// MUST return the bytes4 magic value 0x1626ba7e when function passes.\\r\\n    ///\\r\\n    /// MUST NOT modify state (using STATICCALL for solc < 0.5, view modifier for solc > 0.5)\\r\\n    ///\\r\\n    /// MUST allow external calls\\r\\n    /// @param _hash Hash of the data to be signed\\r\\n    /// @param _signature Signature byte array associated with _hash\\r\\n    /// @return magicValue 0x1626ba7e if valid, 0xffffffff otherwise\\r\\n    function isValidSignature(bytes32 _hash, bytes memory _signature) external view returns (bytes4 magicValue);\\r\\n}\\r\\n\",\"keccak256\":\"0x2081de4db31bc623043b8305bf55c676c55250a3b51deb293281d97f1ca7e9c9\",\"license\":\"MIT\"},\"contracts/interfaces/utils/IContractMeta.sol\":{\"content\":\"// SPDX-License-Identifier: BSL-1.1\\r\\npragma solidity 0.8.9;\\r\\n\\r\\ninterface IContractMeta {\\r\\n    function contractName() external view returns (string memory);\\r\\n    function contractNameBytes() external view returns (bytes32);\\r\\n\\r\\n    function contractVersion() external view returns (string memory);\\r\\n    function contractVersionBytes() external view returns (bytes32);\\r\\n}\\r\\n\",\"keccak256\":\"0xbd6c446f9fdba85395482085b699f37ed905970019b47233b3ba35b9162f9f79\",\"license\":\"BSL-1.1\"},\"contracts/interfaces/utils/IDefaultAccessControl.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity 0.8.9;\\r\\n\\r\\nimport \\\"@openzeppelin/contracts/access/IAccessControlEnumerable.sol\\\";\\r\\n\\r\\ninterface IDefaultAccessControl is IAccessControlEnumerable {\\r\\n    /// @notice Checks that the address is contract admin.\\r\\n    /// @param who Address to check\\r\\n    /// @return `true` if who is admin, `false` otherwise\\r\\n    function isAdmin(address who) external view returns (bool);\\r\\n\\r\\n    /// @notice Checks that the address is contract admin.\\r\\n    /// @param who Address to check\\r\\n    /// @return `true` if who is operator, `false` otherwise\\r\\n    function isOperator(address who) external view returns (bool);\\r\\n}\\r\\n\",\"keccak256\":\"0x847c664c3e293a19109ec872e341f254a86c6f93548cea827f4e8a485cf994cd\",\"license\":\"MIT\"},\"contracts/interfaces/vaults/IERC20Vault.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity 0.8.9;\\r\\n\\r\\nimport \\\"../external/aave/ILendingPool.sol\\\";\\r\\nimport \\\"./IIntegrationVault.sol\\\";\\r\\n\\r\\ninterface IERC20Vault is IIntegrationVault {\\r\\n    /// @notice Initialized a new contract.\\r\\n    /// @dev Can only be initialized by vault governance\\r\\n    /// @param nft_ NFT of the vault in the VaultRegistry\\r\\n    /// @param vaultTokens_ ERC20 tokens that will be managed by this Vault\\r\\n    function initialize(uint256 nft_, address[] memory vaultTokens_) external;\\r\\n}\\r\\n\",\"keccak256\":\"0xcdde1369935dabb4b1ed0b058c281ef30b71e646d95de060107f54a0f70eee9f\",\"license\":\"MIT\"},\"contracts/interfaces/vaults/IERC20VaultGovernance.sol\":{\"content\":\"// SPDX-License-Identifier: agpl-3.0\\r\\npragma solidity 0.8.9;\\r\\n\\r\\nimport \\\"./IERC20Vault.sol\\\";\\r\\nimport \\\"./IVaultGovernance.sol\\\";\\r\\n\\r\\ninterface IERC20VaultGovernance is IVaultGovernance {\\r\\n    /// @notice Deploys a new vault.\\r\\n    /// @param vaultTokens_ ERC20 tokens that will be managed by this Vault\\r\\n    /// @param owner_ Owner of the vault NFT\\r\\n    function createVault(address[] memory vaultTokens_, address owner_)\\r\\n        external\\r\\n        returns (IERC20Vault vault, uint256 nft);\\r\\n}\\r\\n\",\"keccak256\":\"0xc47a3bb4ebc44ce47231f838e43d55131361d9406e92e3ebd785787098b63850\",\"license\":\"agpl-3.0\"},\"contracts/interfaces/vaults/IIntegrationVault.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity 0.8.9;\\r\\n\\r\\nimport \\\"../external/erc/IERC1271.sol\\\";\\r\\nimport \\\"./IVault.sol\\\";\\r\\n\\r\\ninterface IIntegrationVault is IVault, IERC1271 {\\r\\n    /// @notice Pushes tokens on the vault balance to the underlying protocol. For example, for Yearn this operation will take USDC from\\r\\n    /// the contract balance and convert it to yUSDC.\\r\\n    /// @dev Tokens **must** be a subset of Vault Tokens. However, the convention is that if tokenAmount == 0 it is the same as token is missing.\\r\\n    ///\\r\\n    /// Also notice that this operation doesn't guarantee that tokenAmounts will be invested in full.\\r\\n    /// @param tokens Tokens to push\\r\\n    /// @param tokenAmounts Amounts of tokens to push\\r\\n    /// @param options Additional options that could be needed for some vaults. E.g. for Uniswap this could be `deadline` param. For the exact bytes structure see concrete vault descriptions\\r\\n    /// @return actualTokenAmounts The amounts actually invested. It could be less than tokenAmounts (but not higher)\\r\\n    function push(\\r\\n        address[] memory tokens,\\r\\n        uint256[] memory tokenAmounts,\\r\\n        bytes memory options\\r\\n    ) external returns (uint256[] memory actualTokenAmounts);\\r\\n\\r\\n    /// @notice The same as `push` method above but transfers tokens to vault balance prior to calling push.\\r\\n    /// After the `push` it returns all the leftover tokens back (`push` method doesn't guarantee that tokenAmounts will be invested in full).\\r\\n    /// @param tokens Tokens to push\\r\\n    /// @param tokenAmounts Amounts of tokens to push\\r\\n    /// @param options Additional options that could be needed for some vaults. E.g. for Uniswap this could be `deadline` param. For the exact bytes structure see concrete vault descriptions\\r\\n    /// @return actualTokenAmounts The amounts actually invested. It could be less than tokenAmounts (but not higher)\\r\\n    function transferAndPush(\\r\\n        address from,\\r\\n        address[] memory tokens,\\r\\n        uint256[] memory tokenAmounts,\\r\\n        bytes memory options\\r\\n    ) external returns (uint256[] memory actualTokenAmounts);\\r\\n\\r\\n    /// @notice Pulls tokens from the underlying protocol to the `to` address.\\r\\n    /// @dev Can only be called but Vault Owner or Strategy. Vault owner is the owner of NFT for this vault in VaultManager.\\r\\n    /// Strategy is approved address for the vault NFT.\\r\\n    /// When called by vault owner this method just pulls the tokens from the protocol to the `to` address\\r\\n    /// When called by strategy on vault other than zero vault it pulls the tokens to zero vault (required `to` == zero vault)\\r\\n    /// When called by strategy on zero vault it pulls the tokens to zero vault, pushes tokens on the `to` vault, and reclaims everything that's left.\\r\\n    /// Thus any vault other than zero vault cannot have any tokens on it\\r\\n    ///\\r\\n    /// Tokens **must** be a subset of Vault Tokens. However, the convention is that if tokenAmount == 0 it is the same as token is missing.\\r\\n    ///\\r\\n    /// Pull is fulfilled on the best effort basis, i.e. if the tokenAmounts overflows available funds it withdraws all the funds.\\r\\n    /// @param to Address to receive the tokens\\r\\n    /// @param tokens Tokens to pull\\r\\n    /// @param tokenAmounts Amounts of tokens to pull\\r\\n    /// @param options Additional options that could be needed for some vaults. E.g. for Uniswap this could be `deadline` param. For the exact bytes structure see concrete vault descriptions\\r\\n    /// @return actualTokenAmounts The amounts actually withdrawn. It could be less than tokenAmounts (but not higher)\\r\\n    function pull(\\r\\n        address to,\\r\\n        address[] memory tokens,\\r\\n        uint256[] memory tokenAmounts,\\r\\n        bytes memory options\\r\\n    ) external returns (uint256[] memory actualTokenAmounts);\\r\\n\\r\\n    /// @notice Claim ERC20 tokens from vault balance to zero vault.\\r\\n    /// @dev Cannot be called from zero vault.\\r\\n    /// @param tokens Tokens to claim\\r\\n    /// @return actualTokenAmounts Amounts reclaimed\\r\\n    function reclaimTokens(address[] memory tokens) external returns (uint256[] memory actualTokenAmounts);\\r\\n\\r\\n    /// @notice Execute one of whitelisted calls.\\r\\n    /// @dev Can only be called by Vault Owner or Strategy. Vault owner is the owner of NFT for this vault in VaultManager.\\r\\n    /// Strategy is approved address for the vault NFT.\\r\\n    ///\\r\\n    /// Since this method allows sending arbitrary transactions, the destinations of the calls\\r\\n    /// are whitelisted by Protocol Governance.\\r\\n    /// @param to Address of the reward pool\\r\\n    /// @param selector Selector of the call\\r\\n    /// @param data Abi encoded parameters to `to::selector`\\r\\n    /// @return result Result of execution of the call\\r\\n    function externalCall(\\r\\n        address to,\\r\\n        bytes4 selector,\\r\\n        bytes memory data\\r\\n    ) external payable returns (bytes memory result);\\r\\n}\\r\\n\",\"keccak256\":\"0xad9b4303b547c9304e51078cffc69552de4308a30036b1d07cc02a05ce5476d6\",\"license\":\"MIT\"},\"contracts/interfaces/vaults/IVault.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity 0.8.9;\\r\\n\\r\\nimport \\\"./IVaultGovernance.sol\\\";\\r\\n\\r\\ninterface IVault is IERC165 {\\r\\n    /// @notice Checks if the vault is initialized\\r\\n\\r\\n    function initialized() external view returns (bool);\\r\\n\\r\\n    /// @notice VaultRegistry NFT for this vault\\r\\n    function nft() external view returns (uint256);\\r\\n\\r\\n    /// @notice Address of the Vault Governance for this contract.\\r\\n    function vaultGovernance() external view returns (IVaultGovernance);\\r\\n\\r\\n    /// @notice ERC20 tokens under Vault management.\\r\\n    function vaultTokens() external view returns (address[] memory);\\r\\n\\r\\n    /// @notice Checks if a token is vault token\\r\\n    /// @param token Address of the token to check\\r\\n    /// @return `true` if this token is managed by Vault\\r\\n    function isVaultToken(address token) external view returns (bool);\\r\\n\\r\\n    /// @notice Total value locked for this contract.\\r\\n    /// @dev Generally it is the underlying token value of this contract in some\\r\\n    /// other DeFi protocol. For example, for USDC Yearn Vault this would be total USDC balance that could be withdrawn for Yearn to this contract.\\r\\n    /// The tvl itself is estimated in some range. Sometimes the range is exact, sometimes it's not\\r\\n    /// @return minTokenAmounts Lower bound for total available balances estimation (nth tokenAmount corresponds to nth token in vaultTokens)\\r\\n    /// @return maxTokenAmounts Upper bound for total available balances estimation (nth tokenAmount corresponds to nth token in vaultTokens)\\r\\n    function tvl() external view returns (uint256[] memory minTokenAmounts, uint256[] memory maxTokenAmounts);\\r\\n\\r\\n    /// @notice Existential amounts for each token\\r\\n    function pullExistentials() external view returns (uint256[] memory);\\r\\n}\\r\\n\",\"keccak256\":\"0x9e74850f8f3ecd6eab0f6b1adaad960c443b14c128007a77260d2bb6bcb686d5\",\"license\":\"MIT\"},\"contracts/interfaces/vaults/IVaultGovernance.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity 0.8.9;\\r\\n\\r\\nimport \\\"../IProtocolGovernance.sol\\\";\\r\\nimport \\\"../IVaultRegistry.sol\\\";\\r\\nimport \\\"./IVault.sol\\\";\\r\\n\\r\\ninterface IVaultGovernance {\\r\\n    /// @notice Internal references of the contract.\\r\\n    /// @param protocolGovernance Reference to Protocol Governance\\r\\n    /// @param registry Reference to Vault Registry\\r\\n    struct InternalParams {\\r\\n        IProtocolGovernance protocolGovernance;\\r\\n        IVaultRegistry registry;\\r\\n        IVault singleton;\\r\\n    }\\r\\n\\r\\n    // -------------------  EXTERNAL, VIEW  -------------------\\r\\n\\r\\n    /// @notice Timestamp in unix time seconds after which staged Delayed Strategy Params could be committed.\\r\\n    /// @param nft Nft of the vault\\r\\n    function delayedStrategyParamsTimestamp(uint256 nft) external view returns (uint256);\\r\\n\\r\\n    /// @notice Timestamp in unix time seconds after which staged Delayed Protocol Params could be committed.\\r\\n    function delayedProtocolParamsTimestamp() external view returns (uint256);\\r\\n\\r\\n    /// @notice Timestamp in unix time seconds after which staged Delayed Protocol Params Per Vault could be committed.\\r\\n    /// @param nft Nft of the vault\\r\\n    function delayedProtocolPerVaultParamsTimestamp(uint256 nft) external view returns (uint256);\\r\\n\\r\\n    /// @notice Timestamp in unix time seconds after which staged Internal Params could be committed.\\r\\n    function internalParamsTimestamp() external view returns (uint256);\\r\\n\\r\\n    /// @notice Internal Params of the contract.\\r\\n    function internalParams() external view returns (InternalParams memory);\\r\\n\\r\\n    /// @notice Staged new Internal Params.\\r\\n    /// @dev The Internal Params could be committed after internalParamsTimestamp\\r\\n    function stagedInternalParams() external view returns (InternalParams memory);\\r\\n\\r\\n    // -------------------  EXTERNAL, MUTATING  -------------------\\r\\n\\r\\n    /// @notice Stage new Internal Params.\\r\\n    /// @param newParams New Internal Params\\r\\n    function stageInternalParams(InternalParams memory newParams) external;\\r\\n\\r\\n    /// @notice Commit staged Internal Params.\\r\\n    function commitInternalParams() external;\\r\\n}\\r\\n\",\"keccak256\":\"0xa5b24cd080393cb094d7887bbdc04fb4361fde90280e8bf9856428b6b6ebd90d\",\"license\":\"MIT\"},\"contracts/libraries/ExceptionsLibrary.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity 0.8.9;\\r\\n\\r\\n/// @notice Exceptions stores project`s smart-contracts exceptions\\r\\nlibrary ExceptionsLibrary {\\r\\n    string constant ADDRESS_ZERO = \\\"AZ\\\";\\r\\n    string constant VALUE_ZERO = \\\"VZ\\\";\\r\\n    string constant EMPTY_LIST = \\\"EMPL\\\";\\r\\n    string constant NOT_FOUND = \\\"NF\\\";\\r\\n    string constant INIT = \\\"INIT\\\";\\r\\n    string constant DUPLICATE = \\\"DUP\\\";\\r\\n    string constant NULL = \\\"NULL\\\";\\r\\n    string constant TIMESTAMP = \\\"TS\\\";\\r\\n    string constant FORBIDDEN = \\\"FRB\\\";\\r\\n    string constant ALLOWLIST = \\\"ALL\\\";\\r\\n    string constant LIMIT_OVERFLOW = \\\"LIMO\\\";\\r\\n    string constant LIMIT_UNDERFLOW = \\\"LIMU\\\";\\r\\n    string constant INVALID_VALUE = \\\"INV\\\";\\r\\n    string constant INVARIANT = \\\"INVA\\\";\\r\\n    string constant INVALID_TARGET = \\\"INVTR\\\";\\r\\n    string constant INVALID_TOKEN = \\\"INVTO\\\";\\r\\n    string constant INVALID_INTERFACE = \\\"INVI\\\";\\r\\n    string constant INVALID_SELECTOR = \\\"INVS\\\";\\r\\n    string constant INVALID_STATE = \\\"INVST\\\";\\r\\n    string constant INVALID_LENGTH = \\\"INVL\\\";\\r\\n    string constant LOCK = \\\"LCKD\\\";\\r\\n    string constant DISABLED = \\\"DIS\\\";\\r\\n    string constant REBALANCE_NOT_NEEDED = \\\"RNN\\\";\\r\\n}\\r\\n\",\"keccak256\":\"0x3aa0aa636063dcdbf6742b1b0b51ae15df3ba0f225c5c4178ee23e91bfc15060\",\"license\":\"MIT\"},\"contracts/libraries/PermissionIdsLibrary.sol\":{\"content\":\"//SPDX-License-Identifier: MIT\\r\\npragma solidity 0.8.9;\\r\\n\\r\\n/// @notice Stores permission ids for addresses\\r\\nlibrary PermissionIdsLibrary {\\r\\n    // The msg.sender is allowed to register vault\\r\\n    uint8 constant REGISTER_VAULT = 0;\\r\\n    // The msg.sender is allowed to create vaults\\r\\n    uint8 constant CREATE_VAULT = 1;\\r\\n    // The token is allowed to be transfered by vault\\r\\n    uint8 constant ERC20_TRANSFER = 2;\\r\\n    // The token is allowed to be added to vault\\r\\n    uint8 constant ERC20_VAULT_TOKEN = 3;\\r\\n    // Trusted protocols that are allowed to be approved of vault ERC20 tokens by any strategy\\r\\n    uint8 constant ERC20_APPROVE = 4;\\r\\n    // Trusted protocols that are allowed to be approved of vault ERC20 tokens by trusted strategy\\r\\n    uint8 constant ERC20_APPROVE_RESTRICTED = 5;\\r\\n    // Strategy allowed using restricted API\\r\\n    uint8 constant TRUSTED_STRATEGY = 6;\\r\\n}\\r\\n\",\"keccak256\":\"0x8f78667de19682976b7b5f2f13eac15d2344a0387164e819895d363e19c6058c\",\"license\":\"MIT\"},\"contracts/utils/ContractMeta.sol\":{\"content\":\"// SPDX-License-Identifier: BSL-1.1\\r\\npragma solidity 0.8.9;\\r\\n\\r\\nimport \\\"../interfaces/utils/IContractMeta.sol\\\";\\r\\n\\r\\nabstract contract ContractMeta is IContractMeta {\\r\\n    // -------------------  EXTERNAL, VIEW  -------------------\\r\\n\\r\\n    function contractName() external pure returns (string memory) {\\r\\n        return _bytes32ToString(_contractName());\\r\\n    }\\r\\n\\r\\n    function contractNameBytes() external pure returns (bytes32) {\\r\\n        return _contractName();\\r\\n    }\\r\\n\\r\\n    function contractVersion() external pure returns (string memory) {\\r\\n        return _bytes32ToString(_contractVersion());\\r\\n    }\\r\\n\\r\\n    function contractVersionBytes() external pure returns (bytes32) {\\r\\n        return _contractVersion();\\r\\n    }\\r\\n\\r\\n    // -------------------  INTERNAL, VIEW  -------------------\\r\\n\\r\\n    function _contractName() internal pure virtual returns (bytes32);\\r\\n\\r\\n    function _contractVersion() internal pure virtual returns (bytes32);\\r\\n\\r\\n    function _bytes32ToString(bytes32 b) internal pure returns (string memory s) {\\r\\n        s = new string(32);\\r\\n        uint256 len = 32;\\r\\n        for (uint256 i = 0; i < 32; ++i) {\\r\\n            if (uint8(b[i]) == 0) {\\r\\n                len = i;\\r\\n                break;\\r\\n            }\\r\\n        }\\r\\n        assembly {\\r\\n            mstore(s, len)\\r\\n            mstore(add(s, 0x20), b)\\r\\n        }\\r\\n    }\\r\\n}\\r\\n\",\"keccak256\":\"0x96ae6af81765fd2464bbf1c6afe6dc1149b4736651b3cc60ffb2bc6e58b6b204\",\"license\":\"BSL-1.1\"},\"contracts/vaults/ERC20VaultGovernance.sol\":{\"content\":\"// SPDX-License-Identifier: BSL-1.1\\r\\npragma solidity 0.8.9;\\r\\n\\r\\nimport \\\"../interfaces/vaults/IERC20VaultGovernance.sol\\\";\\r\\nimport \\\"../interfaces/vaults/IERC20Vault.sol\\\";\\r\\nimport \\\"../interfaces/vaults/IERC20VaultGovernance.sol\\\";\\r\\nimport \\\"./VaultGovernance.sol\\\";\\r\\nimport \\\"../utils/ContractMeta.sol\\\";\\r\\n\\r\\n/// @notice Governance that manages all ERC20 Vaults params and can deploy a new ERC20 Vault.\\r\\ncontract ERC20VaultGovernance is ContractMeta, IERC20VaultGovernance, VaultGovernance {\\r\\n    /// @notice Creates a new contract.\\r\\n    /// @param internalParams_ Initial Internal Params\\r\\n    constructor(InternalParams memory internalParams_) VaultGovernance(internalParams_) {}\\r\\n\\r\\n    // -------------------  INTERNAL, VIEW  -------------------\\r\\n\\r\\n    function _contractName() internal pure override returns (bytes32) {\\r\\n        return bytes32(\\\"ERC20VaultGovernance\\\");\\r\\n    }\\r\\n\\r\\n    function _contractVersion() internal pure override returns (bytes32) {\\r\\n        return bytes32(\\\"1.0.0\\\");\\r\\n    }\\r\\n\\r\\n    // -------------------  EXTERNAL, MUTATING  -------------------\\r\\n\\r\\n    /// @inheritdoc IERC20VaultGovernance\\r\\n    function createVault(address[] memory vaultTokens_, address owner_)\\r\\n        external\\r\\n        returns (IERC20Vault vault, uint256 nft)\\r\\n    {\\r\\n        address vaddr;\\r\\n        (vaddr, nft) = _createVault(owner_);\\r\\n        vault = IERC20Vault(vaddr);\\r\\n        vault.initialize(nft, vaultTokens_);\\r\\n        emit DeployedVault(tx.origin, msg.sender, vaultTokens_, \\\"\\\", owner_, vaddr, nft);\\r\\n    }\\r\\n}\\r\\n\",\"keccak256\":\"0xa2f65bc5a34174180a5720f5f44ddc543574ea039b98b502d75e579998e2c23c\",\"license\":\"BSL-1.1\"},\"contracts/vaults/VaultGovernance.sol\":{\"content\":\"// SPDX-License-Identifier: BSL-1.1\\r\\npragma solidity 0.8.9;\\r\\n\\r\\nimport \\\"@openzeppelin/contracts/proxy/Clones.sol\\\";\\r\\nimport \\\"@openzeppelin/contracts/utils/introspection/ERC165.sol\\\";\\r\\nimport \\\"../interfaces/IProtocolGovernance.sol\\\";\\r\\nimport \\\"../interfaces/vaults/IVaultGovernance.sol\\\";\\r\\nimport \\\"../libraries/ExceptionsLibrary.sol\\\";\\r\\nimport \\\"../libraries/PermissionIdsLibrary.sol\\\";\\r\\n\\r\\n/// @notice Internal contract for managing different params.\\r\\n/// @dev The contract should be overriden by the concrete VaultGovernance,\\r\\n/// define different params structs and use abi.decode / abi.encode to serialize\\r\\n/// to bytes in this contract. It also should emit events on params change.\\r\\nabstract contract VaultGovernance is IVaultGovernance, ERC165 {\\r\\n    InternalParams internal _internalParams;\\r\\n    InternalParams private _stagedInternalParams;\\r\\n    uint256 internal _internalParamsTimestamp;\\r\\n\\r\\n    mapping(uint256 => bytes) internal _delayedStrategyParams;\\r\\n    mapping(uint256 => bytes) internal _stagedDelayedStrategyParams;\\r\\n    mapping(uint256 => uint256) internal _delayedStrategyParamsTimestamp;\\r\\n\\r\\n    mapping(uint256 => bytes) internal _delayedProtocolPerVaultParams;\\r\\n    mapping(uint256 => bytes) internal _stagedDelayedProtocolPerVaultParams;\\r\\n    mapping(uint256 => uint256) internal _delayedProtocolPerVaultParamsTimestamp;\\r\\n\\r\\n    bytes internal _delayedProtocolParams;\\r\\n    bytes internal _stagedDelayedProtocolParams;\\r\\n    uint256 internal _delayedProtocolParamsTimestamp;\\r\\n\\r\\n    mapping(uint256 => bytes) internal _strategyParams;\\r\\n    bytes internal _protocolParams;\\r\\n    bytes internal _operatorParams;\\r\\n\\r\\n    /// @notice Creates a new contract.\\r\\n    /// @param internalParams_ Initial Internal Params\\r\\n    constructor(InternalParams memory internalParams_) {\\r\\n        require(address(internalParams_.protocolGovernance) != address(0), ExceptionsLibrary.ADDRESS_ZERO);\\r\\n        require(address(internalParams_.registry) != address(0), ExceptionsLibrary.ADDRESS_ZERO);\\r\\n        require(address(internalParams_.singleton) != address(0), ExceptionsLibrary.ADDRESS_ZERO);\\r\\n        _internalParams = internalParams_;\\r\\n    }\\r\\n\\r\\n    // -------------------  EXTERNAL, VIEW  -------------------\\r\\n\\r\\n    /// @inheritdoc IVaultGovernance\\r\\n    function delayedStrategyParamsTimestamp(uint256 nft) external view returns (uint256) {\\r\\n        return _delayedStrategyParamsTimestamp[nft];\\r\\n    }\\r\\n\\r\\n    /// @inheritdoc IVaultGovernance\\r\\n    function delayedProtocolPerVaultParamsTimestamp(uint256 nft) external view returns (uint256) {\\r\\n        return _delayedProtocolPerVaultParamsTimestamp[nft];\\r\\n    }\\r\\n\\r\\n    /// @inheritdoc IVaultGovernance\\r\\n    function delayedProtocolParamsTimestamp() external view returns (uint256) {\\r\\n        return _delayedProtocolParamsTimestamp;\\r\\n    }\\r\\n\\r\\n    /// @inheritdoc IVaultGovernance\\r\\n    function internalParamsTimestamp() external view returns (uint256) {\\r\\n        return _internalParamsTimestamp;\\r\\n    }\\r\\n\\r\\n    /// @inheritdoc IVaultGovernance\\r\\n    function internalParams() external view returns (InternalParams memory) {\\r\\n        return _internalParams;\\r\\n    }\\r\\n\\r\\n    /// @inheritdoc IVaultGovernance\\r\\n    function stagedInternalParams() external view returns (InternalParams memory) {\\r\\n        return _stagedInternalParams;\\r\\n    }\\r\\n\\r\\n    function supportsInterface(bytes4 interfaceID) public view virtual override(ERC165) returns (bool) {\\r\\n        return super.supportsInterface(interfaceID) || interfaceID == type(IVaultGovernance).interfaceId;\\r\\n    }\\r\\n\\r\\n    // -------------------  EXTERNAL, MUTATING  -------------------\\r\\n\\r\\n    /// @inheritdoc IVaultGovernance\\r\\n    function stageInternalParams(InternalParams memory newParams) external {\\r\\n        _requireProtocolAdmin();\\r\\n        require(address(newParams.protocolGovernance) != address(0), ExceptionsLibrary.ADDRESS_ZERO);\\r\\n        require(address(newParams.registry) != address(0), ExceptionsLibrary.ADDRESS_ZERO);\\r\\n        require(address(newParams.singleton) != address(0), ExceptionsLibrary.ADDRESS_ZERO);\\r\\n        _stagedInternalParams = newParams;\\r\\n        _internalParamsTimestamp = block.timestamp + _internalParams.protocolGovernance.governanceDelay();\\r\\n        emit StagedInternalParams(tx.origin, msg.sender, newParams, _internalParamsTimestamp);\\r\\n    }\\r\\n\\r\\n    /// @inheritdoc IVaultGovernance\\r\\n    function commitInternalParams() external {\\r\\n        _requireProtocolAdmin();\\r\\n        require(_internalParamsTimestamp != 0, ExceptionsLibrary.NULL);\\r\\n        require(block.timestamp >= _internalParamsTimestamp, ExceptionsLibrary.TIMESTAMP);\\r\\n        _internalParams = _stagedInternalParams;\\r\\n        delete _internalParamsTimestamp;\\r\\n        delete _stagedInternalParams;\\r\\n        emit CommitedInternalParams(tx.origin, msg.sender, _internalParams);\\r\\n    }\\r\\n\\r\\n    // -------------------  INTERNAL, VIEW  -------------------\\r\\n\\r\\n    function _requireAtLeastStrategy(uint256 nft) internal view {\\r\\n        require(\\r\\n            (_internalParams.protocolGovernance.isAdmin(msg.sender) ||\\r\\n                _internalParams.registry.getApproved(nft) == msg.sender ||\\r\\n                (_internalParams.registry.ownerOf(nft) == msg.sender)),\\r\\n            ExceptionsLibrary.FORBIDDEN\\r\\n        );\\r\\n    }\\r\\n\\r\\n    function _requireProtocolAdmin() internal view {\\r\\n        require(_internalParams.protocolGovernance.isAdmin(msg.sender), ExceptionsLibrary.FORBIDDEN);\\r\\n    }\\r\\n\\r\\n    function _requireAtLeastOperator() internal view {\\r\\n        IProtocolGovernance governance = _internalParams.protocolGovernance;\\r\\n        require(governance.isAdmin(msg.sender) || governance.isOperator(msg.sender), ExceptionsLibrary.FORBIDDEN);\\r\\n    }\\r\\n\\r\\n    // -------------------  INTERNAL, MUTATING  -------------------\\r\\n\\r\\n    function _createVault(address owner) internal returns (address vault, uint256 nft) {\\r\\n        IProtocolGovernance protocolGovernance = IProtocolGovernance(_internalParams.protocolGovernance);\\r\\n        require(\\r\\n            protocolGovernance.hasPermission(msg.sender, PermissionIdsLibrary.CREATE_VAULT),\\r\\n            ExceptionsLibrary.FORBIDDEN\\r\\n        );\\r\\n        IVaultRegistry vaultRegistry = _internalParams.registry;\\r\\n        nft = vaultRegistry.vaultsCount() + 1;\\r\\n        vault = Clones.cloneDeterministic(address(_internalParams.singleton), bytes32(nft));\\r\\n        vaultRegistry.registerVault(address(vault), owner);\\r\\n    }\\r\\n\\r\\n    /// @notice Set Delayed Strategy Params\\r\\n    /// @param nft Nft of the vault\\r\\n    /// @param params New params\\r\\n    function _stageDelayedStrategyParams(uint256 nft, bytes memory params) internal {\\r\\n        _requireAtLeastStrategy(nft);\\r\\n        _stagedDelayedStrategyParams[nft] = params;\\r\\n        uint256 delayFactor = _delayedStrategyParams[nft].length == 0 ? 0 : 1;\\r\\n        _delayedStrategyParamsTimestamp[nft] =\\r\\n            block.timestamp +\\r\\n            _internalParams.protocolGovernance.governanceDelay() *\\r\\n            delayFactor;\\r\\n    }\\r\\n\\r\\n    /// @notice Commit Delayed Strategy Params\\r\\n    function _commitDelayedStrategyParams(uint256 nft) internal {\\r\\n        _requireAtLeastStrategy(nft);\\r\\n        uint256 thisDelayedStrategyParamsTimestamp = _delayedStrategyParamsTimestamp[nft];\\r\\n        require(thisDelayedStrategyParamsTimestamp != 0, ExceptionsLibrary.NULL);\\r\\n        require(block.timestamp >= thisDelayedStrategyParamsTimestamp, ExceptionsLibrary.TIMESTAMP);\\r\\n        _delayedStrategyParams[nft] = _stagedDelayedStrategyParams[nft];\\r\\n        delete _stagedDelayedStrategyParams[nft];\\r\\n        delete _delayedStrategyParamsTimestamp[nft];\\r\\n    }\\r\\n\\r\\n    /// @notice Set Delayed Protocol Per Vault Params\\r\\n    /// @param nft Nft of the vault\\r\\n    /// @param params New params\\r\\n    function _stageDelayedProtocolPerVaultParams(uint256 nft, bytes memory params) internal {\\r\\n        _requireProtocolAdmin();\\r\\n        _stagedDelayedProtocolPerVaultParams[nft] = params;\\r\\n        uint256 delayFactor = _delayedProtocolPerVaultParams[nft].length == 0 ? 0 : 1;\\r\\n        _delayedProtocolPerVaultParamsTimestamp[nft] =\\r\\n            block.timestamp +\\r\\n            _internalParams.protocolGovernance.governanceDelay() *\\r\\n            delayFactor;\\r\\n    }\\r\\n\\r\\n    /// @notice Commit Delayed Protocol Per Vault Params\\r\\n    function _commitDelayedProtocolPerVaultParams(uint256 nft) internal {\\r\\n        _requireProtocolAdmin();\\r\\n        uint256 thisDelayedProtocolPerVaultParamsTimestamp = _delayedProtocolPerVaultParamsTimestamp[nft];\\r\\n        require(thisDelayedProtocolPerVaultParamsTimestamp != 0, ExceptionsLibrary.NULL);\\r\\n        require(block.timestamp >= thisDelayedProtocolPerVaultParamsTimestamp, ExceptionsLibrary.TIMESTAMP);\\r\\n        _delayedProtocolPerVaultParams[nft] = _stagedDelayedProtocolPerVaultParams[nft];\\r\\n        delete _stagedDelayedProtocolPerVaultParams[nft];\\r\\n        delete _delayedProtocolPerVaultParamsTimestamp[nft];\\r\\n    }\\r\\n\\r\\n    /// @notice Set Delayed Protocol Params\\r\\n    /// @param params New params\\r\\n    function _stageDelayedProtocolParams(bytes memory params) internal {\\r\\n        _requireProtocolAdmin();\\r\\n        uint256 delayFactor = _delayedProtocolParams.length == 0 ? 0 : 1;\\r\\n        _stagedDelayedProtocolParams = params;\\r\\n        _delayedProtocolParamsTimestamp =\\r\\n            block.timestamp +\\r\\n            _internalParams.protocolGovernance.governanceDelay() *\\r\\n            delayFactor;\\r\\n    }\\r\\n\\r\\n    /// @notice Commit Delayed Protocol Params\\r\\n    function _commitDelayedProtocolParams() internal {\\r\\n        _requireProtocolAdmin();\\r\\n        require(_delayedProtocolParamsTimestamp != 0, ExceptionsLibrary.NULL);\\r\\n        require(block.timestamp >= _delayedProtocolParamsTimestamp, ExceptionsLibrary.TIMESTAMP);\\r\\n        _delayedProtocolParams = _stagedDelayedProtocolParams;\\r\\n        delete _stagedDelayedProtocolParams;\\r\\n        delete _delayedProtocolParamsTimestamp;\\r\\n    }\\r\\n\\r\\n    /// @notice Set immediate strategy params\\r\\n    /// @dev Should require nft > 0\\r\\n    /// @param nft Nft of the vault\\r\\n    /// @param params New params\\r\\n    function _setStrategyParams(uint256 nft, bytes memory params) internal {\\r\\n        _requireAtLeastStrategy(nft);\\r\\n        _strategyParams[nft] = params;\\r\\n    }\\r\\n\\r\\n    /// @notice Set immediate operator params\\r\\n    /// @param params New params\\r\\n    function _setOperatorParams(bytes memory params) internal {\\r\\n        _requireAtLeastOperator();\\r\\n        _operatorParams = params;\\r\\n    }\\r\\n\\r\\n    /// @notice Set immediate protocol params\\r\\n    /// @param params New params\\r\\n    function _setProtocolParams(bytes memory params) internal {\\r\\n        _requireProtocolAdmin();\\r\\n        _protocolParams = params;\\r\\n    }\\r\\n\\r\\n    // --------------------------  EVENTS  --------------------------\\r\\n\\r\\n    /// @notice Emitted when InternalParams are staged for commit\\r\\n    /// @param origin Origin of the transaction (tx.origin)\\r\\n    /// @param sender Sender of the call (msg.sender)\\r\\n    /// @param params New params that were staged for commit\\r\\n    /// @param when When the params could be committed\\r\\n    event StagedInternalParams(address indexed origin, address indexed sender, InternalParams params, uint256 when);\\r\\n\\r\\n    /// @notice Emitted when InternalParams are staged for commit\\r\\n    /// @param origin Origin of the transaction (tx.origin)\\r\\n    /// @param sender Sender of the call (msg.sender)\\r\\n    /// @param params New params that were staged for commit\\r\\n    event CommitedInternalParams(address indexed origin, address indexed sender, InternalParams params);\\r\\n\\r\\n    /// @notice Emitted when New Vault is deployed\\r\\n    /// @param origin Origin of the transaction (tx.origin)\\r\\n    /// @param sender Sender of the call (msg.sender)\\r\\n    /// @param vaultTokens Vault tokens for this vault\\r\\n    /// @param options Options for deploy. The details of the options structure are specified in subcontracts\\r\\n    /// @param owner Owner of the VaultRegistry NFT for this vault\\r\\n    /// @param vaultAddress Address of the new Vault\\r\\n    /// @param vaultNft VaultRegistry NFT for the new Vault\\r\\n    event DeployedVault(\\r\\n        address indexed origin,\\r\\n        address indexed sender,\\r\\n        address[] vaultTokens,\\r\\n        bytes options,\\r\\n        address owner,\\r\\n        address vaultAddress,\\r\\n        uint256 vaultNft\\r\\n    );\\r\\n}\\r\\n\",\"keccak256\":\"0x02d137983e08a44fc40011bc5cb7154df30e768079aff6c51f192f90633bf571\",\"license\":\"BSL-1.1\"}},\"version\":1}",
+  "bytecode": "0x60806040523480156200001157600080fd5b50604051620011603803806200116083398101604081905262000034916200018a565b805160408051808201909152600281526120ad60f11b602082015282916001600160a01b0316620000835760405162461bcd60e51b81526004016200007a919062000211565b60405180910390fd5b5060006001600160a01b031681602001516001600160a01b031614156040518060400160405280600281526020016120ad60f11b81525090620000db5760405162461bcd60e51b81526004016200007a919062000211565b506040808201518151808301909252600282526120ad60f11b60208301526001600160a01b0316620001225760405162461bcd60e51b81526004016200007a919062000211565b508051600080546001600160a01b03199081166001600160a01b039384161790915560208301516001805483169184169190911790556040909201516002805490931691161790555062000269565b6001600160a01b03811681146200018757600080fd5b50565b6000606082840312156200019d57600080fd5b604051606081016001600160401b0381118282101715620001ce57634e487b7160e01b600052604160045260246000fd5b6040528251620001de8162000171565b81526020830151620001f08162000171565b60208201526040830151620002058162000171565b60408201529392505050565b600060208083528351808285015260005b81811015620002405785810183015185820160400152820162000222565b8181111562000253576000604083870101525b50601f01601f1916929092016040019392505050565b610ee780620002796000396000f3fe608060405234801561001057600080fd5b50600436106100ea5760003560e01c80636707acee1161008c57806386c6be3e1161006657806386c6be3e14610250578063a0a8e460146102a3578063d4a07d34146102ab578063e4af6e79146102b357600080fd5b80636707acee146101bb57806375d0c0dc146101db5780637ac46fbb146101f057600080fd5b80630e3e80ac116100c85780630e3e80ac146101445780630fb27e4d146101615780631c7f4c7314610193578063511ce7981461019b57600080fd5b806301ffc9a7146100ef57806306a4623914610117578063099465381461012f575b600080fd5b6101026100fd366004610abd565b6102bb565b60405190151581526020015b60405180910390f35b640312e302e360dc1b5b60405190815260200161010e565b61014261013d366004610b4a565b6102f7565b005b7345524332305661756c74476f7665726e616e636560601b610121565b61017461016f366004610bcc565b6104e9565b604080516001600160a01b03909316835260208301919091520161010e565b600654610121565b6101216101a9366004610c90565b6000908152600c602052604090205490565b6101216101c9366004610c90565b60009081526009602052604090205490565b6101e36105a9565b60405161010e9190610ca9565b610243604080516060810182526000808252602082018190529181019190915250604080516060810182526000546001600160a01b03908116825260015481166020830152600254169181019190915290565b60405161010e9190610cfe565b610243604080516060810182526000808252602082018190529181019190915250604080516060810182526003546001600160a01b03908116825260045481166020830152600554169181019190915290565b6101e36105cb565b6101426105de565b600f54610121565b60006301ffc9a760e01b6001600160e01b0319831614806102ec57506001600160e01b0319821663effda0f560e01b145b92915050565b905090565b6102ff610708565b805160408051808201909152600281526120ad60f11b6020820152906001600160a01b031661034a5760405162461bcd60e51b81526004016103419190610ca9565b60405180910390fd5b5060006001600160a01b031681602001516001600160a01b031614156040518060400160405280600281526020016120ad60f11b8152509061039f5760405162461bcd60e51b81526004016103419190610ca9565b506040808201518151808301909252600282526120ad60f11b60208301526001600160a01b03166103e35760405162461bcd60e51b81526004016103419190610ca9565b508051600380546001600160a01b03199081166001600160a01b03938416179091556020808401516004805484169185169190911781556040808601516005805490951690861617909355600054835163bba3293960e01b8152935194169363bba3293993808301939290829003018186803b15801561046257600080fd5b505afa158015610476573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061049a9190610d2e565b6104a49042610d5d565b6006819055604051339132917f0887cab3184f7c02b16978ab31f8acee05979f59fc3da6abe5bf71105ec3179d916104de91869190610d75565b60405180910390a350565b60008060006104f7846107c0565b604051632a482de360e21b815291945092508391506001600160a01b0382169063a920b78c9061052d9085908990600401610df6565b600060405180830381600087803b15801561054757600080fd5b505af115801561055b573d6000803e3d6000fd5b50506040513392503291507f8a4513c05d15df8ece912856923273e166e39f5c9c2b43d2b38594023494a0e090610599908990899087908990610e17565b60405180910390a3509250929050565b60606102f27345524332305661756c74476f7665726e616e636560601b6109b1565b60606102f2640312e302e360dc1b6109b1565b6105e6610708565b6006546040805180820190915260048152631395531360e21b6020820152906106225760405162461bcd60e51b81526004016103419190610ca9565b5060065442101560405180604001604052806002815260200161545360f01b815250906106625760405162461bcd60e51b81526004016103419190610ca9565b5060038054600080546001600160a01b038084166001600160a01b03199283168117845560048054600180548286169087168117909155600580546002805497821697891688179055600698909855978616909855841690559290911690925560408051918252602082019390935291820152339032907fef3e4bc9725fa684957d7de03c6dcd01078ee86cf78ceef25c5f8346df69cc999060600160405180910390a3565b600054604051630935e01b60e21b81523360048201526001600160a01b03909116906324d7806c9060240160206040518083038186803b15801561074b57600080fd5b505afa15801561075f573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906107839190610e5e565b6040518060400160405280600381526020016223292160e91b815250906107bd5760405162461bcd60e51b81526004016103419190610ca9565b50565b600080546040516363e85d2d60e01b81523360048201526001602482015282916001600160a01b03169081906363e85d2d9060440160206040518083038186803b15801561080d57600080fd5b505afa158015610821573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906108459190610e5e565b6040518060400160405280600381526020016223292160e91b8152509061087f5760405162461bcd60e51b81526004016103419190610ca9565b5060015460408051631112eee760e31b815290516001600160a01b039092169182916388977738916004808301926020929190829003018186803b1580156108c657600080fd5b505afa1580156108da573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906108fe9190610d2e565b610909906001610d5d565b600254909350610922906001600160a01b031684610a1d565b6040516305c4fdf960e01b81526001600160a01b0380831660048301528781166024830152919550908216906305c4fdf990604401602060405180830381600087803b15801561097157600080fd5b505af1158015610985573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906109a99190610d2e565b505050915091565b604080516020808252818301909252606091602082018180368337019050509050602060005b6020811015610a0f578381602081106109f2576109f2610e80565b1a6109ff57809150610a0f565b610a0881610e96565b90506109d7565b508152602081019190915290565b6000604051733d602d80600a3d3981f3363d3d373d3d3d363d7360601b81528360601b60148201526e5af43d82803e903d91602b57fd5bf360881b6028820152826037826000f59150506001600160a01b0381166102ec5760405162461bcd60e51b815260206004820152601760248201527f455243313136373a2063726561746532206661696c65640000000000000000006044820152606401610341565b600060208284031215610acf57600080fd5b81356001600160e01b031981168114610ae757600080fd5b9392505050565b634e487b7160e01b600052604160045260246000fd5b604051601f8201601f1916810167ffffffffffffffff81118282101715610b2d57610b2d610aee565b604052919050565b6001600160a01b03811681146107bd57600080fd5b600060608284031215610b5c57600080fd5b6040516060810181811067ffffffffffffffff82111715610b7f57610b7f610aee565b6040528235610b8d81610b35565b81526020830135610b9d81610b35565b60208201526040830135610bb081610b35565b60408201529392505050565b8035610bc781610b35565b919050565b60008060408385031215610bdf57600080fd5b823567ffffffffffffffff80821115610bf757600080fd5b818501915085601f830112610c0b57600080fd5b8135602082821115610c1f57610c1f610aee565b8160051b9250610c30818401610b04565b8281529284018101928181019089851115610c4a57600080fd5b948201945b84861015610c745785359350610c6484610b35565b8382529482019490820190610c4f565b9650610c839050878201610bbc565b9450505050509250929050565b600060208284031215610ca257600080fd5b5035919050565b600060208083528351808285015260005b81811015610cd657858101830151858201604001528201610cba565b81811115610ce8576000604083870101525b50601f01601f1916929092016040019392505050565b606081016102ec828480516001600160a01b03908116835260208083015182169084015260409182015116910152565b600060208284031215610d4057600080fd5b5051919050565b634e487b7160e01b600052601160045260246000fd5b60008219821115610d7057610d70610d47565b500190565b60808101610da5828580516001600160a01b03908116835260208083015182169084015260409182015116910152565b8260608301529392505050565b600081518084526020808501945080840160005b83811015610deb5781516001600160a01b031687529582019590820190600101610dc6565b509495945050505050565b828152604060208201526000610e0f6040830184610db2565b949350505050565b60a081526000610e2a60a0830187610db2565b828103602080850191909152600082526001600160a01b039687166040850152949095166060830152506080015201919050565b600060208284031215610e7057600080fd5b81518015158114610ae757600080fd5b634e487b7160e01b600052603260045260246000fd5b6000600019821415610eaa57610eaa610d47565b506001019056fea2646970667358221220bbb2ffdeaa92c1dc3b0086b2f4efd26ed0738bbf2ff9499d82dfdbcfab39c93f64736f6c63430008090033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100ea5760003560e01c80636707acee1161008c57806386c6be3e1161006657806386c6be3e14610250578063a0a8e460146102a3578063d4a07d34146102ab578063e4af6e79146102b357600080fd5b80636707acee146101bb57806375d0c0dc146101db5780637ac46fbb146101f057600080fd5b80630e3e80ac116100c85780630e3e80ac146101445780630fb27e4d146101615780631c7f4c7314610193578063511ce7981461019b57600080fd5b806301ffc9a7146100ef57806306a4623914610117578063099465381461012f575b600080fd5b6101026100fd366004610abd565b6102bb565b60405190151581526020015b60405180910390f35b640312e302e360dc1b5b60405190815260200161010e565b61014261013d366004610b4a565b6102f7565b005b7345524332305661756c74476f7665726e616e636560601b610121565b61017461016f366004610bcc565b6104e9565b604080516001600160a01b03909316835260208301919091520161010e565b600654610121565b6101216101a9366004610c90565b6000908152600c602052604090205490565b6101216101c9366004610c90565b60009081526009602052604090205490565b6101e36105a9565b60405161010e9190610ca9565b610243604080516060810182526000808252602082018190529181019190915250604080516060810182526000546001600160a01b03908116825260015481166020830152600254169181019190915290565b60405161010e9190610cfe565b610243604080516060810182526000808252602082018190529181019190915250604080516060810182526003546001600160a01b03908116825260045481166020830152600554169181019190915290565b6101e36105cb565b6101426105de565b600f54610121565b60006301ffc9a760e01b6001600160e01b0319831614806102ec57506001600160e01b0319821663effda0f560e01b145b92915050565b905090565b6102ff610708565b805160408051808201909152600281526120ad60f11b6020820152906001600160a01b031661034a5760405162461bcd60e51b81526004016103419190610ca9565b60405180910390fd5b5060006001600160a01b031681602001516001600160a01b031614156040518060400160405280600281526020016120ad60f11b8152509061039f5760405162461bcd60e51b81526004016103419190610ca9565b506040808201518151808301909252600282526120ad60f11b60208301526001600160a01b03166103e35760405162461bcd60e51b81526004016103419190610ca9565b508051600380546001600160a01b03199081166001600160a01b03938416179091556020808401516004805484169185169190911781556040808601516005805490951690861617909355600054835163bba3293960e01b8152935194169363bba3293993808301939290829003018186803b15801561046257600080fd5b505afa158015610476573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061049a9190610d2e565b6104a49042610d5d565b6006819055604051339132917f0887cab3184f7c02b16978ab31f8acee05979f59fc3da6abe5bf71105ec3179d916104de91869190610d75565b60405180910390a350565b60008060006104f7846107c0565b604051632a482de360e21b815291945092508391506001600160a01b0382169063a920b78c9061052d9085908990600401610df6565b600060405180830381600087803b15801561054757600080fd5b505af115801561055b573d6000803e3d6000fd5b50506040513392503291507f8a4513c05d15df8ece912856923273e166e39f5c9c2b43d2b38594023494a0e090610599908990899087908990610e17565b60405180910390a3509250929050565b60606102f27345524332305661756c74476f7665726e616e636560601b6109b1565b60606102f2640312e302e360dc1b6109b1565b6105e6610708565b6006546040805180820190915260048152631395531360e21b6020820152906106225760405162461bcd60e51b81526004016103419190610ca9565b5060065442101560405180604001604052806002815260200161545360f01b815250906106625760405162461bcd60e51b81526004016103419190610ca9565b5060038054600080546001600160a01b038084166001600160a01b03199283168117845560048054600180548286169087168117909155600580546002805497821697891688179055600698909855978616909855841690559290911690925560408051918252602082019390935291820152339032907fef3e4bc9725fa684957d7de03c6dcd01078ee86cf78ceef25c5f8346df69cc999060600160405180910390a3565b600054604051630935e01b60e21b81523360048201526001600160a01b03909116906324d7806c9060240160206040518083038186803b15801561074b57600080fd5b505afa15801561075f573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906107839190610e5e565b6040518060400160405280600381526020016223292160e91b815250906107bd5760405162461bcd60e51b81526004016103419190610ca9565b50565b600080546040516363e85d2d60e01b81523360048201526001602482015282916001600160a01b03169081906363e85d2d9060440160206040518083038186803b15801561080d57600080fd5b505afa158015610821573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906108459190610e5e565b6040518060400160405280600381526020016223292160e91b8152509061087f5760405162461bcd60e51b81526004016103419190610ca9565b5060015460408051631112eee760e31b815290516001600160a01b039092169182916388977738916004808301926020929190829003018186803b1580156108c657600080fd5b505afa1580156108da573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906108fe9190610d2e565b610909906001610d5d565b600254909350610922906001600160a01b031684610a1d565b6040516305c4fdf960e01b81526001600160a01b0380831660048301528781166024830152919550908216906305c4fdf990604401602060405180830381600087803b15801561097157600080fd5b505af1158015610985573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906109a99190610d2e565b505050915091565b604080516020808252818301909252606091602082018180368337019050509050602060005b6020811015610a0f578381602081106109f2576109f2610e80565b1a6109ff57809150610a0f565b610a0881610e96565b90506109d7565b508152602081019190915290565b6000604051733d602d80600a3d3981f3363d3d373d3d3d363d7360601b81528360601b60148201526e5af43d82803e903d91602b57fd5bf360881b6028820152826037826000f59150506001600160a01b0381166102ec5760405162461bcd60e51b815260206004820152601760248201527f455243313136373a2063726561746532206661696c65640000000000000000006044820152606401610341565b600060208284031215610acf57600080fd5b81356001600160e01b031981168114610ae757600080fd5b9392505050565b634e487b7160e01b600052604160045260246000fd5b604051601f8201601f1916810167ffffffffffffffff81118282101715610b2d57610b2d610aee565b604052919050565b6001600160a01b03811681146107bd57600080fd5b600060608284031215610b5c57600080fd5b6040516060810181811067ffffffffffffffff82111715610b7f57610b7f610aee565b6040528235610b8d81610b35565b81526020830135610b9d81610b35565b60208201526040830135610bb081610b35565b60408201529392505050565b8035610bc781610b35565b919050565b60008060408385031215610bdf57600080fd5b823567ffffffffffffffff80821115610bf757600080fd5b818501915085601f830112610c0b57600080fd5b8135602082821115610c1f57610c1f610aee565b8160051b9250610c30818401610b04565b8281529284018101928181019089851115610c4a57600080fd5b948201945b84861015610c745785359350610c6484610b35565b8382529482019490820190610c4f565b9650610c839050878201610bbc565b9450505050509250929050565b600060208284031215610ca257600080fd5b5035919050565b600060208083528351808285015260005b81811015610cd657858101830151858201604001528201610cba565b81811115610ce8576000604083870101525b50601f01601f1916929092016040019392505050565b606081016102ec828480516001600160a01b03908116835260208083015182169084015260409182015116910152565b600060208284031215610d4057600080fd5b5051919050565b634e487b7160e01b600052601160045260246000fd5b60008219821115610d7057610d70610d47565b500190565b60808101610da5828580516001600160a01b03908116835260208083015182169084015260409182015116910152565b8260608301529392505050565b600081518084526020808501945080840160005b83811015610deb5781516001600160a01b031687529582019590820190600101610dc6565b509495945050505050565b828152604060208201526000610e0f6040830184610db2565b949350505050565b60a081526000610e2a60a0830187610db2565b828103602080850191909152600082526001600160a01b039687166040850152949095166060830152506080015201919050565b600060208284031215610e7057600080fd5b81518015158114610ae757600080fd5b634e487b7160e01b600052603260045260246000fd5b6000600019821415610eaa57610eaa610d47565b506001019056fea2646970667358221220bbb2ffdeaa92c1dc3b0086b2f4efd26ed0738bbf2ff9499d82dfdbcfab39c93f64736f6c63430008090033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "constructor": {
+        "params": {
+          "internalParams_": "Initial Internal Params"
+        }
+      },
+      "createVault(address[],address)": {
+        "params": {
+          "owner_": "Owner of the vault NFT",
+          "vaultTokens_": "ERC20 tokens that will be managed by this Vault"
+        }
+      },
+      "delayedProtocolPerVaultParamsTimestamp(uint256)": {
+        "params": {
+          "nft": "Nft of the vault"
+        }
+      },
+      "delayedStrategyParamsTimestamp(uint256)": {
+        "params": {
+          "nft": "Nft of the vault"
+        }
+      },
+      "stageInternalParams((address,address,address))": {
+        "params": {
+          "newParams": "New Internal Params"
+        }
+      },
+      "stagedInternalParams()": {
+        "details": "The Internal Params could be committed after internalParamsTimestamp"
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "events": {
+      "CommitedInternalParams(address,address,(address,address,address))": {
+        "notice": "Emitted when InternalParams are staged for commit"
+      },
+      "DeployedVault(address,address,address[],bytes,address,address,uint256)": {
+        "notice": "Emitted when New Vault is deployed"
+      },
+      "StagedInternalParams(address,address,(address,address,address),uint256)": {
+        "notice": "Emitted when InternalParams are staged for commit"
+      }
+    },
+    "kind": "user",
+    "methods": {
+      "commitInternalParams()": {
+        "notice": "Commit staged Internal Params."
+      },
+      "constructor": {
+        "notice": "Creates a new contract."
+      },
+      "createVault(address[],address)": {
+        "notice": "Deploys a new vault."
+      },
+      "delayedProtocolParamsTimestamp()": {
+        "notice": "Timestamp in unix time seconds after which staged Delayed Protocol Params could be committed."
+      },
+      "delayedProtocolPerVaultParamsTimestamp(uint256)": {
+        "notice": "Timestamp in unix time seconds after which staged Delayed Protocol Params Per Vault could be committed."
+      },
+      "delayedStrategyParamsTimestamp(uint256)": {
+        "notice": "Timestamp in unix time seconds after which staged Delayed Strategy Params could be committed."
+      },
+      "internalParams()": {
+        "notice": "Internal Params of the contract."
+      },
+      "internalParamsTimestamp()": {
+        "notice": "Timestamp in unix time seconds after which staged Internal Params could be committed."
+      },
+      "stageInternalParams((address,address,address))": {
+        "notice": "Stage new Internal Params."
+      },
+      "stagedInternalParams()": {
+        "notice": "Staged new Internal Params."
+      }
+    },
+    "notice": "Governance that manages all ERC20 Vaults params and can deploy a new ERC20 Vault.",
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 41152,
+        "contract": "contracts/vaults/ERC20VaultGovernance.sol:ERC20VaultGovernance",
+        "label": "_internalParams",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_struct(InternalParams)18035_storage"
+      },
+      {
+        "astId": 41155,
+        "contract": "contracts/vaults/ERC20VaultGovernance.sol:ERC20VaultGovernance",
+        "label": "_stagedInternalParams",
+        "offset": 0,
+        "slot": "3",
+        "type": "t_struct(InternalParams)18035_storage"
+      },
+      {
+        "astId": 41157,
+        "contract": "contracts/vaults/ERC20VaultGovernance.sol:ERC20VaultGovernance",
+        "label": "_internalParamsTimestamp",
+        "offset": 0,
+        "slot": "6",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 41161,
+        "contract": "contracts/vaults/ERC20VaultGovernance.sol:ERC20VaultGovernance",
+        "label": "_delayedStrategyParams",
+        "offset": 0,
+        "slot": "7",
+        "type": "t_mapping(t_uint256,t_bytes_storage)"
+      },
+      {
+        "astId": 41165,
+        "contract": "contracts/vaults/ERC20VaultGovernance.sol:ERC20VaultGovernance",
+        "label": "_stagedDelayedStrategyParams",
+        "offset": 0,
+        "slot": "8",
+        "type": "t_mapping(t_uint256,t_bytes_storage)"
+      },
+      {
+        "astId": 41169,
+        "contract": "contracts/vaults/ERC20VaultGovernance.sol:ERC20VaultGovernance",
+        "label": "_delayedStrategyParamsTimestamp",
+        "offset": 0,
+        "slot": "9",
+        "type": "t_mapping(t_uint256,t_uint256)"
+      },
+      {
+        "astId": 41173,
+        "contract": "contracts/vaults/ERC20VaultGovernance.sol:ERC20VaultGovernance",
+        "label": "_delayedProtocolPerVaultParams",
+        "offset": 0,
+        "slot": "10",
+        "type": "t_mapping(t_uint256,t_bytes_storage)"
+      },
+      {
+        "astId": 41177,
+        "contract": "contracts/vaults/ERC20VaultGovernance.sol:ERC20VaultGovernance",
+        "label": "_stagedDelayedProtocolPerVaultParams",
+        "offset": 0,
+        "slot": "11",
+        "type": "t_mapping(t_uint256,t_bytes_storage)"
+      },
+      {
+        "astId": 41181,
+        "contract": "contracts/vaults/ERC20VaultGovernance.sol:ERC20VaultGovernance",
+        "label": "_delayedProtocolPerVaultParamsTimestamp",
+        "offset": 0,
+        "slot": "12",
+        "type": "t_mapping(t_uint256,t_uint256)"
+      },
+      {
+        "astId": 41183,
+        "contract": "contracts/vaults/ERC20VaultGovernance.sol:ERC20VaultGovernance",
+        "label": "_delayedProtocolParams",
+        "offset": 0,
+        "slot": "13",
+        "type": "t_bytes_storage"
+      },
+      {
+        "astId": 41185,
+        "contract": "contracts/vaults/ERC20VaultGovernance.sol:ERC20VaultGovernance",
+        "label": "_stagedDelayedProtocolParams",
+        "offset": 0,
+        "slot": "14",
+        "type": "t_bytes_storage"
+      },
+      {
+        "astId": 41187,
+        "contract": "contracts/vaults/ERC20VaultGovernance.sol:ERC20VaultGovernance",
+        "label": "_delayedProtocolParamsTimestamp",
+        "offset": 0,
+        "slot": "15",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 41191,
+        "contract": "contracts/vaults/ERC20VaultGovernance.sol:ERC20VaultGovernance",
+        "label": "_strategyParams",
+        "offset": 0,
+        "slot": "16",
+        "type": "t_mapping(t_uint256,t_bytes_storage)"
+      },
+      {
+        "astId": 41193,
+        "contract": "contracts/vaults/ERC20VaultGovernance.sol:ERC20VaultGovernance",
+        "label": "_protocolParams",
+        "offset": 0,
+        "slot": "17",
+        "type": "t_bytes_storage"
+      },
+      {
+        "astId": 41195,
+        "contract": "contracts/vaults/ERC20VaultGovernance.sol:ERC20VaultGovernance",
+        "label": "_operatorParams",
+        "offset": 0,
+        "slot": "18",
+        "type": "t_bytes_storage"
+      }
+    ],
+    "types": {
+      "t_bytes_storage": {
+        "encoding": "bytes",
+        "label": "bytes",
+        "numberOfBytes": "32"
+      },
+      "t_contract(IProtocolGovernance)11058": {
+        "encoding": "inplace",
+        "label": "contract IProtocolGovernance",
+        "numberOfBytes": "20"
+      },
+      "t_contract(IVault)18020": {
+        "encoding": "inplace",
+        "label": "contract IVault",
+        "numberOfBytes": "20"
+      },
+      "t_contract(IVaultRegistry)11202": {
+        "encoding": "inplace",
+        "label": "contract IVaultRegistry",
+        "numberOfBytes": "20"
+      },
+      "t_mapping(t_uint256,t_bytes_storage)": {
+        "encoding": "mapping",
+        "key": "t_uint256",
+        "label": "mapping(uint256 => bytes)",
+        "numberOfBytes": "32",
+        "value": "t_bytes_storage"
+      },
+      "t_mapping(t_uint256,t_uint256)": {
+        "encoding": "mapping",
+        "key": "t_uint256",
+        "label": "mapping(uint256 => uint256)",
+        "numberOfBytes": "32",
+        "value": "t_uint256"
+      },
+      "t_struct(InternalParams)18035_storage": {
+        "encoding": "inplace",
+        "label": "struct IVaultGovernance.InternalParams",
+        "members": [
+          {
+            "astId": 18028,
+            "contract": "contracts/vaults/ERC20VaultGovernance.sol:ERC20VaultGovernance",
+            "label": "protocolGovernance",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_contract(IProtocolGovernance)11058"
+          },
+          {
+            "astId": 18031,
+            "contract": "contracts/vaults/ERC20VaultGovernance.sol:ERC20VaultGovernance",
+            "label": "registry",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_contract(IVaultRegistry)11202"
+          },
+          {
+            "astId": 18034,
+            "contract": "contracts/vaults/ERC20VaultGovernance.sol:ERC20VaultGovernance",
+            "label": "singleton",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_contract(IVault)18020"
+          }
+        ],
+        "numberOfBytes": "96"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}

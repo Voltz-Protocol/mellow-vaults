@@ -17,22 +17,22 @@ const config: HardhatUserConfig = {
         hardhat: {
             forking: process.env["MAINNET_RPC"]
                 ? {
-                      url: process.env["MAINNET_RPC"],
+                    url: process.env["MAINNET_RPC"],
                       blockNumber: 15000000,
-                  }
+                }
                 : undefined,
 
             accounts: (process.env["MAINNET_DEPLOYER_PK"] && process.env["MAINNET_APPROVER_PK"])
                 ? [
-                      {
-                          privateKey: process.env["MAINNET_DEPLOYER_PK"],
-                          balance: (10 ** 20).toString(),
-                      },
-                      {
-                          privateKey: process.env["MAINNET_APPROVER_PK"],
-                          balance: (10 ** 20).toString(),
-                      }
-                  ]
+                    {
+                        privateKey: process.env["MAINNET_DEPLOYER_PK"],
+                        balance: (10 ** 20).toString(),
+                    },
+                    {
+                        privateKey: process.env["MAINNET_APPROVER_PK"],
+                        balance: (10 ** 20).toString(),
+                    }
+                ]
                 : undefined,
         },
         localhost: {
@@ -58,11 +58,23 @@ const config: HardhatUserConfig = {
                 ? [process.env["MAINNET_DEPLOYER_PK"], process.env["MAINNET_APPROVER_PK"]]
                 : undefined,
         },
+        goerli: {
+            url: process.env["GOERLI_RPC"],
+            accounts:
+                (process.env["GOERLI_DEPLOYER_PK"] &&
+                    process.env["GOERLI_APPROVER_PK"])
+                    ? [
+                        process.env["GOERLI_DEPLOYER_PK"],
+                        process.env["GOERLI_APPROVER_PK"],
+                    ]
+                    : undefined,
+            chainId: 5,
+        },
         avalanche: {
             url:
                 process.env["AVALANCHE_RPC"] ||
                 "https://api.avax.network/ext/bc/C/rpc",
-                accounts: (process.env["AVALANCHE_DEPLOYER_PK"] && process.env["AVALANCHE_APPROVER_PK"])
+            accounts: (process.env["AVALANCHE_DEPLOYER_PK"] && process.env["AVALANCHE_APPROVER_PK"])
                 ? [process.env["AVALANCHE_DEPLOYER_PK"], process.env["AVALANCHE_APPROVER_PK"]]
                 : undefined,
             chainId: 43114,
@@ -93,22 +105,22 @@ const config: HardhatUserConfig = {
         arbitrum: {
             url: process.env["ARBITRUM_RPC"] || "https://arb1.arbitrum.io/rpc",
             accounts: (process.env["ARBITRUM_DEPLOYER_PK"] && process.env["ARBITRUM_APPROVER_PK"])
-            ? [process.env["ARBITRUM_DEPLOYER_PK"], process.env["ARBITRUM_APPROVER_PK"]]
-            : undefined,
+                ? [process.env["ARBITRUM_DEPLOYER_PK"], process.env["ARBITRUM_APPROVER_PK"]]
+                : undefined,
             chainId: 42161,
         },
         optimism: {
             url: process.env["OPTIMISM_RPC"] || "https://mainnet.optimism.io",
             accounts: (process.env["OPTIMISM_DEPLOYER_PK"] && process.env["OPTIMISM_APPROVER_PK"])
-            ? [process.env["OPTIMISM_DEPLOYER_PK"], process.env["OPTIMISM_APPROVER_PK"]]
-            : undefined,
+                ? [process.env["OPTIMISM_DEPLOYER_PK"], process.env["OPTIMISM_APPROVER_PK"]]
+                : undefined,
             chainId: 10,
         },
         xdai: {
             url: process.env["XDAI_RPC"] || "https://rpc.xdaichain.com",
             accounts: (process.env["XDAI_DEPLOYER_PK"] && process.env["XDAI_APPROVER_PK"])
-            ? [process.env["XDAI_DEPLOYER_PK"], process.env["XDAI_APPROVER_PK"]]
-            : undefined,
+                ? [process.env["XDAI_DEPLOYER_PK"], process.env["XDAI_APPROVER_PK"]]
+                : undefined,
             chainId: 100,
         },
     },
@@ -122,6 +134,7 @@ const config: HardhatUserConfig = {
         admin: {
             hardhat: "0x9a3CB5A473e1055a014B9aE4bc63C21BBb8b82B3",
             mainnet: process.env["MAINNET_PROTOCOL_ADMIN_ADDRESS"] || "0x0",
+            goerli: process.env["GOERLI_PROTOCOL_ADMIN_ADDRESS"] || "0x0",
             kovan: process.env["KOVAN_PROTOCOL_ADMIN_ADDRESS"] || "0x0",
             avalanche: process.env["AVALANCHE_PROTOCOL_ADMIN_ADDRESS"] || "0x0",
             polygon: process.env["POLYGON_PROTOCOL_ADMIN_ADDRESS"] || "0x0",
@@ -131,6 +144,7 @@ const config: HardhatUserConfig = {
         mStrategyAdmin: {
             hardhat: "0x1aD91ee08f21bE3dE0BA2ba6918E714dA6B45836",
             mainnet: process.env["MAINNET_STRATEGY_ADMIN_ADDRESS"] || "0x0",
+            goerli: process.env["GOERLI_STRATEGY_ADMIN_ADDRESS"] || "0x0",
             kovan: process.env["KOVAN_STRATEGY_ADMIN_ADDRESS"] || "0x0",
             avalanche: process.env["AVALANCHE_STRATEGY_ADMIN_ADDRESS"] || "0x0",
             polygon: process.env["POLYGON_STRATEGY_ADMIN_ADDRESS"] || "0x0",
@@ -140,6 +154,7 @@ const config: HardhatUserConfig = {
         mStrategyTreasury: {
             hardhat: "0x52bc44d5378309EE2abF1539BF71dE1b7d7bE3b5",
             mainnet: process.env["MAINNET_STRATEGY_TREASURY_ADDRESS"] || "0x0",
+            goerli: process.env["GOERLI_STRATEGY_TREASURY_ADDRESS"] || "0x0",
             kovan: process.env["KOVAN_STRATEGY_TREASURY_ADDRESS"] || "0x0",
             avalanche:
                 process.env["AVALANCHE_STRATEGY_TREASURY_ADDRESS"] || "0x0",
@@ -150,6 +165,7 @@ const config: HardhatUserConfig = {
         protocolTreasury: {
             hardhat: "0x00192Fb10dF37c9FB26829eb2CC623cd1BF599E8",
             mainnet: process.env["MAINNET_PROTOCOL_TREASURY_ADDRESS"] || "0x0",
+            goerli: process.env["GOERLI_PROTOCOL_TREASURY_ADDRESS"] || "0x0",
             kovan: process.env["KOVAN_PROTOCOL_TREASURY_ADDRESS"] || "0x0",
             avalanche:
                 process.env["AVALANCHE_PROTOCOL_TREASURY_ADDRESS"] || "0x0",
@@ -192,6 +208,7 @@ const config: HardhatUserConfig = {
             arbitrum: "0xff970a61a04b1ca14834a43f5de4533ebddb5cc8",
             optimism: "0x7f5c764cbc14f9669b88837ca1490cca17c31607",
             rinkeby: "0xeb8f08a975ab53e34d8a0330e0d34de942c95926",
+            goerli: "0xD87Ba7A50B2E7E660f678A895E4B72E7CB4CCd9C",
         },
         weth: {
             default: "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -203,9 +220,11 @@ const config: HardhatUserConfig = {
             arbitrum: "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
             optimism: "0x4200000000000000000000000000000000000006",
             rinkeby: "0xc778417e063141139fce010982780140aa0cd5ab",
+            goerli: "0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6",
         },
         usdt: {
             default: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+            goerli: "0x79C950C7446B234a6Ad53B908fBF342b01c4d446",
         },
         wsteth: {
             default: "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0",
@@ -306,6 +325,7 @@ const config: HardhatUserConfig = {
         voltzPeriphery: {
             hardhat: "0x13e9053d9090ed6a1fae3f59f9bd3c1fca4c5726",
             mainnet: "0x07ced903e6ad0278cc32bc83a3fc97112f763722",
+            goerli: "0x12872b785dBC464F56086aFAB2b3ff7c27a5d007",
         },
     },
 
