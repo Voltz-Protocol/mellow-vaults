@@ -327,6 +327,11 @@ const config: HardhatUserConfig = {
             mainnet: "0x07ced903e6ad0278cc32bc83a3fc97112f763722",
             goerli: "0x12872b785dBC464F56086aFAB2b3ff7c27a5d007",
         },
+        voltzMultisig: {
+            default: "0xb527E950fC7c4F581160768f48b3bfA66a7dE1f0",
+            mainnet: "0xb527E950fC7c4F581160768f48b3bfA66a7dE1f0",
+            goerli: "0xF8F6B70a36f4398f0853a311dC6699Aba8333Cc1",
+        }
     },
 
     solidity: {

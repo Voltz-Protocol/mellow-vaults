@@ -232,7 +232,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     // Get the global deployment variables
     const { deployments, getNamedAccounts } = hre;
     const { deploy, read, log } = deployments;
-    const { deployer, usdc, dai, usdt, weth, mStrategyTreasury } =
+    const { deployer, voltzMultisig, usdc, dai, usdt, weth, mStrategyTreasury } =
         await getNamedAccounts();
     
     const getTokenPadding = (token: string): string => {
@@ -289,11 +289,11 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     // const VAULT_CAP = 250000 * voltzPools.length;
     // const token = weth;
 
-    // Mainnet 1
-    const INSTANCE_NAME = `LPOptimiserStrategy-USDC_31Jan23_v2`;
-    const voltzPools = ['aUSDC_v4'];
-    const VAULT_CAP = 250000 * voltzPools.length; // 250,000 USDC
-    const token = usdc;
+    // // Mainnet 1
+    // const INSTANCE_NAME = `LPOptimiserStrategy-USDC_31Jan23_v2`;
+    // const voltzPools = ['aUSDC_v4'];
+    // const VAULT_CAP = 250000 * voltzPools.length; // 250,000 USDC
+    // const token = usdc;
 
     // // Mainnet 2
     // const INSTANCE_NAME = `LPOptimiserStrategy-USDC_31Mar23_v2`;
@@ -313,11 +313,11 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     // const VAULT_CAP = 250 * voltzPools.length; // 500 ETH
     // const token = weth;
 
-    // // Mainnet 5
-    // const INSTANCE_NAME = `LPOptimiserStrategy-USDT_31Mar23_v2`;
-    // const voltzPools = ['borrow_aUSDT_v1'];
-    // const VAULT_CAP = 250000 * voltzPools.length; // 250,000 USDT
-    // const token = usdt;
+    // Mainnet 5
+    const INSTANCE_NAME = `LPOptimiserStrategy-USDT_31Mar23_v2`;
+    const voltzPools = ['borrow_aUSDT_v1'];
+    const VAULT_CAP = 250000 * voltzPools.length; // 250,000 USDT
+    const token = usdt;
 
     // Build the deployment parameters
 
@@ -476,6 +476,36 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     );
 
     console.log("ERC20 Roout Vault:", erc20RootVault);
+
+    console.log("Revoking roles...");
+
+    if (deployer.toLowerCase() === voltzMultisig.toLowerCase()) {
+        console.log("Skipped. Owners are identical.");
+    }
+    else {
+        const ADMIN_ROLE =
+        "0xf23ec0bb4210edd5cba85afd05127efcd2fc6a781bfed49188da1081670b22d8"; // keccak256("admin)
+        const ADMIN_DELEGATE_ROLE =
+            "0xc171260023d22a25a00a2789664c9334017843b831138c8ef03cc8897e5873d7"; // keccak256("admin_delegate")
+        const OPERATOR_ROLE =
+            "0x46a52cf33029de9f84853745a87af28464c80bf0346df1b32e205fc73319f622"; // keccak256("operator")
+    
+        await lPOptimiserStrategy.grantRole(ADMIN_ROLE, voltzMultisig);
+        console.log("1/7");
+        await lPOptimiserStrategy.grantRole(ADMIN_DELEGATE_ROLE, voltzMultisig);
+        console.log("2/7");
+        await lPOptimiserStrategy.grantRole(ADMIN_DELEGATE_ROLE, deployer);
+        console.log("3/7");
+        await lPOptimiserStrategy.grantRole(OPERATOR_ROLE, voltzMultisig);
+        console.log("4/7");
+        await lPOptimiserStrategy.revokeRole(OPERATOR_ROLE, deployer);
+        console.log("5/7");
+        await lPOptimiserStrategy.revokeRole(ADMIN_DELEGATE_ROLE, deployer);
+        console.log("6/7");
+        await lPOptimiserStrategy.revokeRole(ADMIN_ROLE, deployer);
+        console.log("7/7");
+    }
+    console.log("Done.");
 };
 
 export default func;
