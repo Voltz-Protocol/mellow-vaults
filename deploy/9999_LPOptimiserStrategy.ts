@@ -109,15 +109,15 @@ const setup: { [key: string]: NetworkSetup } = {
         'aUSDC_v4': { // 31 Jan 23
             marginEngine: '0x8361bcb0109eA36eE8aE18Bf513F0625F4Ac183b',
             vaultInitialParam: {
-                tickLower: -60,
-                tickUpper: 60,
-                leverageWad: "0",
-                marginMultiplierPostUnwindWad: "0",
+                tickLower: -2640,
+                tickUpper: 3540,
+                leverageWad: "50000000000000000000",
+                marginMultiplierPostUnwindWad: "2000000000000000000",
             },
             vaultStrategyParam: {
-                sigmaWad: "0",
-                maxPossibleLowerBoundWad: "0",
-                proximityWad: "0",
+                sigmaWad: "300012536197026000",
+                maxPossibleLowerBoundWad: "10000000000000000000",
+                proximityWad: "75426743600639900",
                 weight: "100",
             }
         },
@@ -125,47 +125,47 @@ const setup: { [key: string]: NetworkSetup } = {
         'cDAI_v4': { // 31 Mar 23
             marginEngine: '0x720BE99ee947292Be5d0e8Ef8D8687a7bC542f73',
             vaultInitialParam: {
-                tickLower: -60,
-                tickUpper: 60,
-                leverageWad: "0",
-                marginMultiplierPostUnwindWad: "0",
+                tickLower: -4080,
+                tickUpper: 6900,
+                leverageWad: "50000000000000000000",
+                marginMultiplierPostUnwindWad: "2000000000000000000",
             },
             vaultStrategyParam: {
-                sigmaWad: "0",
-                maxPossibleLowerBoundWad: "0",
-                proximityWad: "0",
-                weight: "100",
+                sigmaWad: "499999762330392000",
+                maxPossibleLowerBoundWad: "10000000000000000000",
+                proximityWad: "95785677123315700",
+                weight: "85",
             }
         },
 
         'aDAI_v4': { // 31 Mar 23
             marginEngine: '0xBb3583EFc060eD1CFFFFC06A28f6B5381031B601',
             vaultInitialParam: {
-                tickLower: -60,
-                tickUpper: 60,
-                leverageWad: "0",
-                marginMultiplierPostUnwindWad: "0",
+                tickLower: -2640,
+                tickUpper: 3540,
+                leverageWad: "50000000000000000000",
+                marginMultiplierPostUnwindWad: "2000000000000000000",
             },
             vaultStrategyParam: {
-                sigmaWad: "0",
-                maxPossibleLowerBoundWad: "0",
-                proximityWad: "0",
-                weight: "100",
+                sigmaWad: "300009072791141000",
+                maxPossibleLowerBoundWad: "10000000000000000000",
+                proximityWad: "67940410361345600",
+                weight: "15",
             }
         },
 
         'aUSDC_v5': { // 31 Mar 23
             marginEngine: '0x295891Cc72A230bcB2C2bEa3276Ac4D470495894',
             vaultInitialParam: {
-                tickLower: -60,
-                tickUpper: 60,
-                leverageWad: "0",
-                marginMultiplierPostUnwindWad: "0",
+                tickLower: -2640,
+                tickUpper: 3540,
+                leverageWad: "50000000000000000000",
+                marginMultiplierPostUnwindWad: "2000000000000000000",
             },
             vaultStrategyParam: {
-                sigmaWad: "0",
-                maxPossibleLowerBoundWad: "0",
-                proximityWad: "0",
+                sigmaWad: "300012536197026000",
+                maxPossibleLowerBoundWad: "10000000000000000000",
+                proximityWad: "75426743600639900",
                 weight: "100",
             }
         },
@@ -173,47 +173,47 @@ const setup: { [key: string]: NetworkSetup } = {
         'rETH_v2': { // 31 Mar 23
             marginEngine: '0x5E885417968b65fFAC944a2fB975C101566B4aCa',
             vaultInitialParam: {
-                tickLower: -60,
-                tickUpper: 60,
-                leverageWad: "0",
-                marginMultiplierPostUnwindWad: "0",
+                tickLower: -2640,
+                tickUpper: 3540,
+                leverageWad: "50000000000000000000",
+                marginMultiplierPostUnwindWad: "2000000000000000000",
             },
             vaultStrategyParam: {
-                sigmaWad: "0",
-                maxPossibleLowerBoundWad: "0",
-                proximityWad: "0",
-                weight: "100",
+                sigmaWad: "300001378599781000",
+                maxPossibleLowerBoundWad: "10000000000000000000",
+                proximityWad: "89131943783069800",
+                weight: "15",
             }
         },
 
         'stETH_v2': { // 31 Mar 23
             marginEngine: '0x626Cf6B2fBF578653f7Fa5424962972161A79de7',
             vaultInitialParam: {
-                tickLower: -60,
-                tickUpper: 60,
-                leverageWad: "0",
-                marginMultiplierPostUnwindWad: "0",
+                tickLower: -2640,
+                tickUpper: 3540,
+                leverageWad: "50000000000000000000",
+                marginMultiplierPostUnwindWad: "2000000000000000000",
             },
             vaultStrategyParam: {
-                sigmaWad: "0",
-                maxPossibleLowerBoundWad: "0",
-                proximityWad: "0",
-                weight: "100",
+                sigmaWad: "300002061763262000",
+                maxPossibleLowerBoundWad: "10000000000000000000",
+                proximityWad: "65059023285524400",
+                weight: "85",
             }
         },
 
         'borrow_aUSDT_v1': { // 31 Mar 23
             marginEngine: '0xB8A339Cd4eD2e69725d95931a18482269E006FF1',
             vaultInitialParam: {
-                tickLower: -60,
-                tickUpper: 60,
-                leverageWad: "0",
-                marginMultiplierPostUnwindWad: "0",
+                tickLower: -2640,
+                tickUpper: 3540,
+                leverageWad: "50000000000000000000",
+                marginMultiplierPostUnwindWad: "2000000000000000000",
             },
             vaultStrategyParam: {
-                sigmaWad: "0",
-                maxPossibleLowerBoundWad: "0",
-                proximityWad: "0",
+                sigmaWad: "300001329882793000",
+                maxPossibleLowerBoundWad: "10000000000000000000",
+                proximityWad: "87322878356170500",
                 weight: "100",
             }
         },
@@ -289,11 +289,11 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     // const VAULT_CAP = 250000 * voltzPools.length;
     // const token = weth;
 
-    // // Mainnet 1
-    // const INSTANCE_NAME = `LPOptimiserStrategy-USDC_31Jan23_v2`;
-    // const voltzPools = ['aUSDC_v4'];
-    // const VAULT_CAP = 250000 * voltzPools.length; // 250,000 USDC
-    // const token = usdc;
+    // Mainnet 1
+    const INSTANCE_NAME = `LPOptimiserStrategy-USDC_31Jan23_v2`;
+    const voltzPools = ['aUSDC_v4'];
+    const VAULT_CAP = 250000 * voltzPools.length; // 250,000 USDC
+    const token = usdc;
 
     // // Mainnet 2
     // const INSTANCE_NAME = `LPOptimiserStrategy-USDC_31Mar23_v2`;
@@ -313,11 +313,11 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     // const VAULT_CAP = 250 * voltzPools.length; // 500 ETH
     // const token = weth;
 
-    // Mainnet 5
-    const INSTANCE_NAME = `LPOptimiserStrategy-USDT_31Mar23_v2`;
-    const voltzPools = ['borrow_aUSDT_v1'];
-    const VAULT_CAP = 250000 * voltzPools.length; // 250,000 USDT
-    const token = usdt;
+    // // Mainnet 5
+    // const INSTANCE_NAME = `LPOptimiserStrategy-USDT_31Mar23_v2`;
+    // const voltzPools = ['borrow_aUSDT_v1'];
+    // const VAULT_CAP = 250000 * voltzPools.length; // 250,000 USDT
+    // const token = usdt;
 
     // Build the deployment parameters
 
