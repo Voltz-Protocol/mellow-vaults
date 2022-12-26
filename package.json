@@ -84,6 +84,7 @@
     "ethereumjs-util": "^7.1.5",
     "keccak256": "^1.0.6",
     "merkletreejs": "^0.2.32",
+    "mustache": "^4.2.0",
     "solc": "0.8.9",
     "solidity-docgen": "^0.5.16",
     "typescript-solidity-merkle-tree": "^0.3.0"

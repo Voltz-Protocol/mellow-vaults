@@ -161,7 +161,7 @@ const setup: { [key: string]: NetworkSetup } = {
     }
 }
 
-async function voltzEndOfYeaMultisigDeployments(
+async function buildVoltzEndOfYeaMultisigDeployments(
     data: voltzEndOfYearTemplateData
   ) {
     // Get external template with fetch
@@ -278,17 +278,24 @@ task("voltz-end-of-year-deployments", "Voltz End of Year Deployments")
         console.log("Voltz vault NFTs:", voltzVaultNfts);
         console.log("ERC20 vault NFT:", erc20VaultNft);
 
-
-
-
         // Setup the Voltz vaults
-        // todo: convert setup vault into a multisig friendly setup
+    
+        const data: voltzEndOfYearTemplateData = {
+            voltzVaults: voltzPools.map(
+                (voltzVault: string) => {
+                    return {
+                        vaultTokens_: tokens,
+                        owner_: voltzMultisig,
+                        marginEngine_: networkSetup[voltzVault].marginEngine,
+                        voltzVaultHelperSingleton_: voltzVaultHelper,
+                        initializeParams: networkSetup[voltzVault].vaultInitialParam
+                    }
 
-        for (let i = 0; i < voltzPools.length; i++) {
-
-            
-        
+                }
+            ) 
         }
+
+        await buildVoltzEndOfYeaMultisigDeployments(data);
 
     }
 )
