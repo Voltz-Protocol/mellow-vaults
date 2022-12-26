@@ -83,11 +83,230 @@
         "type": "function"
       },
       "contractInputsValues": {
-          "vaultTokens_": "[\"0xdac17f958d2ee523a2206206994597c13d831ec7\"]",
+          "vaultTokens_": "[  \"0xdac17f958d2ee523a2206206994597c13d831ec7\" ]",
           "owner_": "0xb527E950fC7c4F581160768f48b3bfA66a7dE1f0",
           "marginEngine_": "0xB8A339Cd4eD2e69725d95931a18482269E006FF1",
           "voltzVaultHelperSingleton_": "0x361b361061ab3AE5DDc75CC06C2EF05f2645f4b6",
           "initializeParams": "[\"-2640\", \"3540\", \"50000000000000000000\", \"2000000000000000000\"]"
+      }
+    },
+    
+
+    {
+        "to": "0x0bf7B603389795E109a13140eCb07036a1534573",
+        "value": "0",
+        "data": null,
+        "contractMethod": {
+      "inputs": [
+        {
+          "internalType": "address[]",
+          "name": "vaultTokens_",
+          "type": "address[]"
+        },
+        {
+          "internalType": "address",
+          "name": "owner_",
+          "type": "address"
+        }
+      ],
+      "name": "createVault",
+      "outputs": [
+        {
+          "internalType": "contract IERC20Vault",
+          "name": "vault",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "nft",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+
+      "contractInputsValues": {
+          "vaultTokens_": "[  \"0xdac17f958d2ee523a2206206994597c13d831ec7\" ]",
+          "owner_": "0xb527E950fC7c4F581160768f48b3bfA66a7dE1f0"
+      }
+    },
+
+    {
+        "to": "0x8F1F6017F0b186Fc67260Ee7Ec9c9A9d7d032294",
+        "value": "0",
+        "data": null,
+        "contractMethod": {
+      "inputs": [
+        {
+          "internalType": "contract IERC20Vault",
+          "name": "erc20vault_",
+          "type": "address"
+        },
+        {
+          "internalType": "contract IVoltzVault[]",
+          "name": "vaults_",
+          "type": "address[]"
+        },
+        {
+          "components": [
+            {
+              "internalType": "int256",
+              "name": "sigmaWad",
+              "type": "int256"
+            },
+            {
+              "internalType": "int256",
+              "name": "maxPossibleLowerBoundWad",
+              "type": "int256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "proximityWad",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "weight",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct LPOptimiserStrategy.VaultParams[]",
+          "name": "vaultParams_",
+          "type": "tuple[]"
+        },
+        {
+          "internalType": "address",
+          "name": "admin_",
+          "type": "address"
+        }
+      ],
+      "name": "createStrategy",
+      "outputs": [
+        {
+          "internalType": "contract LPOptimiserStrategy",
+          "name": "strategy",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+
+      "contractInputsValues": {
+          "erc20vault_": "0x0000000000000000000000000000000000000000",
+          "vaults_": "[ \"0x0000000000000000000000000000000000000000\" ]",
+          "vaultParams_" : "[ [ \"300001329882793000\", \"10000000000000000000\", \"87322878356170500\", \"100\"]  ]",
+          "admin_": "0xb527E950fC7c4F581160768f48b3bfA66a7dE1f0"
+      }
+    },
+
+    {
+        "to": "0xFD23F971696576331fCF96f80a20B4D3b31ca5b2",
+        "value": "0",
+        "data": null,
+        "contractMethod": {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "approve",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+
+      "contractInputsValues": {
+          "to": "0x973495e81180Cd6Ead654328A0bEbE01c8ad53EA",
+          "tokenId": "0"
+      }
+    },
+    {
+        "to": "0xFD23F971696576331fCF96f80a20B4D3b31ca5b2",
+        "value": "0",
+        "data": null,
+        "contractMethod": {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "approve",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+
+      "contractInputsValues": {
+          "to": "0x973495e81180Cd6Ead654328A0bEbE01c8ad53EA",
+          "tokenId": "0"
+      }
+    },
+
+    {
+        "to": "0x973495e81180Cd6Ead654328A0bEbE01c8ad53EA",
+        "value": "0",
+        "data": null,
+        "contractMethod": {
+      "inputs": [
+        {
+          "internalType": "address[]",
+          "name": "vaultTokens_",
+          "type": "address[]"
+        },
+        {
+          "internalType": "address",
+          "name": "strategy_",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "subvaultNfts_",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "address",
+          "name": "owner_",
+          "type": "address"
+        }
+      ],
+      "name": "createVault",
+      "outputs": [
+        {
+          "internalType": "contract IERC20RootVault",
+          "name": "vault",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "nft",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+
+      "contractInputsValues": {
+          "vaultTokens_": "[  \"0xdac17f958d2ee523a2206206994597c13d831ec7\" ]",
+          "strategy_": "0x0000000000000000000000000000000000000000",
+          "subvaultNfts_": "[  \"0\",  \"0\" ]",
+          "owner_": "0xb527E950fC7c4F581160768f48b3bfA66a7dE1f0"
       }
     }
 

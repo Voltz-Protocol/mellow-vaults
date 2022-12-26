@@ -10,13 +10,34 @@ import path from "path";
 
 interface voltzEndOfYearTemplateData {
     voltzVaults: {
-        vaultTokens_: string[],
-        owner_: string,
-        marginEngine_: string,
-        voltzVaultHelperSingleton_: string,
-        initializeParams: VaultInitialParam
+        marginEngine: string;
+        initializeParams: VaultInitialParam;
     }[],
-    voltzVaultGovernance: string
+    tokens: {
+        last: boolean;
+        address: string;
+    }[];
+    owner: string;
+    voltzVaultHelperSingleton: string;
+    voltzVaultGovernance: string;
+    erc20VaultGovernance: string;
+    masterStrategy: string;
+    erc20VaultAddress: string;
+    erc20RootVaultGovernance: string;
+    vaultRegistry: string;
+    strategy: string;
+    voltzVaultAddresses: {
+        last: boolean;
+        address: string;
+    }[];
+    vaultStrategyParams: {
+        last: boolean;
+        params: VaultStrategyParam;
+    }[];
+    vaultNFTs: {
+        last: boolean;
+        tokenId: number;
+    }[];
 }
 
 
@@ -41,6 +62,8 @@ type VaultSetup = {
 }
 
 type NetworkSetup = { [key: string]: VaultSetup };
+
+const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
 
 const setup: { [key: string]: NetworkSetup } = {
     mainnet: {
@@ -160,144 +183,167 @@ const setup: { [key: string]: NetworkSetup } = {
 
 async function buildVoltzEndOfYeaMultisigDeployments(
     data: voltzEndOfYearTemplateData
-  ) {
+) {
     // Get external template with fetch
     const fs = require("fs");
     const template = fs.readFileSync(
-      path.join(__dirname, "json_templates/9999_VoltzEndOfYear.json.mustache"),
-      "utf8"
+        path.join(__dirname, "json_templates/9999_VoltzEndOfYear.json.mustache"),
+        "utf8"
     );
     const output = mustache.render(template, data);
-  
+
     const file = `./tasks/jsons/9999_VoltzEndOfYear.json`;
     fs.writeFileSync(file, output);
-  }
+}
 
 
 task("voltz-end-of-year-deployments", "Voltz End of Year Deployments")
-.setAction(
-    async (taskArgs, hre) => {
+    .setAction(
+        async (_, hre) => {
+            const network = hre.network.name;
+            if (!(network === 'mainnet')) {
+                throw new Error("This multisig setup is specific to mainnet");
+            }
+            const networkSetup = setup['mainnet'];
 
-        ////////////////////////////// SETUP //////////////////////////////
+            const { deployments, getNamedAccounts } = hre;
+            const { read } = deployments;
+    
+            const { voltzMultisig, usdc, dai, usdt, weth, mStrategyTreasury } =
+                await getNamedAccounts();
 
-        const network = hre.network.name;
-        // multisig json is only needed for mainnet deployments
-        const networkSetup = (network === 'hardhat' || network === 'localhost') ? setup['mainnet'] : setup[network];
-
-        const { deployments, getNamedAccounts } = hre;
-        const { deploy, read, log } = deployments;
-        const { voltzMultisig, usdc, dai, usdt, weth, mStrategyTreasury } =
-        await getNamedAccounts();
-
-
-        const getTokenPadding = (token: string): string => {
-            switch (token) {
-                case usdc: {
-                    return "000000";
-                }
-                case usdt: {
-                    return "000000";
-                }
-                case weth: {
-                    return "000000000000000000";
-                }
-                case dai: {
-                    return "000000000000000000";
-                }
-                default: {
-                    throw new Error("Invalid token");
+            const getTokenPadding = (token: string): string => {
+                switch (token) {
+                    case usdc: {
+                        return "000000";
+                    }
+                    case usdt: {
+                        return "000000";
+                    }
+                    case weth: {
+                        return "000000000000000000";
+                    }
+                    case dai: {
+                        return "000000000000000000";
+                    }
+                    default: {
+                        throw new Error("Invalid token");
+                    }
                 }
             }
-        }
 
-        const voltzVaultHelper = (await hre.ethers.getContract("VoltzVaultHelper")).address;
+            // Set the deployment parameters
 
-        // Grab master strategy
-        const masterStrategy = await hre.ethers.getContract(
-            "LPOptimiserStrategy"
-        );
+            // todo: bring the rest of the vaults once this one works
 
-        console.log("masterStrategy:", masterStrategy.address);
+            // Mainnet 5
+            const INSTANCE_NAME = `LPOptimiserStrategy-USDT_31Mar23_v2`; // save the proxy in the deployments folder using this name
+            const voltzPools = ['borrow_aUSDT_v1'];
+            const VAULT_CAP = 250000 * voltzPools.length; // 250,000 USDT
+            const token = usdt;
 
-        // Set the deployment parameters
+            // Build the deployment parameters
 
-        // todo: bring the rest of the vaults once this one works
-        
-        // Mainnet 5
-        const INSTANCE_NAME = `LPOptimiserStrategy-USDT_31Mar23_v2`; // save the proxy in the deployments folder using this name
-        const voltzPools = ['borrow_aUSDT_v1'];
-        const VAULT_CAP = 250000 * voltzPools.length; // 250,000 USDT
-        const token = usdt;
+            const tokens = [token].map((t) => t.toLowerCase()).sort();
+            const vaultCap = (VAULT_CAP.toString()).concat(getTokenPadding(token));
 
-        // Build the deployment parameters
+            console.log("tokens", tokens);
+            console.log("vaultCap", vaultCap);
 
-        const tokens = [token].map((t) => t.toLowerCase()).sort();
-        const vaultCap = (VAULT_CAP.toString()).concat(getTokenPadding(token));
-        const voltzVaultParams = voltzPools.map((pool) => [
-            voltzMultisig, // multisig (not eoa)
-            networkSetup[pool].marginEngine,
-            voltzVaultHelper,
-            networkSetup[pool].vaultInitialParam
-        ]);
-        const vaultStrategyParams = voltzPools.map((pool) => networkSetup[pool].vaultStrategyParam);
+            // Build the options
+            const options = {
+                limits: tokens.map((_: any) => constants.MaxUint256),
+                strategyPerformanceTreasuryAddress: mStrategyTreasury,
+                tokenLimitPerAddress: hre.ethers.constants.MaxUint256,
+                tokenLimit: vaultCap,
+                managementFee: "0",
+                performanceFee: "0",
+            };
 
-        console.log("tokens", tokens);
-        console.log("vaultCap", vaultCap);
-        console.log("voltzVaultParams", voltzVaultParams);
-        console.log("vaultStrategyParams", vaultStrategyParams);
+            console.log("Options:", options);
 
-        // Build the options
-        const options = {
-            limits: tokens.map((_: any) => constants.MaxUint256),
-            strategyPerformanceTreasuryAddress: mStrategyTreasury,
-            tokenLimitPerAddress: hre.ethers.constants.MaxUint256,
-            tokenLimit: vaultCap,
-            managementFee: "0",
-            performanceFee: "0",
-        };        
+            // Get the next available NFT of the vaultRegistry
+            const startNft =
+                (await read("VaultRegistry", "vaultsCount")).toNumber() + 1;
 
-        console.log("Options:", options);
+            // Get the next N NFTs for Voltz vaults (each vault is represented as an nft)
+            // within the vault registry, keep track of all the vaults deployed in mellow
+            let voltzVaultNfts: number[] = [];
+            for (let i = 0; i < voltzPools.length; i++) {
+                voltzVaultNfts.push(startNft + i);
+            }
 
-        // Get the next available NFT of the vaultRegistry
-        const startNft =
-        (await read("VaultRegistry", "vaultsCount")).toNumber() + 1;
+            // Get the next NFT for ERC20 vault
+            let erc20VaultNft = startNft + voltzPools.length;
 
-        // Get the next N NFTs for Voltz vaults (each vault is represented as an nft)
-        // within the vault registry, keep track of all the vaults deployed in mellow
-        let voltzVaultNfts: number[] = [];
-        for (let i = 0; i < voltzPools.length; i++) {
-            voltzVaultNfts.push(startNft + i);
-        }
+            console.log("Voltz vault NFTs:", voltzVaultNfts);
+            console.log("ERC20 vault NFT:", erc20VaultNft);
 
-        // Get the next NFT for ERC20 vault
-        let erc20VaultNft = startNft + voltzPools.length;
+            // Setup the Voltz vaults
 
-        console.log("Voltz vault NFTs:", voltzVaultNfts);
-        console.log("ERC20 vault NFT:", erc20VaultNft);
+            const voltzVaultHelper = (await hre.ethers.getContract("VoltzVaultHelper")).address;
+            const voltzVaultGovernance = (await hre.ethers.getContract("VoltzVaultGovernance")).address;
+            const erc20VaultGovernance = (await hre.ethers.getContract("ERC20VaultGovernance")).address;
+            const erc20RootVaultGovernance = (await hre.ethers.getContract("ERC20RootVaultGovernance")).address;
+            const masterStrategy = (await hre.ethers.getContract("LPOptimiserStrategy")).address;
+            const vaultRegistry = (await hre.ethers.getContract("VaultRegistry")).address;
 
-        // Setup the Voltz vaults
+            const erc20VaultAddress: string = ZERO_ADDRESS; // need to be set during deployment
+            const voltzVaultAddresses: string[] = new Array(voltzPools.length).fill(ZERO_ADDRESS); // need to be set during deployment
+            const strategy: string = ZERO_ADDRESS; // need to be set during deployment
 
-        const voltzVaultGovernance = (await hre.ethers.getContract("VoltzVaultGovernance")).address;
+            const vaultNFTs = [0, 0]; // need to be set during deployment
 
-        const data: voltzEndOfYearTemplateData = {
-            voltzVaults: voltzPools.map(
-                (voltzVault: string) => {
-                    return {
-                        vaultTokens_: tokens,
-                        owner_: voltzMultisig,
-                        marginEngine_: networkSetup[voltzVault].marginEngine,
-                        voltzVaultHelperSingleton_: voltzVaultHelper,
-                        initializeParams: networkSetup[voltzVault].vaultInitialParam
+            const data: voltzEndOfYearTemplateData = {
+                voltzVaults: voltzPools.map(
+                    (voltzVault: string) => {
+                        return {
+                            marginEngine: networkSetup[voltzVault].marginEngine,
+                            initializeParams: networkSetup[voltzVault].vaultInitialParam
+                        }
+
                     }
+                ),
+                voltzVaultGovernance,
+                erc20VaultGovernance,
+                erc20RootVaultGovernance,
+                tokens: tokens.map((item, index) => {
+                    return {
+                        address: item,
+                        last: (index + 1 === tokens.length),
+                    }
+                }),
+                owner: voltzMultisig,
+                voltzVaultHelperSingleton: voltzVaultHelper,
+                masterStrategy,
+                strategy,
+                erc20VaultAddress,
+                voltzVaultAddresses: voltzVaultAddresses.map((item, index) => {
+                    return {
+                        address: item,
+                        last: (index + 1 === voltzVaultAddresses.length),
+                    }
+                }),
+                vaultStrategyParams: voltzPools.map(
+                    (item, index) => {
+                        return {
+                            params: networkSetup[item].vaultStrategyParam,
+                            last: (index + 1 === voltzPools.length), 
+                        };
+                    }
+                ),
+                vaultRegistry,
+                vaultNFTs: vaultNFTs.map(
+                    (item, index) => {
+                        return {
+                            tokenId: item,
+                            last: (index + 1 === vaultNFTs.length), 
+                        };
+                    }
+                )
+            };
 
-                }
-            ),
-            voltzVaultGovernance: voltzVaultGovernance
-
+            await buildVoltzEndOfYeaMultisigDeployments(data);
         }
-
-        await buildVoltzEndOfYeaMultisigDeployments(data);
-
-    }
-)
+    )
 
