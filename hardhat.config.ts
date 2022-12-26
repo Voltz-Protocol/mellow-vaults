@@ -8,6 +8,7 @@ import "hardhat-deploy";
 import "./plugins/contracts";
 import { config as dotenv } from "dotenv";
 import "./tasks/verify";
+import "./tasks/9999_VoltzEndOfYearDeploymentsMultisig";
 
 dotenv();
 

@@ -19,7 +19,8 @@ interface voltzEndOfYearTemplateData {
         marginEngine_: string,
         voltzVaultHelperSingleton_: string,
         initializeParams: VaultInitialParam
-    }[];
+    }[],
+    voltzVaultGovernance: string
 }
 
 
@@ -279,7 +280,9 @@ task("voltz-end-of-year-deployments", "Voltz End of Year Deployments")
         console.log("ERC20 vault NFT:", erc20VaultNft);
 
         // Setup the Voltz vaults
-    
+
+        const voltzVaultGovernance = (await hre.ethers.getContract("VoltzVaultGovernance")).address;
+
         const data: voltzEndOfYearTemplateData = {
             voltzVaults: voltzPools.map(
                 (voltzVault: string) => {
@@ -292,7 +295,9 @@ task("voltz-end-of-year-deployments", "Voltz End of Year Deployments")
                     }
 
                 }
-            ) 
+            ),
+            voltzVaultGovernance: voltzVaultGovernance
+
         }
 
         await buildVoltzEndOfYeaMultisigDeployments(data);
