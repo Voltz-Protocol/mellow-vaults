@@ -11,6 +11,7 @@
       "checksum": "0x6e317afc197279541328cf252e50867cfa15d2ed7e7426244328bdf15b94cfe7"
     },
     "transactions": [
+
       {
         "to": "0x4270Eb53c020b8DCC0315C5264bF90810E0DEA27",
         "value": "0",
@@ -79,17 +80,16 @@
           }
         ],
         "stateMutability": "nonpayable",
-        "type": "function",
-        "contractInputsValues": {
+        "type": "function"
+      },
+      "contractInputsValues": {
           "vaultTokens_": "[\"0xdac17f958d2ee523a2206206994597c13d831ec7\"]",
           "owner_": "0xb527E950fC7c4F581160768f48b3bfA66a7dE1f0",
           "marginEngine_": "0xB8A339Cd4eD2e69725d95931a18482269E006FF1",
           "voltzVaultHelperSingleton_": "0x361b361061ab3AE5DDc75CC06C2EF05f2645f4b6",
           "initializeParams": "[\"-2640\", \"3540\", \"50000000000000000000\", \"2000000000000000000\"]"
-        }
       }
+    }
 
-
-      }
     ]
   }
