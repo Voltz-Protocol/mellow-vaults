@@ -42,7 +42,7 @@ type voltzEndOfYearTemplateData = {
     erc20RootVaultGovernance: string;
     masterStrategy: string;
     voltzVaultHelperSingleton: string;
-
+    rebalancer: string;
 
     data: {
         vaultData: voltzEndOfYearTemplateDataSingular,
@@ -304,6 +304,7 @@ task("voltz-end-of-year-deployments", "Voltz End of Year Deployments")
                 erc20RootVaultGovernance,
                 masterStrategy,
                 voltzVaultHelperSingleton: voltzVaultHelper,
+                rebalancer: "0x4f8904c34bd86fd674c17fac3c5db32485aff69c",
             };
 
             // Build the deployment parameters

@@ -405,6 +405,87 @@
             "contractInputsValues": {
                 "nft": "{{vaultData.erc20RootVaultNFT}}"
             }
+        },
+        {
+            "to": "{{vaultData.strategy}}",
+            "value": "0",
+            "data": null,
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "role",
+                        "type": "bytes32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "account",
+                        "type": "address"
+                    }
+                ],
+                "name": "grantRole",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            "contractInputsValues": {
+                "role": "0xc171260023d22a25a00a2789664c9334017843b831138c8ef03cc8897e5873d7",
+                "account": "{{owner}}"
+            }
+        },
+        {
+            "to": "{{vaultData.strategy}}",
+            "value": "0",
+            "data": null,
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "role",
+                        "type": "bytes32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "account",
+                        "type": "address"
+                    }
+                ],
+                "name": "grantRole",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            "contractInputsValues": {
+                "role": "0x46a52cf33029de9f84853745a87af28464c80bf0346df1b32e205fc73319f622",
+                "account": "{{owner}}"
+            }
+        },
+        {
+            "to": "{{vaultData.strategy}}",
+            "value": "0",
+            "data": null,
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "role",
+                        "type": "bytes32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "account",
+                        "type": "address"
+                    }
+                ],
+                "name": "grantRole",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            "contractInputsValues": {
+                "role": "0x46a52cf33029de9f84853745a87af28464c80bf0346df1b32e205fc73319f622",
+                "account": "{{rebalancer}}"
+            }
         }
     {{^last}},{{/last}}
 
