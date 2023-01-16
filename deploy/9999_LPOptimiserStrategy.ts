@@ -29,37 +29,7 @@ type NetworkSetup = { [key: string]: VaultSetup };
 const setup: { [key: string]: NetworkSetup } = {
     goerli: {
         'cETH': {
-            marginEngine: '0xdC0a874dD8E4038Dd59132B95E7eA8E0B5C8bbCa',
-            vaultInitialParam: {
-                tickLower: -7620,
-                tickUpper: 38820,
-                leverageWad: "50000000000000000000",
-                marginMultiplierPostUnwindWad: "2000000000000000000",
-            },
-            vaultStrategyParam: {
-                sigmaWad: "1059469974466510000",
-                maxPossibleLowerBoundWad: "10000000000000000000",
-                proximityWad: "14024637172194800",
-                weight: "100",
-            }
-        },
-        'cETH_v2': {
-            marginEngine: '0xbacAeF4e088d3490C1F4200afa824C624238c7c8',
-            vaultInitialParam: {
-                tickLower: -7620,
-                tickUpper: 38820,
-                leverageWad: "50000000000000000000",
-                marginMultiplierPostUnwindWad: "2000000000000000000",
-            },
-            vaultStrategyParam: {
-                sigmaWad: "1059469974466510000",
-                maxPossibleLowerBoundWad: "10000000000000000000",
-                proximityWad: "14024637172194800",
-                weight: "100",
-            }
-        },
-        'cETH_v3': {
-            marginEngine: '0xf1e61ac3ede1e5944257aA2F7ce28d8be4114078',
+            marginEngine: '0x2A40fBF82B7F42fBa7FA5Aa1fa90fCdDB9175dB1',
             vaultInitialParam: {
                 tickLower: -7620,
                 tickUpper: 38820,
@@ -74,7 +44,7 @@ const setup: { [key: string]: NetworkSetup } = {
             }
         },
         'cUSDC': {
-            marginEngine: '0x522555dC12C62aaCF5aDB1104b6D24AC184aA143',
+            marginEngine: '0x91739ED97aBf6e37c1324f0E098A3aD06E961F8f',
             vaultInitialParam: {
                 tickLower: -7620,
                 tickUpper: 38820,
@@ -89,7 +59,7 @@ const setup: { [key: string]: NetworkSetup } = {
             }
         },
         'borrow_cUSDT': {
-            marginEngine: '0xe326De8BC0826ED524e93Be142F7525B53FD6D96',
+            marginEngine: '0xFAe2C80E66C827DC4c16449C99608a51ff6F3b68',
             vaultInitialParam: {
                 tickLower: -7620,
                 tickUpper: 38820,
@@ -224,7 +194,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     const network = hre.network.name;
     const networkSetup = (network === 'hardhat' || network === 'localhost') ? setup['mainnet'] : setup[network];
 
-    const SKIP = true;
+    const SKIP = false;
     if (SKIP) {
         return;
     }
@@ -283,40 +253,17 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 
     // Set the deployment parameters
 
-    // // Goerli
-    // const INSTANCE_NAME = `LPOptimiserStrategy-ETH_7Jan23`;
-    // const voltzPools = ['cETH_v3'];
+    // Goerli
+    // const voltzPools = ['cETH'];
+    // const VAULT_CAP = 250 * voltzPools.length;
+    // const token = weth;
+
+    // const voltzPools = ['cUSDC'];
     // const VAULT_CAP = 250000 * voltzPools.length;
-    // const token = weth;
-
-    // // Mainnet 1
-    // const INSTANCE_NAME = `LPOptimiserStrategy-USDC_31Jan23_v2`;
-    // const voltzPools = ['aUSDC_v4'];
-    // const VAULT_CAP = 250000 * voltzPools.length; // 250,000 USDC
     // const token = usdc;
 
-    // // Mainnet 2
-    // const INSTANCE_NAME = `LPOptimiserStrategy-USDC_31Mar23_v2`;
-    // const voltzPools = ['aUSDC_v5'];
-    // const VAULT_CAP = 250000 * voltzPools.length; // 250,000 USDC
-    // const token = usdc;
-
-    // // Mainnet 3
-    // const INSTANCE_NAME = `LPOptimiserStrategy-DAI_31Mar23_v2`;
-    // const voltzPools = ['cDAI_v4', 'aDAI_v4'];
-    // const VAULT_CAP = 250000 * voltzPools.length; // 500,000 DAI
-    // const token = dai;
-
-    // // Mainnet 4
-    // const INSTANCE_NAME = `LPOptimiserStrategy-ETH_31Mar23_v2`;
-    // const voltzPools = ['rETH_v2', 'stETH_v2'];
-    // const VAULT_CAP = 250 * voltzPools.length; // 500 ETH
-    // const token = weth;
-
-    // Mainnet 5
-    const INSTANCE_NAME = `LPOptimiserStrategy-USDT_31Mar23_v2`;
-    const voltzPools = ['borrow_aUSDT_v1'];
-    const VAULT_CAP = 250000 * voltzPools.length; // 250,000 USDT
+    const voltzPools = ['borrow_cUSDT'];
+    const VAULT_CAP = 250000 * voltzPools.length;
     const token = usdt;
 
     // Build the deployment parameters
@@ -422,12 +369,6 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 
     log("Strategy deployed");
     log();
-
-    // Save it in deployments
-    await hre.deployments.save(INSTANCE_NAME, {
-        abi: (await deployments.get("LPOptimiserStrategy")).abi,
-        address: strategyAddress,
-    });
 
     // Get the actual contracts
     const lPOptimiserStrategy = await hre.ethers.getContractAt(
