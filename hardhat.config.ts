@@ -9,6 +9,7 @@ import "./plugins/contracts";
 import { config as dotenv } from "dotenv";
 import "./tasks/verify";
 import "./tasks/9999_VoltzEndOfYearDeploymentsMultisig";
+import "./tasks/triggerRebalances";
 
 dotenv();
 
