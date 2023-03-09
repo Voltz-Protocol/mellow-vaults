@@ -186,6 +186,22 @@ const setup: { [key: string]: NetworkSetup } = {
                 weight: "100",
             }
         },
+
+        'aUSDC_v6': { // 31 Feb 23
+            marginEngine: '0x3AA060fb2C3432D16c1c0a9a22C6B23f7846Cf71',
+            vaultInitialParam: {
+                tickLower: -7320,
+                tickUpper: -3900,
+                leverageWad: "80000000000000000000",
+                marginMultiplierPostUnwindWad: "2000000000000000000",
+            },
+            vaultStrategyParam: {
+                sigmaWad: "300000178948379000",
+                maxPossibleLowerBoundWad: "10000000000000000000",
+                proximityWad: "93594692153717800",
+                weight: "100",
+            }
+        },
     }
 }
 
@@ -269,30 +285,10 @@ task("voltz-end-of-year-deployments", "Voltz End of Year Deployments")
                 token: string;
             }[] = [
                     {
-                        voltzPools: ['aUSDC_v4'],
+                        voltzPools: ['aUSDC_v6'],
                         VAULT_CAP: 250000,
                         token: usdc,
                     },
-                    {
-                        voltzPools: ['aUSDC_v5'],
-                        VAULT_CAP: 250000,
-                        token: usdc,
-                    },
-                    {
-                        voltzPools: ['cDAI_v4', 'aDAI_v4'],
-                        VAULT_CAP: 250000 * 2,
-                        token: dai,
-                    },
-                    {
-                        voltzPools: ['rETH_v2', 'stETH_v2'],
-                        VAULT_CAP: 250 * 2,
-                        token: weth,
-                    },
-                    {
-                        voltzPools: ['borrow_aUSDT_v1'],
-                        VAULT_CAP: 250000,
-                        token: usdt,
-                    }
                 ];
 
             const data: voltzEndOfYearTemplateData = {

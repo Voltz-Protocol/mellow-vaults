@@ -254,17 +254,9 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     // Set the deployment parameters
 
     // Goerli
-    // const voltzPools = ['cETH'];
-    // const VAULT_CAP = 250 * voltzPools.length;
-    // const token = weth;
-
-    // const voltzPools = ['cUSDC'];
-    // const VAULT_CAP = 250000 * voltzPools.length;
-    // const token = usdc;
-
-    const voltzPools = ['borrow_cUSDT'];
-    const VAULT_CAP = 250000 * voltzPools.length;
-    const token = usdt;
+    const voltzPools = ['cETH'];
+    const VAULT_CAP = 250 * voltzPools.length; // in underlying tokens
+    const token = weth;
 
     // Build the deployment parameters
 
