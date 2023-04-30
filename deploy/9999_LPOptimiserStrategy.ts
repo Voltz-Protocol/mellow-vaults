@@ -194,7 +194,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     const network = hre.network.name;
     const networkSetup = (network === 'hardhat' || network === 'localhost') ? setup['mainnet'] : setup[network];
 
-    const SKIP = false;
+    const SKIP = true;
     if (SKIP) {
         return;
     }
