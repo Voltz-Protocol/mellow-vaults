@@ -101,27 +101,11 @@ type NetworkSetup = { [key: string]: VaultSetup };
 const setup: { [key: string]: NetworkSetup } = {
     mainnet: {
         // USDC
-        'aUSDC': {
-            marginEngine: '0x8c25c69D4999a9Bac882E4097ee1a5E2C4bd4166',
-            vaultInitialParam: {
-                tickLower: -11760,
-                tickUpper: -9720,
-                leverageWad: "150000000000000000000",
-                marginMultiplierPostUnwindWad: "2000000000000000000",
-            },
-            vaultStrategyParam: {
-                sigmaWad: "300000000000000000",
-                maxPossibleLowerBoundWad: "10000000000000000000",
-                proximityWad: "75000000000000000",
-                weight: "85",
-            }
-        },
-
         'borrow_aUSDC': {
-            marginEngine: '0xB3d6ff11dDD6A28Cd7350d453ce502F82BA3E72c',
+            marginEngine: '0xd47fa3314c9c16ebca3dfe3e0c52c24f1311a22b',
             vaultInitialParam: {
-                tickLower: -13500,
-                tickUpper: -11820,
+                tickLower: -12960,
+                tickUpper: -11100,
                 leverageWad: "150000000000000000000",
                 marginMultiplierPostUnwindWad: "2000000000000000000",
             },
@@ -129,88 +113,22 @@ const setup: { [key: string]: NetworkSetup } = {
                 sigmaWad: "300000000000000000",
                 maxPossibleLowerBoundWad: "10000000000000000000",
                 proximityWad: "75000000000000000",
-                weight: "15",
-            }
-        },
-
-        // ETH
-        'stETH': {
-            marginEngine: '0xdafcB84c116E7f3aF2a86d89F2F6D04Cea84deb7',
-            vaultInitialParam: {
-                tickLower: -17160,
-                tickUpper: -15180,
-                leverageWad: "150000000000000000000",
-                marginMultiplierPostUnwindWad: "2000000000000000000",
-            },
-            vaultStrategyParam: {
-                sigmaWad: "500000000000000000",
-                maxPossibleLowerBoundWad: "10000000000000000000",
-                proximityWad: "100000000000000000",
-                weight: "60",
-            }
-        },
-
-        'rETH': {
-            marginEngine: '0x9E0e377F6567f612b4cf0a86bF759ce725722139',
-            vaultInitialParam: {
-                tickLower: -17580,
-                tickUpper: -15720,
-                leverageWad: "150000000000000000000",
-                marginMultiplierPostUnwindWad: "2000000000000000000",
-            },
-            vaultStrategyParam: {
-                sigmaWad: "500000000000000000",
-                maxPossibleLowerBoundWad: "10000000000000000000",
-                proximityWad: "100000000000000000",
-                weight: "20",
-            }
-        },
-
-        'borrow_aETH': {
-            marginEngine: '0xDD974c237C1f49422ec10f7E273120FFb595c5Da',
-            vaultInitialParam: {
-                tickLower: -14400,
-                tickUpper: -11700,
-                leverageWad: "150000000000000000000",
-                marginMultiplierPostUnwindWad: "2000000000000000000",
-            },
-            vaultStrategyParam: {
-                sigmaWad: "500000000000000000",
-                maxPossibleLowerBoundWad: "10000000000000000000",
-                proximityWad: "100000000000000000",
-                weight: "20",
-            }
-        },
-
-        // USDT
-        'borrow_cUSDT': {
-            marginEngine: '0xb67487b117298a47C0F774F25120b8D7428132da',
-            vaultInitialParam: {
-                tickLower: -15540,
-                tickUpper: -13140,
-                leverageWad: "150000000000000000000",
-                marginMultiplierPostUnwindWad: "2000000000000000000",
-            },
-            vaultStrategyParam: {
-                sigmaWad: "500000000000000000",
-                maxPossibleLowerBoundWad: "10000000000000000000",
-                proximityWad: "100000000000000000",
                 weight: "50",
             }
         },
 
-        'borrow_aUSDT': {
-            marginEngine: '0x5a3608a066e52349aFF363206faEF92414C8B9F6',
+        'borrow_av3USDC': {
+            marginEngine: '0x2a778e24c3c7b37472efe8fa448fc92b694e9b25',
             vaultInitialParam: {
-                tickLower: -14040,
-                tickUpper: -11220,
+                tickLower: -12540,
+                tickUpper: -10680,
                 leverageWad: "150000000000000000000",
                 marginMultiplierPostUnwindWad: "2000000000000000000",
             },
             vaultStrategyParam: {
-                sigmaWad: "500000000000000000",
+                sigmaWad: "300000000000000000",
                 maxPossibleLowerBoundWad: "10000000000000000000",
-                proximityWad: "100000000000000000",
+                proximityWad: "75000000000000000",
                 weight: "50",
             }
         },
@@ -282,19 +200,9 @@ task("generateVoltzDeployments", "Voltz Vault Deployments")
                 token: string;
             }[] = [
                     {
-                        voltzPools: ['aUSDC', 'borrow_aUSDC'],
+                        voltzPools: ['borrow_aUSDC', 'borrow_av3USDC'],
                         VAULT_CAP: 10000000, // USDC
                         token: usdc,
-                    },
-                    {
-                        voltzPools: ['stETH', 'rETH', 'borrow_aETH'],
-                        VAULT_CAP: 6000, // ETH
-                        token: weth,
-                    },
-                    {
-                        voltzPools: ['borrow_cUSDT', 'borrow_aUSDT'],
-                        VAULT_CAP: 10000000, // USDT
-                        token: usdt,
                     },
                 ];
 
