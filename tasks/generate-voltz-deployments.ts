@@ -102,10 +102,10 @@ const setup: { [key: string]: NetworkSetup } = {
     mainnet: {
         // USDC
         'borrow_aUSDC': {
-            marginEngine: '0xd47fa3314c9c16ebca3dfe3e0c52c24f1311a22b',
+            marginEngine: '0x7dcd48966eb559dfa6db842ba312c96dce0cb0b2',
             vaultInitialParam: {
-                tickLower: -12960,
-                tickUpper: -11100,
+                tickLower: -13200, // 3.743%
+                tickUpper: -11460, // 3.145%
                 leverageWad: "150000000000000000000",
                 marginMultiplierPostUnwindWad: "2000000000000000000",
             },
@@ -118,10 +118,10 @@ const setup: { [key: string]: NetworkSetup } = {
         },
 
         'borrow_av3USDC': {
-            marginEngine: '0x2a778e24c3c7b37472efe8fa448fc92b694e9b25',
+            marginEngine: '0x19654a85a96da7b39aa605259ee1568e55ccb9ba',
             vaultInitialParam: {
-                tickLower: -12540,
-                tickUpper: -10680,
+                tickLower: -12540, // 3.5%
+                tickUpper: -10620, // 2.892%
                 leverageWad: "150000000000000000000",
                 marginMultiplierPostUnwindWad: "2000000000000000000",
             },
