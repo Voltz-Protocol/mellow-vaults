@@ -1,0 +1,486 @@
+{
+    "version": "1.0",
+    "chainId": "1",
+    "createdAt": 1654007302649,
+    "meta": {
+        "name": "Transactions Batch",
+        "description": "",
+        "txBuilderVersion": "1.8.0",
+        "createdFromSafeAddress": "0xb527E950fC7c4F581160768f48b3bfA66a7dE1f0",
+        "createdFromOwnerAddress": "",
+        "checksum": "0x6e317afc197279541328cf252e50867cfa15d2ed7e7426244328bdf15b94cfe7"
+    },
+    "transactions": [
+      {{#data}}
+        {{#vaultData.voltzVaults}}
+            {
+                "to": "{{voltzVaultGovernance}}",
+                "value": "0",
+                "data": null,
+                "contractMethod": {
+                    "inputs": [
+                        {
+                            "internalType": "address[]",
+                            "name": "vaultTokens_",
+                            "type": "address[]"
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "owner_",
+                            "type": "address"
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "marginEngine_",
+                            "type": "address"
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "voltzVaultHelperSingleton_",
+                            "type": "address"
+                        },
+                        {
+                            "components": [
+                                {
+                                    "internalType": "int24",
+                                    "name": "tickLower",
+                                    "type": "int24"
+                                },
+                                {
+                                    "internalType": "int24",
+                                    "name": "tickUpper",
+                                    "type": "int24"
+                                },
+                                {
+                                    "internalType": "uint256",
+                                    "name": "leverageWad",
+                                    "type": "uint256"
+                                },
+                                {
+                                    "internalType": "uint256",
+                                    "name": "marginMultiplierPostUnwindWad",
+                                    "type": "uint256"
+                                }
+                            ],
+                            "internalType": "struct IVoltzVault.InitializeParams",
+                            "name": "initializeParams",
+                            "type": "tuple"
+                        }
+                    ],
+                    "name": "createVault",
+                    "outputs": [
+                        {
+                            "internalType": "contract IVoltzVault",
+                            "name": "vault",
+                            "type": "address"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "nft",
+                            "type": "uint256"
+                        }
+                    ],
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                "contractInputsValues": {
+                    "vaultTokens_": "[ \"{{vaultData.token}}\" ]",
+                    "owner_": "{{owner}}",
+                    "marginEngine_": "{{marginEngine}}",
+                    "voltzVaultHelperSingleton_": "{{voltzVaultHelperSingleton}}",
+                    "initializeParams": "[\"{{initializeParams.tickLower}}\", \"{{initializeParams.tickUpper}}\", \"{{initializeParams.leverageWad}}\", \"{{initializeParams.marginMultiplierPostUnwindWad}}\"]"
+                }
+            },
+        {{/vaultData.voltzVaults}}
+        {
+            "to": "{{erc20VaultGovernance}}",
+            "value": "0",
+            "data": null,
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "address[]",
+                        "name": "vaultTokens_",
+                        "type": "address[]"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "owner_",
+                        "type": "address"
+                    }
+                ],
+                "name": "createVault",
+                "outputs": [
+                    {
+                        "internalType": "contract IERC20Vault",
+                        "name": "vault",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "nft",
+                        "type": "uint256"
+                    }
+                ],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            "contractInputsValues": {
+                "vaultTokens_": "[ \"{{vaultData.token}}\" ]",
+                "owner_": "{{owner}}"
+            }
+        },
+        {
+            "to": "{{masterStrategy}}",
+            "value": "0",
+            "data": null,
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "contract IERC20Vault",
+                        "name": "erc20vault_",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "contract IVoltzVault[]",
+                        "name": "vaults_",
+                        "type": "address[]"
+                    },
+                    {
+                        "components": [
+                            {
+                                "internalType": "int256",
+                                "name": "sigmaWad",
+                                "type": "int256"
+                            },
+                            {
+                                "internalType": "int256",
+                                "name": "maxPossibleLowerBoundWad",
+                                "type": "int256"
+                            },
+                            {
+                                "internalType": "uint256",
+                                "name": "proximityWad",
+                                "type": "uint256"
+                            },
+                            {
+                                "internalType": "uint256",
+                                "name": "weight",
+                                "type": "uint256"
+                            }
+                        ],
+                        "internalType": "struct LPOptimiserStrategy.VaultParams[]",
+                        "name": "vaultParams_",
+                        "type": "tuple[]"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "admin_",
+                        "type": "address"
+                    }
+                ],
+                "name": "createStrategy",
+                "outputs": [
+                    {
+                        "internalType": "contract LPOptimiserStrategy",
+                        "name": "strategy",
+                        "type": "address"
+                    }
+                ],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            "contractInputsValues": {
+                "erc20vault_": "{{vaultData.erc20VaultAddress}}",
+                "vaults_": "[{{#vaultData.voltzVaultAddresses}} \"{{address}}\"{{^last}},{{/last}} {{/vaultData.voltzVaultAddresses}}]",
+                "vaultParams_": "[{{#vaultData.vaultStrategyParams}} [ \"{{params.sigmaWad}}\", \"{{params.maxPossibleLowerBoundWad}}\", \"{{params.proximityWad}}\", \"{{params.weight}}\"]{{^last}},{{/last}} {{/vaultData.vaultStrategyParams}} ]",
+                "admin_": "{{owner}}"
+            }
+        },
+        {{#vaultData.vaultNFTs}}
+            {
+                "to": "{{vaultRegistry}}",
+                "value": "0",
+                "data": null,
+                "contractMethod": {
+                    "inputs": [
+                        {
+                            "internalType": "address",
+                            "name": "to",
+                            "type": "address"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "tokenId",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "approve",
+                    "outputs": [],
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                "contractInputsValues": {
+                    "to": "{{erc20RootVaultGovernance}}",
+                    "tokenId": "{{tokenId}}"
+                }
+            },
+        {{/vaultData.vaultNFTs}}
+        {
+            "to": "{{erc20RootVaultGovernance}}",
+            "value": "0",
+            "data": null,
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "address[]",
+                        "name": "vaultTokens_",
+                        "type": "address[]"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "strategy_",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint256[]",
+                        "name": "subvaultNfts_",
+                        "type": "uint256[]"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "owner_",
+                        "type": "address"
+                    }
+                ],
+                "name": "createVault",
+                "outputs": [
+                    {
+                        "internalType": "contract IERC20RootVault",
+                        "name": "vault",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "nft",
+                        "type": "uint256"
+                    }
+                ],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            "contractInputsValues": {
+                "vaultTokens_": "[ \"{{vaultData.token}}\" ]",
+                "strategy_": "{{vaultData.strategy}}",
+                "subvaultNfts_": "[ {{#vaultData.vaultNFTs}} \"{{tokenId}}\"{{^last}},{{/last}} {{/vaultData.vaultNFTs}}]",
+                "owner_": "{{owner}}"
+            }
+        },
+        {
+            "to": "{{erc20RootVaultGovernance}}",
+            "value": "0",
+            "data": null,
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "nft",
+                        "type": "uint256"
+                    },
+                    {
+                        "components": [
+                            {
+                                "internalType": "uint256",
+                                "name": "tokenLimitPerAddress",
+                                "type": "uint256"
+                            },
+                            {
+                                "internalType": "uint256",
+                                "name": "tokenLimit",
+                                "type": "uint256"
+                            }
+                        ],
+                        "internalType": "struct IERC20RootVaultGovernance.StrategyParams",
+                        "name": "params",
+                        "type": "tuple"
+                    }
+                ],
+                "name": "setStrategyParams",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            "contractInputsValues": {
+                "nft": "{{vaultData.erc20RootVaultNFT}}",
+                "params": "[\"115792089237316195423570985008687907853269984665640564039457584007913129639935\", \"{{vaultData.vaultCap}}\"]"
+            }
+        },
+        {
+            "to": "{{erc20RootVaultGovernance}}",
+            "value": "0",
+            "data": null,
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "nft",
+                        "type": "uint256"
+                    },
+                    {
+                        "components": [
+                            {
+                                "internalType": "address",
+                                "name": "strategyTreasury",
+                                "type": "address"
+                            },
+                            {
+                                "internalType": "address",
+                                "name": "strategyPerformanceTreasury",
+                                "type": "address"
+                            },
+                            {
+                                "internalType": "bool",
+                                "name": "privateVault",
+                                "type": "bool"
+                            },
+                            {
+                                "internalType": "uint256",
+                                "name": "managementFee",
+                                "type": "uint256"
+                            },
+                            {
+                                "internalType": "uint256",
+                                "name": "performanceFee",
+                                "type": "uint256"
+                            },
+                            {
+                                "internalType": "address",
+                                "name": "depositCallbackAddress",
+                                "type": "address"
+                            },
+                            {
+                                "internalType": "address",
+                                "name": "withdrawCallbackAddress",
+                                "type": "address"
+                            }
+                        ],
+                        "internalType": "struct IERC20RootVaultGovernance.DelayedStrategyParams",
+                        "name": "params",
+                        "type": "tuple"
+                    }
+                ],
+                "name": "stageDelayedStrategyParams",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            "contractInputsValues": {
+                "nft": "{{vaultData.erc20RootVaultNFT}}",
+                "params": "[\"0x25C2B22477eD2E4099De5359d376a984385b4518\", \"0x25C2B22477eD2E4099De5359d376a984385b4518\", false, \"0\", \"0\", \"{{vaultData.strategy}}\", \"{{vaultData.strategy}}\"]"
+            }
+        },
+        {
+            "to": "{{erc20RootVaultGovernance}}",
+            "value": "0",
+            "data": null,
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "nft",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "commitDelayedStrategyParams",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            "contractInputsValues": {
+                "nft": "{{vaultData.erc20RootVaultNFT}}"
+            }
+        },
+        {
+            "to": "{{vaultData.strategy}}",
+            "value": "0",
+            "data": null,
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "role",
+                        "type": "bytes32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "account",
+                        "type": "address"
+                    }
+                ],
+                "name": "grantRole",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            "contractInputsValues": {
+                "role": "0xc171260023d22a25a00a2789664c9334017843b831138c8ef03cc8897e5873d7",
+                "account": "{{owner}}"
+            }
+        },
+        {
+            "to": "{{vaultData.strategy}}",
+            "value": "0",
+            "data": null,
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "role",
+                        "type": "bytes32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "account",
+                        "type": "address"
+                    }
+                ],
+                "name": "grantRole",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            "contractInputsValues": {
+                "role": "0x46a52cf33029de9f84853745a87af28464c80bf0346df1b32e205fc73319f622",
+                "account": "{{owner}}"
+            }
+        },
+        {
+            "to": "{{vaultData.strategy}}",
+            "value": "0",
+            "data": null,
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "role",
+                        "type": "bytes32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "account",
+                        "type": "address"
+                    }
+                ],
+                "name": "grantRole",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            "contractInputsValues": {
+                "role": "0x46a52cf33029de9f84853745a87af28464c80bf0346df1b32e205fc73319f622",
+                "account": "{{rebalancer}}"
+            }
+        },{{^last}},{{/last}}
+    {{/data}}
+    ]
+}

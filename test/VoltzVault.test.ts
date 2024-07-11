@@ -61,7 +61,7 @@ contract<VoltzVault, DeployOptions, CustomContext>("VoltzVault", function () {
                 await deployments.fixture();
                 const { read } = deployments;
 
-                const { marginEngine, voltzPeriphery } =
+                const { voltzPeriphery } =
                     await getNamedAccounts();
 
                 this.periphery = voltzPeriphery;
@@ -70,7 +70,7 @@ contract<VoltzVault, DeployOptions, CustomContext>("VoltzVault", function () {
                     this.periphery
                 )) as IPeriphery;
 
-                this.marginEngine = marginEngine;
+                this.marginEngine = "0x9ea5Cfd876260eDadaB461f013c24092dDBD531d";
                 this.marginEngineContract = (await ethers.getContractAt(
                     "IMarginEngine",
                     this.marginEngine
@@ -125,7 +125,7 @@ contract<VoltzVault, DeployOptions, CustomContext>("VoltzVault", function () {
                     createVaultArgs: [
                         tokens,
                         this.deployer.address,
-                        marginEngine,
+                        this.marginEngine,
                         this.voltzVaultHelperSingleton,
                         {
                             tickLower: this.initialTickLow,
@@ -203,28 +203,30 @@ contract<VoltzVault, DeployOptions, CustomContext>("VoltzVault", function () {
                     );
                 }
 
-                const { deploy } = deployments;
-                let strategyDeployParams = await deploy("LPOptimiserStrategy", {
-                    from: this.deployer.address,
-                    contract: "LPOptimiserStrategy",
-                    args: [
-                        this.erc20Vault.address,
-                        [this.subject.address],
-                        [
-                            {
-                                sigmaWad: "100000000000000000",
-                                maxPossibleLowerBoundWad: "1500000000000000000",
-                                proximityWad: "100000000000000000",
-                                weight: "1",
-                            },
-                        ],
-                        this.deployer.address,
+                const lPOptimiserStrategy = await hre.ethers.getContract(
+                    "LPOptimiserStrategy"
+                );
+            
+                const params = [
+                    erc20Vault,
+                    [voltzVault],
+                    [
+                        {
+                            sigmaWad: "100000000000000000",
+                            maxPossibleLowerBoundWad: "1500000000000000000",
+                            proximityWad: "100000000000000000",
+                            weight: "1",
+                        },
                     ],
-                    log: true,
-                    autoMine: true,
-                });
+                    this.deployer.address,
+                ];
 
-                this.strategy = await addSigner(strategyDeployParams.address);
+                const strategyAddress = await lPOptimiserStrategy.callStatic.createStrategy(
+                    ...params
+                );
+                await lPOptimiserStrategy.createStrategy(...params);
+
+                this.strategy = await addSigner(strategyAddress);
 
                 this.preparePush = async (
                     value: number,

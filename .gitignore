@@ -12,8 +12,8 @@ registry
 coverage
 coverage.json
 gas.txt
-deployments
 test/types
 docs
 tenderly.yaml
 spec.json
+tasks/jsons/

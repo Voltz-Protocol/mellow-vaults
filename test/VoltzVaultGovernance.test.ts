@@ -43,7 +43,7 @@ contract<VoltzVaultGovernance, DeploymentOptions, CustomContext>(
         const marginMultiplierPostUnwind = 2;
 
         before(async () => {
-            const marginEngineAddress = (await getNamedAccounts()).marginEngine;
+            const marginEngineAddress = "0x9ea5Cfd876260eDadaB461f013c24092dDBD531d";
 
             const voltzPeripheryAddress = (await getNamedAccounts())
                 .voltzPeriphery;

@@ -1,0 +1,159 @@
+{
+    "version": "1.0",
+    "chainId": "1",
+    "createdAt": 1654007302649,
+    "meta": {
+        "name": "Transactions Batch",
+        "description": "",
+        "txBuilderVersion": "1.8.0",
+        "createdFromSafeAddress": "0xb527E950fC7c4F581160768f48b3bfA66a7dE1f0",
+        "createdFromOwnerAddress": "",
+        "checksum": "0x6e317afc197279541328cf252e50867cfa15d2ed7e7426244328bdf15b94cfe7"
+    },
+    "transactions": [
+    {{#vaults}}
+
+    {
+            "to": "{{strategy}}",
+            "value": "0",
+            "data": null,
+            "contractMethod": {
+                "inputs": [
+                    {
+                    "internalType": "uint256",
+                    "name": "index",
+                    "type": "uint256"
+                    },
+                    {
+                    "components": [
+                        {
+                        "internalType": "int256",
+                        "name": "sigmaWad",
+                        "type": "int256"
+                        },
+                        {
+                        "internalType": "int256",
+                        "name": "maxPossibleLowerBoundWad",
+                        "type": "int256"
+                        },
+                        {
+                        "internalType": "uint256",
+                        "name": "proximityWad",
+                        "type": "uint256"
+                        },
+                        {
+                        "internalType": "uint256",
+                        "name": "weight",
+                        "type": "uint256"
+                        }
+                    ],
+                    "internalType": "struct LPOptimiserStrategy.VaultParams",
+                    "name": "vaultParams_",
+                    "type": "tuple"
+                    }
+                ],
+                "name": "setVaultParams",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            "contractInputsValues": {
+                "index": "{{index}}",
+                "vaultParams_": "[ \"{{changedParams.sigmaWad}}\", \"{{changedParams.maxPossibleLowerBoundWad}}\", \"{{changedParams.proximityWad}}\", \"{{changedParams.weight}}\" ]"
+            }
+    },
+
+    {
+            "to": "{{strategy}}",
+            "value": "0",
+            "data": null,
+            "contractMethod": {
+                "inputs": [
+                    {
+                    "internalType": "uint256",
+                    "name": "index",
+                    "type": "uint256"
+                    },
+                    {
+                    "internalType": "uint256",
+                    "name": "currentFixedRateWad",
+                    "type": "uint256"
+                    }
+                ],
+                "name": "rebalanceTicks",
+                "outputs": [
+                    {
+                    "internalType": "int24",
+                    "name": "newTickLower",
+                    "type": "int24"
+                    },
+                    {
+                    "internalType": "int24",
+                    "name": "newTickUpper",
+                    "type": "int24"
+                    }
+                ],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            "contractInputsValues": {
+                "index": "{{index}}",
+                "currentFixedRateWad": "{{fixedRateWad}}"
+            }
+    },
+
+    {
+            "to": "{{strategy}}",
+            "value": "0",
+            "data": null,
+            "contractMethod": {
+                "inputs": [
+                    {
+                    "internalType": "uint256",
+                    "name": "index",
+                    "type": "uint256"
+                    },
+                    {
+                    "components": [
+                        {
+                        "internalType": "int256",
+                        "name": "sigmaWad",
+                        "type": "int256"
+                        },
+                        {
+                        "internalType": "int256",
+                        "name": "maxPossibleLowerBoundWad",
+                        "type": "int256"
+                        },
+                        {
+                        "internalType": "uint256",
+                        "name": "proximityWad",
+                        "type": "uint256"
+                        },
+                        {
+                        "internalType": "uint256",
+                        "name": "weight",
+                        "type": "uint256"
+                        }
+                    ],
+                    "internalType": "struct LPOptimiserStrategy.VaultParams",
+                    "name": "vaultParams_",
+                    "type": "tuple"
+                    }
+                ],
+                "name": "setVaultParams",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            "contractInputsValues": {
+                "index": "{{index}}",
+                "vaultParams_": "[ \"{{sameParams.sigmaWad}}\", \"{{sameParams.maxPossibleLowerBoundWad}}\", \"{{sameParams.proximityWad}}\", \"{{sameParams.weight}}\" ]"
+            }
+    }
+
+    {{^last}},{{/last}}
+
+    {{/vaults}}
+    ]
+}

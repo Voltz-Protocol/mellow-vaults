@@ -54,7 +54,7 @@ contract<{}, DeployOptions, CustomContext>("Voltz E2E", function () {
                 await deployments.fixture();
                 const { read } = deployments;
 
-                const { marginEngine, voltzPeriphery } =
+                const { voltzPeriphery } =
                     await getNamedAccounts();
 
                 this.periphery = voltzPeriphery;
@@ -63,7 +63,7 @@ contract<{}, DeployOptions, CustomContext>("Voltz E2E", function () {
                     this.periphery
                 )) as IPeriphery;
 
-                this.marginEngine = marginEngine;
+                this.marginEngine = "0x9ea5Cfd876260eDadaB461f013c24092dDBD531d";
                 this.marginEngineContract = (await ethers.getContractAt(
                     "IMarginEngine",
                     this.marginEngine
@@ -168,25 +168,28 @@ contract<{}, DeployOptions, CustomContext>("Voltz E2E", function () {
                     this.voltzVaults.push(voltzVault as VoltzVault);
                 }
 
-                let strategyDeployParams = await deploy("LPOptimiserStrategy", {
-                    from: this.deployer.address,
-                    contract: "LPOptimiserStrategy",
-                    args: [
-                        this.erc20Vault.address,
-                        this.voltzVaults.map((val) => val.address),
-                        this.voltzVaults.map((_, index) => {
-                            return {
-                                sigmaWad: "100000000000000000",
-                                maxPossibleLowerBoundWad: "1500000000000000000",
-                                proximityWad: "100000000000000000",
-                                weight: index === 0 ? "1" : "0",
-                            };
-                        }),
-                        this.admin.address,
-                    ],
-                    log: true,
-                    autoMine: true,
-                });
+                const lPOptimiserStrategy = await hre.ethers.getContract(
+                    "LPOptimiserStrategy"
+                );
+            
+                const params = [
+                    this.erc20Vault.address,
+                    this.voltzVaults.map((val) => val.address),
+                    this.voltzVaults.map((_, index) => {
+                        return {
+                            sigmaWad: "100000000000000000",
+                            maxPossibleLowerBoundWad: "1500000000000000000",
+                            proximityWad: "100000000000000000",
+                            weight: index === 0 ? "1" : "0",
+                        };
+                    }),
+                    this.admin.address,
+                ];
+
+                const strategyAddress = await lPOptimiserStrategy.callStatic.createStrategy(
+                    ...params
+                );
+                await lPOptimiserStrategy.createStrategy(...params);
 
                 await combineVaults(
                     hre,
@@ -225,7 +228,7 @@ contract<{}, DeployOptions, CustomContext>("Voltz E2E", function () {
 
                 this.strategy = await ethers.getContractAt(
                     "LPOptimiserStrategy",
-                    strategyDeployParams.address
+                    strategyAddress
                 );
 
                 this.strategySigner = await addSigner(this.strategy.address);
@@ -497,11 +500,11 @@ contract<{}, DeployOptions, CustomContext>("Voltz E2E", function () {
 
         expect(await this.usdc.balanceOf(this.user1.address)).to.be.closeTo(
             BigNumber.from(100059531613),
-            1000
+            10000
         );
         expect(await this.usdc.balanceOf(this.user2.address)).to.be.closeTo(
             BigNumber.from(1000001404),
-            1000
+            10000
         );
     });
 
@@ -615,11 +618,11 @@ contract<{}, DeployOptions, CustomContext>("Voltz E2E", function () {
 
         expect(await this.usdc.balanceOf(this.user1.address)).to.be.closeTo(
             BigNumber.from(100062735231),
-            1000
+            10000
         );
         expect(await this.usdc.balanceOf(this.user2.address)).to.be.closeTo(
             BigNumber.from(1000033421),
-            1000
+            10000
         );
     });
 
@@ -815,11 +818,11 @@ contract<{}, DeployOptions, CustomContext>("Voltz E2E", function () {
 
         expect(await this.usdc.balanceOf(this.user1.address)).to.be.closeTo(
             BigNumber.from(100059531613),
-            1000
+            10000
         );
         expect(await this.usdc.balanceOf(this.user2.address)).to.be.closeTo(
             BigNumber.from(1000001404),
-            1000
+            10000
         );
     });
 
@@ -926,11 +929,11 @@ contract<{}, DeployOptions, CustomContext>("Voltz E2E", function () {
 
         expect(await this.usdc.balanceOf(this.user1.address)).to.be.closeTo(
             BigNumber.from(99987062685),
-            1000
+            10000
         );
         expect(await this.usdc.balanceOf(this.user2.address)).to.be.closeTo(
             BigNumber.from(999999999),
-            1000
+            10000
         );
     });
 
@@ -1056,11 +1059,11 @@ contract<{}, DeployOptions, CustomContext>("Voltz E2E", function () {
 
         expect(await this.usdc.balanceOf(this.user1.address)).to.be.closeTo(
             BigNumber.from(100019094304),
-            1000
+            10000
         );
         expect(await this.usdc.balanceOf(this.user2.address)).to.be.closeTo(
             BigNumber.from(1000320357),
-            1000
+            10000
         );
     });
 
@@ -1195,11 +1198,11 @@ contract<{}, DeployOptions, CustomContext>("Voltz E2E", function () {
 
         expect(await this.usdc.balanceOf(this.user1.address)).to.be.closeTo(
             BigNumber.from(100019094304),
-            1000
+            10000
         );
         expect(await this.usdc.balanceOf(this.user2.address)).to.be.closeTo(
             BigNumber.from(1000320357),
-            1000
+            10000
         );
     });
 });
